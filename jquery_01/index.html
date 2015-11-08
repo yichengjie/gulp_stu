@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jquery validate测试</title>
+    <script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+  </head>
+  <body>
+    <form id="signupForm">
+        <p>
+            <label for="firstname">Firstname</label>
+            <input id="firstname" name="firstname" class="required" />
+        </p>
+     <p>
+      <label for="email">E-Mail</label>
+      <input id="email" name="email" class="required email" />
+     </p>
+     <p>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" class="{required:true,minlength:5}" />
+     </p>
+     <p>
+      <label for="confirm_password">确认密码</label>
+      <input id="confirm_password" name="confirm_password" type="password" class="{required:true,minlength:5,equalTo:'#password'}" />
+     </p>
+      <p>
+          <input class="submit" name = "submit" type="submit" value="Submit"/>
+          <input type="button" id="reset" name ="reset" value="重置">
+          <input type="button" id="valid2" name ="valid2" value="手动校验">
+      </p>
+    </form>
+
+  </body>
+</html>
