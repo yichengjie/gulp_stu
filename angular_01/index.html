@@ -4,14 +4,17 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-    <script type="text/javascript" src="../node_modules/angular/angular.js">
-    </script>
+    <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="../lib/bindonce/bindonce.js"></script>
   </head>
   <body class="container" style="padding-top:100px;" ng-app="app">
     <div class="" ng-controller="IndexController">
-        <h2 ng-bind="name"></h2>
+        <div bindonce="data">
+            <div bo-bind="data.name"></div>
+        </div>
+        <h2 bindonce="data" bo-bind="data.name"></h2>
         <my-link value="http://www.baidu.com">baidu</my-link>
-        <input ng-model="name" type="text" other>
+        <input ng-model="data.name" type="text" other>
     </div>
   </body>
   <script type="text/javascript" src='index.js'></script>

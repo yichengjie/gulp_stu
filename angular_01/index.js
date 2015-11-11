@@ -1,6 +1,8 @@
-var app = angular.module('app',[]) ;
+var app = angular.module('app',['pasvaz.bindonce']) ;
 app.controller('IndexController',function ($scope) {
-    $scope.name = 'hello world';
+    $scope.data = {
+        name:'hello world'
+    };
 }) ;
 app.directive('myLink', function () {
      return {
