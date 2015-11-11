@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "angular": "^1.4.7",
+    "angular-bindonce": "^0.3.1",
     "bootstrap": "^3.3.5",
     "browser-sync": "^2.9.12",
     "gulp": "^3.9.0",
@@ -18,7 +19,8 @@
     "gulp-seajs-combo": "^1.2.3",
     "gulp-seajs-transport": "^0.3.1",
     "gulp-tpl2js": "0.0.4",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "seajs": "^3.0.1"
   },
   "dependencies": {
     "gulp-seajs": "^0.4.2"
