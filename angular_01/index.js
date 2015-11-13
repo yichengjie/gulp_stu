@@ -1,8 +1,17 @@
 var app = angular.module('app',['pasvaz.bindonce']) ;
 app.controller('IndexController',function ($scope) {
     $scope.data = {
-        name:'hello world'
+        name:'hello world',
+        serviceType:'F'
     };
+    $scope.serviceTypeList =[
+        {name:"服务类型M",value:"M"},
+        {name:"服务类型F",value:"F"},
+        {name:"服务类型A",value:"A"},
+        {name:"服务类型C",value:"C"},
+        {name:"服务类型P",value:"P"}
+    ]
+
 }) ;
 app.directive('myLink', function () {
      return {
@@ -44,3 +53,4 @@ app.directive('other',function(){
     }
   } ;
 }) ;
+

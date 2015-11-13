@@ -15,6 +15,26 @@
         <h2 bindonce="data" bo-bind="data.name"></h2>
         <my-link value="http://www.baidu.com">baidu</my-link>
         <input ng-model="data.name" type="text" other>
+
+
+        <div class="row">
+
+                <select ng-model="data.serviceType">
+                    <option bindonce ng-repeat="l in serviceTypeList" ng-selected="data.serviceType==l.value"
+                            bo-value="l.value" bo-bind="l.name"></option>
+                </select>
+
+                <select ng-model="data.serviceType">
+                    <option  ng-repeat="l in serviceTypeList" ng-selected="data.serviceType==l.value"  value="l.value" ng-bind="l.name"></option>
+                </select>
+
+                <select ng-model="data.serviceType"
+                        ng-options="a.value as a.name for a in serviceTypeList">
+                </select>
+
+
+        </div>
+
     </div>
   </body>
   <script type="text/javascript" src='index.js'></script>
