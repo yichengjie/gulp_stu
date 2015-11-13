@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="demo02.js"></script>
+</head>
+<body ng-app="app" style="padding-top: 100px;">
+
+   <div ng-controller="IndexController" class="container">
+
+       <button class="btn btn-primary" ng-click="click1()">测试1</button>
+
+
+       <div ng-controller="HelloController">
+
+           <div ng-controller="TTController">
+
+           </div>
+           <hello></hello>
+           <hello2></hello2>
+       </div>
+
+
+
+   </div>
+
+</body>
+</html>
