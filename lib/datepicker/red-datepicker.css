@@ -1,0 +1,18 @@
+﻿.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current 
+{
+	margin-left:40%;/*删除按钮位置*/
+}
+#ui-datepicker-div
+{
+	font-size:70%;/*div字大小*/
+	color:#ffffff;/*div字体颜色*/
+	background:#FF99CC;/*整个div的背景颜色*/
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default
+{
+	background:#FF3399;/*日期块颜色*/
+	color:#ffffff;/*日期块字体颜色*/
+	text-align:center;
+}
