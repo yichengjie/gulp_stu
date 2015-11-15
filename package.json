@@ -13,14 +13,18 @@
     "angular-bindonce": "^0.3.1",
     "bootstrap": "^3.3.5",
     "browser-sync": "^2.9.12",
+    "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-minify": "0.0.5",
     "gulp-seajs-combine": "^0.3.3",
     "gulp-seajs-combo": "^1.2.3",
     "gulp-seajs-transport": "^0.3.1",
     "gulp-tpl2js": "0.0.4",
-    "jquery": "^2.1.4",
-    "seajs": "^3.0.1"
+    "http-server": "^0.8.5",
+    "jquery": "^1.11.3",
+    "seajs": "^3.0.1",
+    "socket.io": "^1.3.7",
+    "underscore": "^1.8.3"
   },
   "dependencies": {
     "gulp-seajs": "^0.4.2"
