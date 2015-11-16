@@ -1,5 +1,7 @@
 $().ready(function() {//start ready
+
  var validator = $("#signupForm").validate({
+     meta : "validate",
    submitHandler:function(form){
      alert('submitted') ;
      form.submit();

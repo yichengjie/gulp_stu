@@ -3,8 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>jquery validate测试</title>
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <link type="text/css" rel="stylesheet" href="tui/style/style.css" />
     <script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js"></script>
+      <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
+
+    <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
+
+
     <script type="text/javascript" src="./index.js"></script>
   </head>
   <body>
@@ -23,13 +30,38 @@
      </p>
      <p>
       <label for="confirm_password">确认密码</label>
-      <input id="confirm_password" name="confirm_password" type="password" class="{required:true,minlength:5,equalTo:'#password'}" />
+      <input id="confirm_password" name="confirm_password" type="password"
+             class="{required:true,minlength:5,equalTo:'#password'}" />
      </p>
+
+     <p>
+        <label for="serviceType">服务类型</label>
+         <select name="serviceType" id="serviceType" class="required">
+             <option value=""></option>
+             <option value="1">1-----</option>
+             <option value="2">2-----</option>
+             <option value="3">3-----</option>
+         </select>
+
+     </p>
+     <p>
+         <input  type="radio" id="gender_male" value="m" name="gender" class="{validate:{required:true}}" />
+         <input  type="radio" id="gender_female" value="f" name="gender"/>
+     </p>
+
       <p>
-          <input class="submit" name = "submit" type="submit" value="Submit"/>
-          <input type="button" id="reset" name ="reset" value="重置">
-          <input type="button" id="valid2" name ="valid2" value="手动校验">
+        <input type="checkbox" class="checkbox" id="spam_email" value="email" name="spam[]" class="{required:true, minlength:2}" />
+        <input type="checkbox" class="checkbox" id="spam_phone" value="phone" name="spam[]" />
+        <input type="checkbox" class="checkbox" id="spam_mail" value="mail" name="spam[]" />
       </p>
+
+
+        <p>
+            <input class="submit" name = "submit" type="submit" value="Submit"/>
+            <input type="button" id="reset" name ="reset" value="重置">
+            <input type="button" id="valid2" name ="valid2" value="手动校验">
+        </p>
+
     </form>
 
   </body>

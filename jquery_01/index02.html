@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
+    <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
+    <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var flag = $("#commentForm").validate({meta:"validate" });
+            console.info(flag) ;
+        });
+    </script>
+</head>
+<body>
+    <form class="cmxform" id="commentForm" method="get" action="#">
+        <fieldset>
+            <legend>一个简单的验证带验证提示的评论例子</legend>
+            <p>
+                <label for="cusername">姓名</label><em>*</em>
+                <input id="cusername" name="username" size="25" class="{validate:{required:true,minlength:2}}" />
+            </p>
+            <p>
+                <label for="cemail">电子邮件</label><em>*</em>
+                <input id="cemail" name="email" size="25" class="{validate:{required:true,email:true}}" />
+            </p>
+            <p>
+                <label for="curl">网址</label><em>&nbsp;</em>
+                <input id="curl" name="url" size="25" value="" class="{validate:{url:true}}" />
+            </p>
+            <p>
+                <label for="ccoment">你的评论</label><em>*</em>
+                <textarea id="ccoment" name="comment" cols="22" class="{validate:{required:true}}"></textarea>
+            </p>
+            <p>
+                <input class="submit" type="submit" value="提交"/>
+            </p>
+        </fieldset>
+    </form>
+</body>
+</html>

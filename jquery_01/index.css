@@ -1,0 +1,30 @@
+@charset "utf-8";
+/*input.error{ border:1px solid #ff8f8f!important;}
+label.error{height:24px;
+    line-height:24px; margin:-1px 0 0 5px; padding:0 8px;
+    border:1px solid #eaabab; border-radius:2px;
+    color: #d17a7a;font-size:12px;
+    background-color:#ffe8e8;
+    vertical-align:middle;}
+*/
+input.error { border: 1px solid red; }
+label.error {
+     padding-left: 1px;
+     padding-right: 8px;
+     padding-bottom: 2px;
+     margin-left: 10px;
+     font-weight: bold;
+     color: #EA5200;
+     border: 1px solid #eaabab;
+     vertical-align: middle;
+}
+label.checked {
+    background:url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
+.red{
+    color: red;
+}
+.errorIcon{
+    margin-left: 5px;
+    margin-right: 5px;
+}

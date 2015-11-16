@@ -22,6 +22,7 @@
     "gulp-tpl2js": "0.0.4",
     "http-server": "^0.8.5",
     "jquery": "^1.11.3",
+    "jquery-validation": "^1.14.0",
     "seajs": "^3.0.1",
     "socket.io": "^1.3.7",
     "underscore": "^1.8.3"
