@@ -28,3 +28,13 @@ label.checked {
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.myinput{
+  width: 300px;
+}
+
+.myinputrow{
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

@@ -1,43 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
+    <meta charset="utf-8">
+    <title>jquery validate测试</title>
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <link  type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
     <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            var flag = $("#commentForm").validate({meta:"validate" });
-            console.info(flag) ;
-        });
-    </script>
+    <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="./index02.js"></script>
 </head>
-<body>
-    <form class="cmxform" id="commentForm" method="get" action="#">
-        <fieldset>
-            <legend>一个简单的验证带验证提示的评论例子</legend>
-            <p>
-                <label for="cusername">姓名</label><em>*</em>
-                <input id="cusername" name="username" size="25" class="{validate:{required:true,minlength:2}}" />
-            </p>
-            <p>
-                <label for="cemail">电子邮件</label><em>*</em>
-                <input id="cemail" name="email" size="25" class="{validate:{required:true,email:true}}" />
-            </p>
-            <p>
-                <label for="curl">网址</label><em>&nbsp;</em>
-                <input id="curl" name="url" size="25" value="" class="{validate:{url:true}}" />
-            </p>
-            <p>
-                <label for="ccoment">你的评论</label><em>*</em>
-                <textarea id="ccoment" name="comment" cols="22" class="{validate:{required:true}}"></textarea>
-            </p>
-            <p>
-                <input class="submit" type="submit" value="提交"/>
-            </p>
-        </fieldset>
+<body style="padding-top: 50px;" ng-app="app">
+<div ng-controller="EditController" class="container">
+    <form id="signupForm">
+
+        <div class="row myinputrow">
+            <label class="col-sm-2 control-label">服务类型</label>
+            <div class="col-sm-10">
+                <select ng-change="changeServiceType()" class="myinput"
+                        ng-model="data.serviceType"
+                        ng-options="item.value as item.name for item in serviceTypeList">
+                </select>
+            </div>
+        </div>
+
+        <force ocshow="F,M" title="Name" data="data" org-data ="orgData" ocname="name">
+            <input type="text" class="myinput required" ng-model="data.name" name="name" placeholder="必填">
+        </force>
+
+        <force ocshow="F" title="email" data="data" org-data ="orgData" ocname="email">
+            <input type="text" class="myinput email"  ng-model="data.email" name="email" placeholder="eg:abc@qq.com"/>
+        </force>
+
+        <table>
+            <thead>
+            </thead>
+
+        </table>
+
+
+
+        <div class="row myinputrow">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input class="submit" name = "submit" type="submit" value="Submit"/>
+                <input type="button" id="reset" name ="reset" value="重置">
+                <input type="button" id="valid2" name ="valid2" value="手动校验">
+            </div>
+        </div>
     </form>
+</div>
+
 </body>
 </html>
