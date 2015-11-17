@@ -7,10 +7,14 @@
     <link  type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src"../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
     <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
     <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="../node_modules/angular-bindonce/bindonce.js"></script>
     <script type="text/javascript" src="./index02.js"></script>
 </head>
 <body style="padding-top: 50px;" ng-app="app">
@@ -35,13 +39,22 @@
             <input type="text" class="myinput email"  ng-model="data.email" name="email" placeholder="eg:abc@qq.com"/>
         </force>
 
-        <table>
-            <thead>
-            </thead>
-
-        </table>
-
-
+        <force ocshow="F" title="table198" data="data" org-data ="orgData" ocname="list198">
+            <table class="table">
+                <thead>
+                  <th>姓名</th>
+                  <th>性别</th>
+                  <th>地址</th>
+                </thead>
+                <tbody>
+                  <tr bindonce ng-repeat="l in data.list198">
+                    <td><input type="text"  class="{validate:{required:true,minlength:5}}"   name ="{{'name'+$index}}" ng-model="l.name" /></td>
+                    <td><input type="text"  name="l.sex" ng-model="l.sex" /></td>
+                    <td><input type="text"  name="l.addr" ng-model="l.name" /></td>
+                  </tr>
+                </tbody>
+            </table>
+        </force>
 
         <div class="row myinputrow">
             <div class="col-sm-offset-2 col-sm-10">

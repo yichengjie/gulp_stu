@@ -3,7 +3,7 @@ $(function(){
     registPageValidate() ;
 }) ;
 
-var app = angular.module('app',[]) ;
+var app = angular.module('app',['pasvaz.bindonce']) ;
 
 //angular.element(document).ready(function() {
     //angular.bootstrap(document, ['app']);
@@ -16,7 +16,12 @@ app.controller('EditController',['$scope', function ($scope) {
     $scope.data = {
         serviceType:'M',
         name:'',
-        email:''
+        email:'',
+        list198:[
+          {name:'yicj001',sex:'1',add:'henan'},
+          {name:'cao002',sex:'1',add:'henan'},
+          {name:'zhangsan',sex:'0',add:'beijing'},
+        ]
     } ;
     $scope.orgData = angular.copy($scope.data) ;
     $scope.serviceTypeList = [
@@ -30,12 +35,9 @@ app.controller('EditController',['$scope', function ($scope) {
         console.info('初始化新增页面数据。。。。。。') ;
         $scope.$broadcast('changeServiceTypeEvent',$scope.data.serviceType) ;
     }
-
     $scope.changeServiceType = function () {
         $scope.$broadcast('changeServiceTypeEvent',$scope.data.serviceType) ;
     }
-
-
 }]) ;
 
 var getOcshowFlag = function (ocshow,serviceType,ocname,data,orgData) {
@@ -50,19 +52,20 @@ var getOcshowFlag = function (ocshow,serviceType,ocname,data,orgData) {
     }
     if(!flag){
         //console.info(orgData) ;
-        var orgValue = orgData[ocname] ;
-        if($.isArray(orgValue)){
+        var orgValue = angular.copy(orgData[ocname]) ;
+        /*if($.isArray(orgValue)){
             data[ocname] = [] ;
         }else{
             data[ocname] = orgValue ;
-        }
+        }*/
+        data[ocname] = orgValue ;
     }
     return flag ;
 }
 
 
 var htmlStr =   '<div class="row myinputrow" ng-show="showFlag">' +
-    '<label class="col-sm-2 control-label" ng-bind="title"></label>' +
+    '<label bindonce class="col-sm-2 control-label" bo-bind="title"></label>' +
     '<div class="col-sm-10" ng-transclude="">' +
 
     '</div>' +
@@ -93,7 +96,7 @@ app.directive('force', function () {
                     var ocname =attrs['ocname'];
                     scope.$on('changeServiceTypeEvent', function (event,servieType) {
                         var flag = getOcshowFlag(ocshow,servieType,ocname,scope.data,scope.orgData) ;
-                        console.info('serviceType : ' + servieType + " ,  flag : " + flag) ;
+                        //console.info('serviceType : ' + servieType + " ,  flag : " + flag) ;
                         scope.showFlag = flag ;
                     }) ;
                 }
@@ -151,16 +154,3 @@ var registPageValidate = function () {
     })  ;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
