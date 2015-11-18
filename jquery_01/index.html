@@ -8,6 +8,8 @@
     <script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
+    <script type="text/javascript" src="../lib/jquery/additional-methods.js"></script>
+
     <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
     <script type="text/javascript" src="./index.js"></script>
   </head>
@@ -30,6 +32,18 @@
       <input id="confirm_password" name="confirm_password" type="password"
              class="{validate:{required:true,minlength:5,equalTo:'#password'}}" />
      </p>
+
+    <p>
+        <label for="myaddMethod">字母测试</label>
+        <input id="myaddMethod" name="myaddMethod" type="text"
+               class="{validate:{alphanumeric:true}}" />
+    </p>
+
+    <p>
+        <label for="date">日期测试</label>
+        <input id="date" name="date" type="text"
+               class="{validate:{date:true}}" />
+    </p>
 
      <p>
         <label for="serviceType">服务类型</label>

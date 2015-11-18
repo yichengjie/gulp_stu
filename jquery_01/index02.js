@@ -1,4 +1,3 @@
-
 $(function(){
     registPageValidate() ;
 }) ;
@@ -38,6 +37,17 @@ app.controller('EditController',['$scope', function ($scope) {
     $scope.changeServiceType = function () {
         $scope.$broadcast('changeServiceTypeEvent',$scope.data.serviceType) ;
     }
+
+    $scope.addLine = function(){
+        var obj = {name:'',sex:'',add:''} ;
+        $scope.data.list198.push(obj) ;
+    }
+    $scope.delLine = function  () {
+        var len = $scope.data.list198.length ;
+        if(len>0){
+            $scope.data.list198.splice(len-1,1) ;
+        }   
+    }
 }]) ;
 
 var getOcshowFlag = function (ocshow,serviceType,ocname,data,orgData) {
@@ -67,7 +77,6 @@ var getOcshowFlag = function (ocshow,serviceType,ocname,data,orgData) {
 var htmlStr =   '<div class="row myinputrow" ng-show="showFlag">' +
     '<label bindonce class="col-sm-2 control-label" bo-bind="title"></label>' +
     '<div class="col-sm-10" ng-transclude="">' +
-
     '</div>' +
     '</div>'  ;
 

@@ -10,6 +10,7 @@ $().ready(function() {//start ready
    ,ignore:".ignore"
  });
 
+
  $("#reset").bind("click", function(e){
     console.info('重置表单') ;
     var target = $(e.target);
@@ -45,3 +46,4 @@ $().ready(function() {//start ready
  })  ;
 
 });//end ready
+
