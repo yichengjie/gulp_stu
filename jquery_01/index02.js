@@ -1,21 +1,21 @@
-$(function(){
+/*$(function(){
     registPageValidate() ;
-}) ;
+}) ;*/
 
 var app = angular.module('app',['pasvaz.bindonce']) ;
 
-//angular.element(document).ready(function() {
-    //angular.bootstrap(document, ['app']);
+angular.element(document).ready(function() {
+    angular.bootstrap(document, ['app']);
     //angular加载完毕以后注册tui插件的校验
-   // registPageValidate() ;
-//});
+    registPageValidate() ;
+});
 
 app.controller('EditController',['$scope', function ($scope) {
-
     $scope.data = {
         serviceType:'M',
         name:'',
         email:'',
+        startDate:'',
         list198:[
           {name:'yicj001',sex:'1',add:'henan'},
           {name:'cao002',sex:'1',add:'henan'},
@@ -115,6 +115,45 @@ app.directive('force', function () {
 }) ;
 
 
+app.directive('datepicker', function () {
+    return {
+        restrict:'A',
+        replace:true,
+        scope:{},
+        require:'?ngModel',
+        link: function (scope,elem,attrs,ctrl) {
+            if(!ctrl) return ;
+            //配置日期控件
+            var optionObj = {} ;
+            optionObj.dateFormat = "yy-mm-dd" ;
+            var updateModel = function(dateText){
+                scope.$apply(function  () {
+                    //调用angular内部的工具更新双向绑定关系
+                    ctrl.$setViewValue(dateText) ;
+                }) ;
+            }
+
+            optionObj.onSelect = function(dateText,picker){
+                updateModel(dateText) ;
+               // elem.focus() ;
+                validator.element(elem) ;
+                if(scope.select){
+                    scope.$apply(function  () {
+                        scope.select({date:dateText}) ;
+                    }) ;
+                }
+            }
+
+            ctrl.$render = function(){
+                //使用angular内部的 binding-specific 变量
+                elem.datepicker('setDate',ctrl.$viewValue || '') ;
+            }
+
+            elem.datepicker(optionObj) ;
+        }
+    } ;
+}) ;
+
 
 /***下面的这部分是jquery valid事件的注册.............***/
 var registPageValidate = function () {
@@ -127,6 +166,8 @@ var registPageValidate = function () {
         //,onsubmit:false//Onubmit：类型 Boolean，默认 true，指定是否提交时验证
         ,ignore:".ignore"
     });
+    //将validate保存起来
+    window.validator = validator ;
 
     $("#reset").bind("click", function(e){
         console.info('重置表单') ;
