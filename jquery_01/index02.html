@@ -3,10 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>jquery validate测试</title>
+
+    <link type="text/css" rel="stylesheet" href="../lib/datepicker/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="../lib/datepicker/red-datepicker.css" />
     <link  type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="index.css" />
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
+    <!--
     <script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js"></script>
+    -->
+    <script type="text/javascript" src="../lib/datepicker/jquery-1.8.1.js"></script>
+    <script type="text/javascript" src="../lib/datepicker/jquery-ui.js"></script>
+    <script type="text/javascript" src="../lib/datepicker/dateinput-ch-ZN.js"></script>
     <script type="text/javascript" src"../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
@@ -15,7 +23,7 @@
     <script type="text/javascript" src="../node_modules/angular-bindonce/bindonce.js"></script>
     <script type="text/javascript" src="./index02.js"></script>
 </head>
-<body style="padding-top: 50px;" ng-app="app">
+<body style="padding-top: 50px;">
 <div ng-controller="EditController" class="container">
     <form id="signupForm">
         <div class="row myinputrow">
@@ -34,6 +42,10 @@
 
         <force ocshow="F" title="email" data="data" org-data ="orgData" ocname="email">
             <input type="text" class="myinput email"  ng-model="data.email" name="email" placeholder="eg:abc@qq.com"/>
+        </force>
+
+        <force ocshow="F" title="生效日期" data="data" org-data ="orgData" ocname="email">
+            <input type="text" datepicker ng-model="data.startDate" class="required date" />
         </force>
 
         <force ocshow="F" title="table198" data="data" org-data ="orgData" ocname="list198">
