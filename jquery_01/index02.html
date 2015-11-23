@@ -19,13 +19,26 @@
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
     <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
+    <!--
     <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    -->
+    <script type="text/javascript" src="../lib/angular/angular.js"></script>
     <script type="text/javascript" src="../node_modules/angular-bindonce/bindonce.js"></script>
     <script type="text/javascript" src="./index02.js"></script>
 </head>
 <body style="padding-top: 50px;">
 <div ng-controller="EditController" class="container">
     <form id="signupForm">
+        <div class="row myinputrow">
+          <label class="col-sm-2 control-label">ServiceGroup</label>
+          <div  class="col-sm-10">
+            <select class="myinput"
+                    ng-model="data.serviceGroup"
+                    ng-options="item.value as item.name for item in serviceGroupList">
+            </select>
+          </div>
+        </div>
+
         <div class="row myinputrow">
             <label class="col-sm-2 control-label">服务类型</label>
             <div class="col-sm-10">
@@ -35,7 +48,6 @@
                 </select>
             </div>
         </div>
-
         <force ocshow="F,M" title="Name" data="data" org-data ="orgData" ocname="name">
             <input type="text" class="myinput required" ng-model="data.name" name="name" placeholder="必填">
         </force>
@@ -46,6 +58,14 @@
 
         <force ocshow="F" title="生效日期" data="data" org-data ="orgData" ocname="email">
             <input type="text" datepicker ng-model="data.startDate" class="required date" />
+        </force>
+
+        <force ocshow="F" title="升舱到的服务等级" data="data" org-data ="orgData"
+               ocname="upgradeToCabin" ocgroup="BDUP" >
+            <select ng-class="{true:'required',false:''}[data.serviceGroup=='BDUP']" name="upgradeToCabin">
+              <option value="">选择</option>
+              <option ng-repeat="l in cabinList" value="l.value">{{l.name}}</option>
+            </select>
         </force>
 
         <force ocshow="F" title="table198" data="data" org-data ="orgData" ocname="list198">

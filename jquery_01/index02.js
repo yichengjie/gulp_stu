@@ -13,6 +13,7 @@ angular.element(document).ready(function() {
 app.controller('EditController',['$scope', function ($scope) {
     $scope.data = {
         serviceType:'M',
+        serviceGroup:'',
         name:'',
         email:'',
         startDate:'',
@@ -20,13 +21,26 @@ app.controller('EditController',['$scope', function ($scope) {
           {name:'yicj001',sex:'1',add:'henan'},
           {name:'cao002',sex:'1',add:'henan'},
           {name:'zhangsan',sex:'0',add:'beijing'},
-        ]
+        ],
+        upgradeToCabin:""
     } ;
     $scope.orgData = angular.copy($scope.data) ;
     $scope.serviceTypeList = [
         {name:'服务类型M',value:'M'},
         {name:'服务类型F',value:'F'},
         {name:'服务类型T',value:'T'}
+    ] ;
+
+    $scope.serviceGroupList = [
+      {name:'选择',value:''},
+      {name:'BDUP',value:'BDUP'},
+      {name:'UP',value:'UP'}
+    ] ;
+
+    $scope.cabinList =[
+      {"name":"R-豪华头等舱","value":"R"},{"name":"F-头等舱","value":"F"},
+      {"name":"J-豪华商务舱","value":"J"},{"name":"C-商务舱","value":"C"},
+      {"name":"P-豪华经济舱","value":"P"},{"name":"Y-经济舱","value":"Y"}
     ] ;
     //这个时候发送通知是不生效的，因为这时候页面还没有加载完毕，监听的部分还没有准备好，所以无法接收
     init4Add() ;
@@ -46,19 +60,27 @@ app.controller('EditController',['$scope', function ($scope) {
         var len = $scope.data.list198.length ;
         if(len>0){
             $scope.data.list198.splice(len-1,1) ;
-        }   
+        }
     }
 }]) ;
 
-var getOcshowFlag = function (ocshow,serviceType,ocname,data,orgData) {
+var getOcshowFlag = function (ocshow,ocgroup,serviceType,ocname,data,orgData) {
     //console.info("ocshow : ["+ocshow+"] , serviceType : ["+serviceType+"] ") ;
     var flag = true ;
     var ocArr = [] ;
+    var groupArr = [] ;
     if(ocshow&&ocshow.length>0&&ocshow!='all'){
         ocArr = ocshow.split(',') ;
     }
+    if(ocgroup&&ocgroup.length>0){
+      groupArr = ocgroup.split(',') ;
+    }
     for(var i = 0 ; i < ocArr.length ; i ++){
         flag = _.contains(ocArr,serviceType) ;
+    }
+    if(flag){
+      var serviceGroup = data.serviceGroup ;
+      flag = _.contains(groupArr,serviceGroup) ;
     }
     if(!flag){
         //console.info(orgData) ;
@@ -103,8 +125,10 @@ app.directive('force', function () {
                     //console.info('force 指令 postLink ...') ;
                     var ocshow = attrs['ocshow'] ;
                     var ocname =attrs['ocname'];
+                    var ocgroup = attrs['ocgroup'] ;
+
                     scope.$on('changeServiceTypeEvent', function (event,servieType) {
-                        var flag = getOcshowFlag(ocshow,servieType,ocname,scope.data,scope.orgData) ;
+                        var flag = getOcshowFlag(ocshow,ocgroup,servieType,ocname,scope.data,scope.orgData) ;
                         //console.info('serviceType : ' + servieType + " ,  flag : " + flag) ;
                         scope.showFlag = flag ;
                     }) ;
