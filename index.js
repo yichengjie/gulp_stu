@@ -7,5 +7,5 @@ function hello(){
   console.info('hello world') ;
   var d = new Date() ;
   d.getDate() ;
-
 }
+
