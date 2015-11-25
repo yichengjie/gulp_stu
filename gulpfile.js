@@ -5,27 +5,42 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
 
+var paths = {src:{js:"./oc_temp/js/",css:"./oc_temp/css/"},dist:"./dist/oc_temp/"} ;
+
+/*gulp.task('minifyjs', function() {
+    return gulp.src('src/*.js')
+        .pipe(concat('main.js'))    //合并所有js到main.js
+        .pipe(gulp.dest('minified/js'))    //输出main.js到文件夹
+        .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
+        .pipe(uglify())    //压缩
+        .pipe(gulp.dest('minified/js'));  //输出
+});*/
+
+/*gulp.task('clean', function(cb) {
+    del(['minified/css', 'minified/js'], cb)
+});*/
 
 gulp.task('minify-css', function() {
-  return gulp.src('./oc_temp/css/*.css')
+  return gulp.src(paths.src.css+'*.css')
+    .pipe(concat('app.min.css'))
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('lint', function() {
-  return gulp.src('./oc_temp/js/hello.js')
+  return gulp.src(paths.src.js+'hello.js')
     .pipe(jshint());
     //.pipe(jshint.reporter('YOUR_REPORTER_HERE'));
 });
 
 gulp.task('scripts',['lint'], function() {
-  return gulp.src(['./oc_temp/js/underscore.js','./oc_temp/js/jquery.js',
-      './oc_temp/js/angular.js','./oc_temp/js/bindonce.js',
-      './oc_temp/js/jquery.validate.js','./oc_temp/js/messages_zh.js',
-      './oc_temp/js/additional-methods.js'])
-    .pipe(concat('all.js'))
+  return gulp.src([paths.src.js+'underscore.js',paths.src.js+'jquery.js',
+      paths.src.js+'angular.js',paths.src.js+'bindonce.js',
+      paths.src.js+'jquery.validate.js',paths.src.js+'messages_zh.js',
+      paths.src.js+'additional-methods.js'])
+    .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('default',['minify-css','scripts']) ;
