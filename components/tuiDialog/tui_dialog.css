@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+.dialog_panel{ position:absolute;padding:0px;z-index:10000;}
+.dialog_panel .dialog_head_left{ height:34px; background:url(images/tui_dialog_head.png) no-repeat 0px -41px;}
+.dialog_panel .dialog_head_right{ height:34px; background:url(images/tui_dialog_head.png) no-repeat right 0; padding:0 6px;}
+.dialog_panel .dialog_head_content{ height:34px; background:url(images/tui_dialog_head.png) repeat-x 0 -80px;}
+.dialog_panel .dialog_head_content .dialog_head_title{ font-weight:bold; font-size:14px; line-height:34px; margin:0 0 0 8px; color:#314254;}
+.dialog_panel .dialog_head_content .dialog_head_close{ width:10px; height:10px; background:url(images/tui_dialog_head.png) no-repeat -3px -125px; margin:12px 6px; cursor:pointer; position:absolute; right:6px; top:0px;}
+.dialog_panel .dialog_head_content .dialog_head_close:hover{background:url(images/tui_dialog_head.png) no-repeat -21px -125px;}
+.dialog_panel .dialog_body_left{ background:url(images/tui_dialog_body_left.png) repeat-y left 0;}
+.dialog_panel .dialog_body_right{ background:url(images/tui_dialog_body_right.png) repeat-y right 0; padding:0 6px;}
+.dialog_panel .dialog_body_content{ background-color:#fff;text-align:center;}
+.dialog_iframe{border:none; width:100%; height:100%; outline:none;}
+.dialog_panel .dialog_foot_left{ height:9px; background:url(images/tui_dialog_foot.png) no-repeat 0 -10px;}
+.dialog_panel .dialog_foot_right{ height:9px; background:url(images/tui_dialog_foot.png) no-repeat right 0; padding:0 6px;}
+.dialog_panel .dialog_foot_content{ height:9px; background:url(images/tui_dialog_foot.png) repeat-x 0 -22px;}
+
+.dialog_panel .dialog_head_no_title_left{ height:6px; background:url(images/tui_dialog_head_no_title.png) no-repeat -1px -11px;}
+.dialog_panel .dialog_head_no_title_right{ height:6px; background:url(images/tui_dialog_head_no_title.png) no-repeat right 0; padding:0 6px;}
+.dialog_panel .dialog_head_no_title_content{ height:6px; background:url(images/tui_dialog_head_no_title.png) repeat-x 0 -22px;}
+
+.dialog_panel{ position:absolute;padding:0px;}
+.dialog_panel .dialog_head_narrow_left{ height:4px; background:url(images/tui_dialog_head_narrow.png) no-repeat 0px -5px;}
+.dialog_panel .dialog_head_narrow_right{ height:4px; background:url(images/tui_dialog_head_narrow.png) no-repeat right 0; padding:0 4px;}
+.dialog_panel .dialog_head_narrow_content{ height:4px; background:url(images/tui_dialog_head_narrow.png) repeat-x 0 -11px;}
+.dialog_panel .dialog_body_narrow_left{ background:url(images/tui_dialog_body_left_narrow.png) repeat-y left 0;}
+.dialog_panel .dialog_body_narrow_right{ background:url(images/tui_dialog_body_right_narrow.png) repeat-y right 0; padding:0 4px;}
+.dialog_panel .dialog_body_narrow_content{ background-color:#fff;text-align:center;}
+.dialog_panel .dialog_foot_narrow_left{ height:9px; background:url(images/tui_dialog_foot_narrow.png) no-repeat 0 -10px;}
+.dialog_panel .dialog_foot_narrow_right{ height:9px; background:url(images/tui_dialog_foot_narrow.png) no-repeat right 0; padding:0 4px;}
+.dialog_panel .dialog_foot_narrow_content{ height:9px; background:url(images/tui_dialog_foot_narrow.png) repeat-x 0 -20px;}
+
+.dialog_panel .dialog_waiting{ background:url(images/tui_dialog_waiting.png) no-repeat center top; width:150px; height:72px;}
+.dialog_panel .dialog_waiting .dialog_waiting_msg{ text-align:center; line-height:68px;}
+.dialog_panel .dialog_waiting .dialog_waiting_msg .icon{ background:url(images/loading.gif); width:35px; height:35px; display:inline-block;*display:inline;*zoom:1;vertical-align:middle;margin:0 8px 0 0;}
+.dialog_panel .dialog_waiting .dialog_waiting_msg .content{ font-size:16px; color:#6684b2;}
+
+.dialog_panel .dialog_alert{ background:#000; opacity:0.7;filter:alpha(opacity='75'); border-radius:2px; padding:10px 50px;}
+.dialog_panel .dialog_alert .dialog_alert_msg{ color:#fff; padding-top:10px;}
+.dialog_panel .dialog_close_icon{ position:absolute; right:10px; top:10px; background:url(images/tui_dialog_head.png) no-repeat -3px -142px; width:10px; height:10px;z-index:11000; cursor:pointer;}
+.dialog_panel .dialog_close_icon:hover{background:url(images/tui_dialog_head.png) no-repeat -21px -125px;}
+
+.dialog_mask{z-index:9999; top:0px; left:0px;position:absolute;border:none;}
+
+.dialog_info{ height:80px; position:relative; padding:14px 2px 2px 90px; }
+.dialog_info_content{ height:100%;overflow:auto;text-align:left;}
+.dialog_btn_panel{ height:30px; vertical-align:middle; text-align:center;opacity:1;}
+.dialog_btn_panel .dialog_btn{ margin:0 10px;}
+.dialog_icon_alert{ background:url(images/dialog_icon.png) no-repeat 0 0; width:68px; height:68px; position:absolute; left:0px; top:0px; margin:10px;}
+.dialog_icon_info{ background:url(images/dialog_icon.png) no-repeat -86px 0; width:68px; height:68px; position:absolute; left:0px; top:0px; margin:10px;}
+.dialog_icon_error{background:url(images/dialog_icon.png) no-repeat -180px 0; width:68px; height:68px; position:absolute; left:0px; top:0px; margin:10px;}
+.dialog_icon_confirm{background:url(images/dialog_icon.png) no-repeat -86px -82px; width:68px; height:68px; position:absolute; left:0px; top:0px; margin:10px;}
+.dialog_icon_success{background:url(images/dialog_icon.png) no-repeat 0px -160px; width:68px; height:68px; position:absolute; left:0px; top:0px; margin:10px;}
+.dialog_icon_waiting{background:url(images/loading.gif); width:35px; height:35px; position:absolute; left:0px; top:0px; margin:10px;}
