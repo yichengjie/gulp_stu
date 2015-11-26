@@ -7,5 +7,6 @@ function hello(){
   console.info('hello world') ;
   var d = new Date() ;
   d.getDate() ;
+  console.info('git  ssh 测试') ;
 }
 
