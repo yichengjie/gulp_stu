@@ -18,11 +18,13 @@ gulp.task('minify',function () {
   //当js重新压缩后刷新浏览器
    .pipe(reload({stream:true}));
 }) ;
+
 gulp.task('watch',function () {
   gulp.watch('./index.js',function () {
     gulp.run('minify') ;
   }) ;
 }) ;
+
 gulp.task('default', ['serve','watch'],function(){
    //监听index文件的变化
    gulp.watch("./*.html").on('change', reload);
