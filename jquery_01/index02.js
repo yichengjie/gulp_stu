@@ -158,6 +158,7 @@ app.directive('datepicker', function () {
             }
 
             optionObj.onSelect = function(dateText,picker){
+                console.info('xxxxxxxxxxxxx') ;
                 updateModel(dateText) ;
                // elem.focus() ;
                 validator.element(elem) ;
@@ -182,7 +183,7 @@ app.directive('datepicker', function () {
 /***下面的这部分是jquery valid事件的注册.............***/
 var registPageValidate = function () {
     var validator = $("#signupForm").validate({
-        meta : "validate",
+        meta : "",
         submitHandler:function(form){
             alert('提交表单') ;
             //form.submit();
@@ -212,7 +213,8 @@ var registPageValidate = function () {
     $("#valid2").bind("click",function (e) {
         console.info('手动校验表单') ;
         //直接用来校验表单 同 下面的  validator.form()函数
-        var flag = $("#signupForm").valid() ;
+        //var flag = $("#signupForm").valid() ;//要想这样写，上面必须的把$("#signupForm").validate(的{meta : "validate",//否则会报错
+        var flag = validator.form() ;
         console.info(flag) ;
         //返回元素的校验规则
         //var rules = $("#email").rules() ;

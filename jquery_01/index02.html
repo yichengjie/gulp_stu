@@ -15,9 +15,9 @@
     <script type="text/javascript" src="../lib/datepicker/jquery-1.8.1.js"></script>
     <script type="text/javascript" src="../lib/datepicker/jquery-ui.js"></script>
     <script type="text/javascript" src="../lib/datepicker/dateinput-ch-ZN.js"></script>
-    <script type="text/javascript" src"../node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
+    <script type="text/javascript" src="../lib/jquery/additional-methods.js"></script>
     <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
     <!--
     <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
@@ -68,6 +68,14 @@
             </select>
         </force>
 
+        <force ocshow="F,M" title="开始" data="data" org-data ="orgData" ocname="start"  >
+            <input type="text" class="myinput {number:true,required:true}"  ng-model="data.start" name="start" id="start" />
+        </force>
+
+        <force ocshow="F,M" title="结束" data="data" org-data ="orgData" ocname="end"  >
+            <input type="text" class="myinput {number:true,bigger:'#start'}"  ng-model="data.end" name="end" id ="end"/>
+        </force>
+
         <force ocshow="F" title="table198" data="data" org-data ="orgData" ocname="list198">
             <table class="">
                 <thead>
@@ -77,7 +85,7 @@
                 </thead>
                 <tbody>
                   <tr bindonce ng-repeat="l in data.list198">
-                    <td><input type="text"  class="{validate:{required:true,minlength:5}}"   name ="{{'name'+$index}}" ng-model="l.name" /></td>
+                    <td><input type="text"  class="{required:true,minlength:5}"   name ="{{'name'+$index}}" ng-model="l.name" /></td>
                     <td><input type="text"  name="l.sex" ng-model="l.sex" /></td>
                     <td><input type="text"  name="l.addr" ng-model="l.name" /></td>
                   </tr>
