@@ -24,7 +24,7 @@
     -->
     <script type="text/javascript" src="../lib/angular/angular.js"></script>
     <script type="text/javascript" src="../node_modules/angular-bindonce/bindonce.js"></script>
-    <script type="text/javascript" src="./index02.js"></script>
+    <script type="text/javascript" src="./index06.js"></script>
 </head>
 <body style="padding-top: 50px;">
 <div ng-controller="EditController"  id ="EditControllerDiv" class="container">
@@ -32,7 +32,7 @@
         <div class="row myinputrow">
           <label class="col-sm-2 control-label">ServiceGroup</label>
           <div  class="col-sm-10">
-            <select class="myinput"
+            <select class="myinput" ng-change="changeServiceGroup()"
                     ng-model="data.serviceGroup"
                     ng-options="item.value as item.name for item in serviceGroupList">
             </select>
@@ -48,35 +48,33 @@
                 </select>
             </div>
         </div>
-        <force ocshow="F,M" title="Name" data="data" org-data ="orgData" ocname="name">
-            <input type="text"  ng-disabled="true" class="myinput required" ng-model="data.name" name="name" placeholder="必填">
+
+        <force fname="name" ocname="name" title="Name" data="data" org-data ="orgData" >
+            <input type="text"   class="myinput required" ng-model="data.name" name="name" placeholder="必填">
         </force>
 
-        <force ocshow="F" title="email" data="data" org-data ="orgData" ocname="email">
+        <force fname="email"  ocname="email" title="email" data="data" org-data ="orgData">
             <input type="text" class="myinput email"  ng-model="data.email" name="email" placeholder="eg:abc@qq.com"/>
         </force>
 
-        <force ocshow="F" title="生效日期" data="data" org-data ="orgData" ocname="email">
+        <force fname="startDate" ocname="startDate" title="生效日期" data="data" org-data ="orgData" >
             <input type="text" datepicker ng-model="data.startDate" class="required date" />
         </force>
 
-        <force ocshow="F" title="升舱到的服务等级" data="data" org-data ="orgData"
-               ocname="upgradeToCabin" ocgroup="BDUP" >
-            <select ng-class="{true:'required',false:''}[data.serviceGroup=='BDUP']" name="upgradeToCabin">
+        <force  fname="xxx" ocname="xxx" title="XXX" data="data" org-data ="orgData" >
+            <input type="text" ng-disabled="!formEdit.xxx" class="required" ng-model="data.xxx" name="xxx"  placeholder="当生效日期为F时值必须为0BJ" />
+        </force>
+
+
+        <force fname="upgradeToCabin" ocname="upgradeToCabin" title="升舱到的服务等级" data="data" org-data ="orgData">
+            <select
+                    ng-model="data.upgradeToCabin" name="upgradeToCabin">
               <option value="">选择</option>
               <option ng-repeat="l in cabinList" value="l.value">{{l.name}}</option>
             </select>
         </force>
 
-        <force ocshow="F,M" title="开始" data="data" org-data ="orgData" ocname="start"  >
-            <input type="text" class="myinput {number:true,required:true}"  ng-model="data.start" name="start" id="start" />
-        </force>
-
-        <force ocshow="F,M" title="结束" data="data" org-data ="orgData" ocname="end"  >
-            <input type="text" class="myinput {number:true,bigger:'#start'}"  ng-model="data.end" name="end" id ="end"/>
-        </force>
-
-        <force ocshow="F" title="table198" data="data" org-data ="orgData" ocname="list198">
+        <force fname="list198"  ocname="list198" title="table198" data="data" org-data ="orgData" >
             <table class="">
                 <thead>
                   <th>姓名</th>

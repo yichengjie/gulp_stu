@@ -10,6 +10,46 @@ angular.element(document).ready(function() {
     registPageValidate() ;
 });
 
+var inputJsonData ={
+    serviceType:[],
+    serviceGroup:[],
+    name:[],
+    email:[],
+    startDate:[],
+    list198:[],
+    upgradeToCabin:[]
+} ;
+
+app.factory('FormEditFlag', [ function(){
+    return {
+        serviceType:true,
+        serviceGroup:true,
+        name:true,
+        email:true,
+        startDate:true,
+        list198:true,
+        upgradeToCabin:true
+    };
+}]) ;
+
+app.factory('FormShowFlag', [ function(){
+    return {
+        serviceType:true,
+        serviceGroup:true,
+        name:true,
+        email:true,
+        startDate:true,
+        list198:true,
+        upgradeToCabin:true
+    };
+}]) ;
+
+
+
+
+
+
+
 app.controller('EditController',['$scope', function ($scope) {
     $scope.data = {
         serviceType:'M',
@@ -42,6 +82,14 @@ app.controller('EditController',['$scope', function ($scope) {
       {"name":"J-豪华商务舱","value":"J"},{"name":"C-商务舱","value":"C"},
       {"name":"P-豪华经济舱","value":"P"},{"name":"Y-经济舱","value":"Y"}
     ] ;
+
+
+    $scope.saveData = function(){
+        console.info($scope.data) ;
+    }
+
+
+
     //这个时候发送通知是不生效的，因为这时候页面还没有加载完毕，监听的部分还没有准备好，所以无法接收
     init4Add() ;
     function init4Add(){
@@ -98,7 +146,8 @@ var getOcshowFlag = function (ocshow,ocgroup,serviceType,ocname,data,orgData) {
 
 var htmlStr =   '<div class="row myinputrow" ng-show="showFlag">' +
     '<label bindonce class="col-sm-2 control-label" bo-bind="title"></label>' +
-    '<div class="col-sm-10" ng-transclude="">' +
+    '<div class="col-sm-10" name="content" ng-transclude="">' +
+
     '</div>' +
     '</div>'  ;
 
@@ -111,10 +160,25 @@ app.directive('force', function () {
             data:'=',
             orgData:'='
         },
-        template: htmlStr,
+        template: function($scope, $element, $attrs){
+            //$element.find("[name=content]").append('hello wolr')  ;
+            //$($element).find("div[name=content]").append('hello') ;
+            return htmlStr ;
+        },
         transclude:true,
         controller: function ($scope, $element, $attrs, $transclude) {
             $scope.showFlag = true ;
+            $transclude(function (clone) {
+               /* var a = angular.element('<a>');
+                a.attr('href', $attrs.value);
+                a.text(clone.text());
+                $element.append(a);*/
+                //clone.attr('ng-disable') ;
+                //var cc = $element.find("[name=content]").attr('class')  ;
+                //console.info(cc) ;
+                //console.log(" ["+clone.text()+"]") ;
+            });
+            $scope.forceDisableFlag = false ;
         },
         compile: function (element, attributes) {
             return {
@@ -126,7 +190,6 @@ app.directive('force', function () {
                     var ocshow = attrs['ocshow'] ;
                     var ocname =attrs['ocname'];
                     var ocgroup = attrs['ocgroup'] ;
-
                     scope.$on('changeServiceTypeEvent', function (event,servieType) {
                         var flag = getOcshowFlag(ocshow,ocgroup,servieType,ocname,scope.data,scope.orgData) ;
                         //console.info('serviceType : ' + servieType + " ,  flag : " + flag) ;
@@ -187,6 +250,7 @@ var registPageValidate = function () {
         submitHandler:function(form){
             alert('提交表单') ;
             //form.submit();
+
         }
         //,onsubmit:false//Onubmit：类型 Boolean，默认 true，指定是否提交时验证
         ,ignore:".ignore"
@@ -215,7 +279,11 @@ var registPageValidate = function () {
         //直接用来校验表单 同 下面的  validator.form()函数
         //var flag = $("#signupForm").valid() ;//要想这样写，上面必须的把$("#signupForm").validate(的{meta : "validate",//否则会报错
         var flag = validator.form() ;
-        console.info(flag) ;
+        console.info("flag : " + flag) ;
+        var element = angular.element($("#EditControllerDiv"));
+        var scope = element.scope();
+        scope.saveData() ;
+
         //返回元素的校验规则
         //var rules = $("#email").rules() ;
         //console.info(rules) ;
