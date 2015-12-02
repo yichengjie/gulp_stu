@@ -20,9 +20,9 @@ app.directive('myLink', function () {
          controller:
          function ($scope, $element,$attrs,$transclude) {
              $transclude(function (clone) {
-                 // var a = angular.element('<a>');
-                 //a.attr('href', $attrs.value);
-                 //a.text(clone.text());
+               // var a = angular.element('<a>');
+               //a.attr('href', $attrs.value);
+               //a.text(clone.text());
                 var href = $attrs.value ;
                 var text = clone.text() ;
                 var str = "<a target='_new' href ='"+href+"'>"+text+"</a>" ;
