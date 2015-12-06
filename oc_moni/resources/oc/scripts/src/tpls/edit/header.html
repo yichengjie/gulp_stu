@@ -1,0 +1,41 @@
+<div class="main_box helper_padding_0" ng-controller = "HeaderCtrl">
+	<div class="header_control query_section">
+		<!-- title index -->
+		<div class="helper_float_left query_section_row edit_header">
+			<h1 class="helper_margin_right_10px" ng-bind = "headerTipStr"></h1>
+			<span class="helper_color_blue_2 ">服务类型</span>
+			<span class="helper_color_blue_2 ">|</span>
+			<span class="helper_color_blue_2 ">费用</span>
+			<span class="helper_color_blue_2 ">|</span>
+			<span class="helper_color_blue_2 ">规则</span>
+		</div>
+		<!-- title index -->
+		<!-- 功能按钮start -->
+		<div class="helper_float_right operation_btnlist">
+			<div class="helper_float_left helper_margin_0_2px margin_top_5px" >
+				<div class="btn_page btn_cancel">
+					<div class="btn_left"></div>
+					<div class="btn_content" id="back" ng-click = "backPage();">返回</div>
+					<div class="btn_right"></div>
+				</div>
+			</div>
+			<div class="helper_float_left helper_margin_0_2px margin_top_5px">
+				<div class="btn_page btn_cancel">
+					<div class="btn_left"></div>
+					<div class="btn_content" id="s7_save">保存</div>
+					<div class="btn_right"></div>
+				</div>
+			</div>
+			<div class="helper_float_left helper_margin_0_2px margin_top_5px">
+				<div class="btn_page btn_save">
+					<div class="btn_left"></div>
+					<div class="btn_content" id="s7_saveAndPublish" >保存并发布</div>
+					<div class="btn_right"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<!-- 功能按钮end -->
+		<div class="clearfix"></div>
+	</div>
+</div>

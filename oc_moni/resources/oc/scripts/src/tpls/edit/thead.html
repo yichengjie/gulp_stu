@@ -1,0 +1,55 @@
+<tr>
+<%if("tb183.html"==value){%>
+	<th>旅行社</th>
+	<th>航空公司/分销商</th>
+	<th>职责/功能码</th>
+	<th>区域类型</th>
+	<th>区域代码</th>
+	<th>发布对象类型</th>
+	<th>发布对象代码</th>
+	<th>权限</th>
+<%}else if("tb171.html"==value){%>
+	<th>航空公司</th>
+	<th>票价类别</th>
+	<th>运价类型</th>
+<%}else if ("tb172.html"==value){%>
+	<th>大客户编码</th>
+<%}else if ("tb173Ticket.html"==value){%>
+	<th>指定客票</th>
+<%}else if ("tb173Tkt.html"==value){%>
+	<th>指定客票</th>
+<%}else if ("tb165.html"==value){%>
+	<th>机型代码</th>
+<%}else if("tb186.html"==value){%>
+	<th>市场方</th>
+	<th>承运方</th>
+	<th>航班号</th>
+<%}else if ("tb196.html"==value){%>
+	<th>行李件数</th>
+	<th>行李子代码</th>
+<%}else if ("tb198.html"==value){%>
+	<th>市场方/承运方</th>
+	<th>航空公司</th>
+	<th>订座舱位1</th>
+	<th>订座舱位2</th>
+	<th>订座舱位3</th>
+	<th>订座舱位4</th>
+	<th>订座舱位5</th>
+<%}else if("tb198UpGrade.html"==value){%>
+	<th ng-if = "data.sel1.value=='UP'||data.sel1.value=='BDUP'">航空公司</th>
+	<th>订座舱位1</th>
+	<th>订座舱位2</th>
+	<th>订座舱位3</th>
+	<th>订座舱位4</th>
+	<th>订座舱位5</th>
+<%}else if ("tb170.html"==value){%>
+	<th>销售地类型</th>
+	<th>销售地代码</th>
+	<th>金额</th>
+	<th>货币类型</th>
+<%}else if("tb178.html"==value){%>
+	<th>类型</th>
+	<th>代码</th>
+	<th>是否适用</th>
+<%}%>
+</tr>

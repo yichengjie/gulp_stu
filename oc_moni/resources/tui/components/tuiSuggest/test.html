@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="../../styles/tui_global.css" />
+<link rel="stylesheet" type="text/css" href="../../styles/tui_content.css" />
+<link rel="stylesheet" type="text/css" href="tuiSuggest.css" />
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="tuiSuggest.js"></script>
+<script type="text/javascript" src="../tui_core.js"></script>
+<script type="text/javascript" src="../../scripts/tui_init.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.tui.tuiSuggest({
+		target:$('#test'),
+		style:'big',
+		data:[
+			{name:'北京首都机场',val:"PEK",assist:'beijing',others:'BJS'},
+			{name:'北京首都第一机场',val:"CEK",assist:'beijing',others:'BJS'},
+			{name:'北京首都第二机场',val:"DEK",assist:'beijing',others:'BJS'},
+			{name:'北京首都第三机场',val:"FEK",assist:'beijing',others:'BJS'}],
+		width:200,
+		/*keywordProcess:function($input,$proxy){
+			if($proxy.val()=="**"){
+				return "PEK";
+			}else{
+				return $proxy.val();
+			}
+		}*/
+		/*checkItemCallback:function($input,$proxy){
+			$input.val(this.attr('val'));
+		}*/
+		/*showSelectCondition:function($input,$proxy){
+			if($proxy.val()=="ss"){
+				return true;
+			}else return false;
+		}*/
+		hoverItemCallback:function($input,$proxy){
+			console.log('this html= '+this.html()+' | $input val='+$input.val()+' | $proxy val='+$proxy.val());
+		}
+	});
+});
+function checkInput(){
+	alert($('#test').val()+"!"+$('#testProxy').val());
+}
+function changeData(){
+	var d=[
+		{name:'南京首都机场',val:"NJA",assist:'nanjing',others:'NJ'},
+		{name:'南京首都第一机场',val:"NJB",assist:'nanjing',others:'NJ'},
+		{name:'南京首都第二机场',val:"NJC",assist:'nanjing',others:'NJ'},
+		{name:'南京首都第三机场',val:"NJD",assist:'nanjing',others:'NJ'}];
+	$.tui.setTuiSuggestData($('#test'),d);	
+}
+function setDefault(){
+	//$.tui.checkTuiSuggestItem($('#test'),2,function($input,$proxy){alert(this['name']);$input.val(this['name']);$proxy.val(this['assist'])});
+	$.tui.checkTuiSuggestItem($('#test'),'NJA');
+}
+</script>
+</head>
+
+<body style="border:1px solid blue; height:300px;" >
+<div class="input_outer" style=" margin:100px;">
+    <input type="text" class="input_advance" name="ipt1" id="test" /><div class="input_select_btn"></div>
+</div>
+<button onclick="checkInput()">check</button>
+<button onclick="changeData()">change</button>
+<button onclick="setDefault()">default</button>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "family": "fare",
+  "name": "oc",
+  "version": "1.0.0",
+  "description": "oc web application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "spm": {
+    "alias": {
+      "jquery":"jquery",
+      "tuiValidator":"tuiValidator",
+      "datepicker":"datepicker",
+      "jqueryuicore":"jqueryuicore",
+	  "jqueryuiwidget":"jqueryuiwidget",
+	  "jqueryuimouse":"jqueryuimouse",
+	  "jqueryuislider":"jqueryuislider",
+      "jqueryuitimepickeraddon":"jqueryuitimepickeraddon",
+      "tuiDialog":"tuiDialog",
+      "underscore":"underscore",
+      "jqueryValidate":"jqueryValidate",
+      "jqueryValidate-zn_CH":"jqueryValidate-zn_CH",
+      "angular-route":"angular-route",
+      "ui-router":"ui-router"
+    },
+    "output": [
+      "s7queryMain.js",
+      "edit/main.js",
+      "abr/main.js",
+      "abrqueryMain.js"
+    ]
+  }
+}

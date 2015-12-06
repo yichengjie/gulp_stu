@@ -1,0 +1,10 @@
+<tr ng-repeat = "l in list" ng-click = "clickTr(l);" ng-class = "{true:'selectTd',false:''}[l.selected]">
+    <td><div class="input_outer">
+		<select ng-model="l.type" 
+			style="width:100px;"
+			ng-disabled = "status!='1'"
+			ng-options="c.value as c.name for c in selectList.publishObjectList">
+		</select></div>
+	</td>
+    <td><div class="input_outer"><input type = "text" upper-input="" set-focus="" ng-disabled = "status!='1'" ng-model = "l.code" maxLength ="10" class = "input_normal tuiRequired tuiAlphanumericOrStart"  placeholder = "输入*表示不做限制"></div></td>
+</tr> 

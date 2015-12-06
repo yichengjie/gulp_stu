@@ -1,0 +1,11 @@
+.multipSelectDiv{align:center;clear:both;}
+.multipSelectDiv div{float:left;text-align:center;padding:2px;}
+.multipSelectDiv div input {
+	background:url(../../../images/content.png)  -10px -1px repeat-x;
+	border:1px #aaaaaa solid; 
+	height:23px;
+	font-size:12px;
+	cursor:pointer;
+	width: 40px;
+ }
+.multipSelectDiv div select{font-family:Verdana, Geneva, sans-serif;clear:both;zoom:1;}

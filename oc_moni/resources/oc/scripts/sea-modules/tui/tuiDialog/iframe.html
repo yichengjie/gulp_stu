@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="../../scripts/jquery.js"></script>
+<script type="text/javascript" src="../tui_core.js"></script>
+<script type="text/javascript" src="../tuiDrag/tui_drag.js"></script>
+<script type="text/javascript" src="tui_dialog.js"></script>
+<script type="text/javascript">
+function cl(){
+	parent.window.$.tui.closeTuiWindow();
+}
+</script>
+</head>
+
+<body>
+<h1>这是一个内嵌页面</h1>
+<hr />
+<p>如果您看到了该页面，说明弹出框采用了iframe的方式打开的本页面，您可点击关闭按钮关闭弹出框</p>
+<div><button onclick="cl()">关闭</button></div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="jquery-1.6.2.js"></script>
+<script type="text/javascript" src="tui_drag.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var option={
+		handle:'#hand',
+		onDraging:function(x,y){$('#info').text('moving to x:'+x+' y:'+y)},
+		onDrop:function(x,y){$('#info').text('drop at x:'+x+' y:'+y)}
+	}
+	$('#drag').tuiDrag(option);
+})
+function fun(){
+	$('#drag').tuiDrag('dragableRangeX',[100,500]).tuiDrag('dragableRangeY',[100,300]);
+}
+function fun1(){
+	$('#drag').tuiDrag('dragRange','auto');
+}
+function fun2(){
+	$('#drag').tuiDrag('disabled',true);
+}
+function fun3(){
+	$('#drag').tuiDrag('disabled',false);
+}
+function fun4(){
+	$('#drag').tuiDrag('revert',true);
+}
+function fun5(){
+	$('#drag').tuiDrag('revert',false);
+}
+</script>
+<style>
+#drag{width:100px;height:100px; background-color:#EEE;border:1px solid #00F;z-index:1000;}
+#hand{height:20%;width:100%;text-align:center; background-color:#39F}
+.proxy{width:100px;height:100px;background-color:#CCC;}
+.fun{position:absolute;top:10px;right:10px;border:2px solid #CCC;}
+.fun .title{width:100%;height:20px;background-color:#CCC; font-family:Arial, Helvetica, sans-serif;size:14px; text-align:center;margin:0 0 10px;}
+</style>
+</head>
+
+<body>
+<div id="drag">
+	<div id="hand">拖拽窗口</div>
+</div>
+<div id="info"></div>
+<br />
+<div class="fun">
+	<div class="title">
+    	功能按钮：每个按钮包含一个简单的对属性的修改方法
+   	</div>
+<button onclick="fun()">移动限制（100,500,100,300）</button>
+<button onclick="fun1()">无移动限制</button>
+<button onclick="fun2()">不可拖拽</button>
+<button onclick="fun3()">可以拖拽</button>
+<button onclick="fun4()">恢复</button>
+<button onclick="fun5()">不恢复</button>
+</div>
+</body>
+</html>

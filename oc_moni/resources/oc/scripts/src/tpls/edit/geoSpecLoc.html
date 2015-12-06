@@ -1,0 +1,73 @@
+<div>
+	<!--区域头部开始-->
+	<div class="each_edit_div">
+		<label>{{title}}</label>
+		<div class="each_content_div" ng-transclude="">
+			
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<!--区域头部结束-->
+	<!--自定义区域部分开始-->
+	<div class="each_edit_div" ng-show = "showTableFlag">
+		<label>&nbsp;</label>
+		<div class = "each_content_div" >
+			<div class = "table_layout">
+				<table>
+					<thead>
+						<tr>
+							<th>类型</th>
+							<th>代码</th>
+							<th>是否适用</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class = "hidden">
+							<!-- 这一个inpuy非常重要不能删除 -->
+							<td colspan="4"><input  id = "{{hiddenInputId}}"   type = "text" /></td>
+						</tr>
+						<tr ng-repeat = "l178 in list" ng-click = "clickTr178(l178);" ng-class = "{true:'selectTd',false:''}[l178.selected]">
+							<td>
+								<select ng-model="l178.geoLocType"  class = "select_width" style="width:100px;"
+									ng-options="b.value as b.name for b in geoList" 
+									ng-change="selectChange178Tb(l178)" >
+								</select>  
+							</td>
+							<td>
+								<div class="input_outer">
+									<input ng-model = "l178.geoLocSpec" geo-max-length = "l178.geoLocType"  
+										   ng-class = "{'A':'tuiRequired tuiAreaCode','C':'tuiRequired tuiCityCode','N':'tuiRequired tuiCountryCode','P':'tuiRequired tuiAirportCode','S':'tuiRequired tuiStateCode','Z':'tuiRequired tuiZoneCode'}[l178.geoLocType]"
+										   type="text" tabindex="3" size="5" class="input_normal tuiUpper"/>
+								</div>
+							</td>
+							<td>
+								<div class="input_outer">
+								   <input ng-model = "l178.appl" type="radio" tabindex="3" size="5" class="input_normal"  value="" />适用
+								   <input ng-model = "l178.appl" type="radio" tabindex="3" size="5" class="input_normal"  value="N" />不适用
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="helper_margin_top_10px">
+					<div class="btn_page btn_add_small">
+	                	<div class="btn_left"></div>
+	                    <div class="btn_content" ng-click = "tb178AddLine();">增加一行</div>
+	                    <div class="btn_right"></div>
+	                </div>
+					<div class="btn_page btn_add_small_2">
+	                	<div class="btn_left"></div>
+	                    <del-tb178></del-tb178>
+	                    <div class="btn_right"></div>
+	                </div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<!--自定义区域部分结束-->
+</div>

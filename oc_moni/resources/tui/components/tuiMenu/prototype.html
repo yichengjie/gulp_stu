@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../../styles/tui_global.css" />
+<link rel="stylesheet" type="text/css" href="../../styles/tui_content.css" />
+<link rel="stylesheet" type="text/css" href="tui_menu.css" />
+<script type="text/javascript" src="../../scripts/jquery.js"></script>
+<script type="text/javascript" src="tui_menu.js"></script>
+<title>无标题文档</title>
+<style>
+.tui_menu_panel{ border:1px solid #c3c3c3; border-radius:2px; font-size:12px;}
+.tui_menu_panel dl dt,.tui_menu_panel dl dd{height:25px; line-height:25px; vertical-align:baseline; background-color:#fff; border-bottom:1px solid #a8b0bc; cursor:pointer; border-top:none;}
+.tui_menu_panel dl dt{ background:#e1e4e8 url(../../images/tui_vertical.png) repeat-x 0 -2576px;}
+.tui_menu_panel dl dt:hover{background:#bfd2ee url(../../images/tui_vertical.png) repeat-x 0 -2522px;}
+.tui_menu_panel dl .tui_menu_list_icon{ width:10px; height:10px; display:inline-block;*display:inline;*zoom:1; margin:0 10px; vertical-align:middle;}
+
+.tui_menu_panel dl .menu_border_bottom{ border-bottom:1px solid #A8B0BC}/*该样式用于js中添加的样式*/
+
+.tui_menu_panel dl .open .tui_menu_list_icon{ background-image:url(tui_menu_icon_open.png);}
+.tui_menu_panel dl .close .tui_menu_list_icon{ background-image:url(tui_menu_icon_close.png);}
+.tui_menu_panel dl .leaf .tui_menu_list_icon{ background-image:url(tui_menu_icon_leaf.png);}
+.tui_menu_panel dl dt.leaf{ background:#FFF;}
+.tui_menu_panel dl dt.leaf:hover{ background:#e1e5f8;}
+
+.tui_menu_panel dl dd{ background:#f1f2f5; border-top:1px solid #e0e3e9; padding-left:20px; border-bottom:none;}
+.tui_menu_panel dl dd:hover{ background:#e1e5f8;}
+</style>
+</head>
+
+<body>
+<div style=" width:300px; margin:100px;">
+	<div class="tui_menu_panel">
+    	<dl>
+        	<dt class="tui_menu_list open"><div class="tui_menu_list_icon"></div>菜单选项1</dt>
+            <dd class="tui_menu_list leaf"><div class="tui_menu_list_icon"></div>子节点1</dd>
+            <dd class="tui_menu_list leaf"><div class="tui_menu_list_icon"></div>子节点2</dd>
+            <dd class="tui_menu_list leaf menu_border_bottom"><div class="tui_menu_list_icon"></div>子节点3</dd>
+            <dt class="tui_menu_list close"><div class="tui_menu_list_icon"></div>菜单选项2</dt>
+            <dd class="tui_menu_list leaf"><div class="tui_menu_list_icon"></div>子节点1</dd>
+            <dd class="tui_menu_list leaf menu_border_bottom"><div class="tui_menu_list_icon"></div>子节点2</dd>
+            <dt class="tui_menu_list leaf"><div class="tui_menu_list_icon"></div>菜单选项3</dd>
+        </dl>
+    </div>
+</div>
+</body>
+</html>

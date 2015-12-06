@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+margin:0px;padding:0px;border: 0;font-weight: normal;font-style: inherit;font-size:100%;}
+html{ background: none repeat scroll 0 0 #FFFFFF;color: #333333;direction: ltr;}
+body{font-size:9pt; font-family:'lucida grande',Helvetica,Tahoma,Verdana,Arial,Microsoft YaHei,simsun,sans-serif; border:none;}
+table { border-collapse:separate; border-spacing:0; }
+table *{ vertical-align:middle;}
+table tr td{ padding:2px; vertical-align:middle;}
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+a:link, a:visited { color: #336699;text-decoration: none;}
+a:hover {color: #336699;text-decoration: underline;}
+ol,ul,li{ list-style: none outside none;}
+fieldset, img{ border:0 none;}
+input, button, textarea, select, optgroup, option {font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;}
+select, label, textarea, input {font-family:'lucida grande',Helvetica,Tahoma,Verdana,Arial,Microsoft YaHei,simsun,sans-serif;}
+article, aside, dialog, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video, details, summary { background: none repeat scroll 0 0 transparent; border: 0 none;font-size: 100%;margin: 0;outline: 0 none;padding: 0;vertical-align: baseline;
+}
+div,article, aside, dialog, figure, footer, header, hgroup, nav, section, figcaption, details, summary {display: block;}
+canvas {zoom: 1; display: inline;}
+[hidden] {display: none}
+mark { background:#ff0;color:#000;}
+/*========clear ie6++ firefox=============*/
+.clear { zoom:1;}
+.clear:after {clear: both;display: block;line-height: 0;font-size: 0;content: '.';visibility: hidden;}
+/******scroll bar for chrome*****/
+::-webkit-scrollbar{ border:1px solid #dadde1; background-color:#e9e9e9; border-radius:5px; }
+::-webkit-scrollbar-track{}
+::-webkit-scrollbar:vertical{ width:10px;}
+::-webkit-scrollbar:horizontal{ height:10px;}
+::-webkit-scrollbar-thumb{ background-color:#b2b2b2; border-radius:5px;}
+::-webkit-scrollbar-thumb:vertical{ width:10px;}
+::-webkit-scrollbar-thumb:horizontal{ height:10px;}
+
+::-webkit-scrollbar-button{ background-color:#e9e9e9; border-radius:5px;}
+
+::-webkit-scrollbar-button:vertical{height:14px;}
+::-webkit-scrollbar-button:vertical:increment:hover{ background:url(../images/tui_content.png) no-repeat -454px -212px;}
+::-webkit-scrollbar-button:vertical:decrement:hover{ background:url(../images/tui_content.png) no-repeat -438px -212px;}
+::-webkit-scrollbar-button:horizontal{ width:14px;}
+::-webkit-scrollbar-button:horizontal:decrement:hover{ background:url(../images/tui_content.png) no-repeat -468px -214px;}
+::-webkit-scrollbar-button:horizontal:increment:hover{ background:url(../images/tui_content.png) no-repeat -482px -214px;}

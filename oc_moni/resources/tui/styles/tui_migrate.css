@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* 该文件是TUI3.0到TUI2.0的迁移临时样式，作为过渡样式 */
+
+/****页面按钮类****/
+.btn_page{ height:28px; position:relative; display:inline-block; cursor:pointer; *display:inline; *zoom:1}
+.btn_page .btn_left{ width:4px; height:28px; position:absolute; top:0px; left:0px; background-image:url(../images/tui_content.png); background-repeat:no-repeat;}
+.btn_page .btn_right{ width:4px; height:28px;  position:absolute;top:0px; right:0px;background-image:url(../images/tui_content.png); background-repeat:no-repeat;}
+.btn_page .btn_content{ height:28px; margin:0 4px; line-height:28px; font-size:14px; padding:0 10px; color:#FFF; text-align:center;background-image:url(../images/tui_vertical.png); background-repeat:repeat-x;}
+
+/****保存按钮，绿色按钮****/
+.btn_save{}
+.btn_save .btn_left{ background-position:-4px -54px;}
+.btn_save .btn_right{ background-position:-16px -54px;}
+.btn_save .btn_content{ background-position:0 -49px;}
+.icon_save{background-position:-114px -307px;}
+.btn_save:hover .btn_left{ background-position:-31px -54px;}
+.btn_save:hover .btn_right{ background-position:-43px -54px;}
+.btn_save:hover .btn_content{ background-position:0px -82px;}
+.btn_save:active .btn_left{ background-position:-58px -54px;}
+.btn_save:active .btn_right{ background-position:-70px -54px;}
+.btn_save:active .btn_content{background-position:0 -116px;}
+
+.btn_save.disable,.btn_save_disable{ cursor:default;}
+.btn_save.disable .btn_left,.btn_save_disable .btn_left{ background-position:-86px -54px;}
+.btn_save.disable .btn_right,.btn_save_disable .btn_right{ background-position:-99px -54px;}
+.btn_save.disable .btn_content,.btn_save_disable .btn_content{ background-position:0px -149px; color:#808080;}
+
+.icon_save_2{ background:url(../images/tui_content.png) no-repeat -11px -947px; width:13px; height:13px;}
+.icon_save_2:hover{ background-position:-36px -947px;}
+.icon_save_2:active{ background-position:-64px -947px;}
+.icon_save_2.disable{ background-position:-95px -947px; cursor:default;}
+
+/****取消按钮，灰色按钮****/
+.btn_cancel{}
+.btn_cancel .btn_left{ background-position:-117px -54px;}
+.btn_cancel .btn_right{ background-position:-129px -54px;}
+.btn_cancel .btn_content{ background-position:0 -186px; color:#4c4c4c;}
+.icon_cancel{background-position:-13px -338px;}
+.btn_cancel:hover .btn_left{background-position:-147px -54px;}
+.btn_cancel:hover .btn_right{ background-position:-160px -54px;}
+.btn_cancel:hover .btn_content{ background-position:0 -220px;}
+.btn_cancel:active .btn_left{ background-position:-178px -54px;}
+.btn_cancel:active .btn_right{ background-position:-193px -54px;}
+.btn_cancel:active .btn_content{ background-position:0 -255px;}
+
+.btn_cancel.disable,.btn_cancel_disable{ cursor:default;}
+.btn_cancel.disable .btn_left,.btn_cancel_disable .btn_left{ background-position:-212px -54px;}
+.btn_cancel.disable .btn_right,.btn_cancel_disable .btn_right{ background-position:-228px -54px;}
+.btn_cancel.disable .btn_content,.btn_cancel_disable .btn_content{ background-position:0px -290px; color:#808080;}
+
+/****删除按钮，红色按钮****/
+.btn_delete{}
+.btn_delete .btn_left{ background-position:-250px -54px;}
+.btn_delete .btn_right{ background-position:-265px -54px;}
+.btn_delete .btn_content{background-position:0 -325px; color:#FFF;}
+.icon_delete{ background-position:-377px -50px;}
+.btn_delete:hover .btn_left{ background-position:-282px -54px;}
+.btn_delete:hover .btn_right{ background-position:-298px -54px;}
+.btn_delete:hover .btn_content{background-position:0px -359px;}
+.btn_delete:active .btn_left{ background-position:-317px -54px;}
+.btn_delete:active .btn_right{ background-position:-332px -54px;}
+.btn_delete:active .btn_content{ background-position:0px -393px;}
+
+.btn_delete.disable,.btn_delete_disable{ cursor:default;}
+.btn_delete.disable .btn_left,.btn_delete_disable .btn_left{ background-position:-350px -54px;}
+.btn_delete.disable .btn_right,.btn_delete_disable .btn_right{ background-position:-363px -54px;}
+.btn_delete.disable .btn_content,.btn_delete_disable .btn_content{ background-position:0 -427px; color:#808080;}
+.btn_delete.disable .btn_content .icon_delete,.btn_delete_disable .btn_content .icon_delete{ background-position:-377px -68px;}
+.btn_cancel .btn_content .icon_delete{ background-position:-377px -68px;}
+/****查询按钮，蓝色按钮****/
+.btn_search{}
+.btn_search .btn_left{ background-position:-4px -86px; height:26px;}
+.btn_search .btn_right{ background-position:-16px -86px; height:26px;}
+.btn_search .btn_content{ background-position:0px -460px; color:#FFF; height:26px; line-height:26px;}
+.btn_search:hover .btn_left{ background-position:-31px -86px;}
+.btn_search:hover .btn_right{background-position:-43px -86px;}
+.btn_search:hover .btn_content{ background-position:0px -490px;}
+.btn_search:active .btn_left{ background-position:-58px -86px;}
+.btn_search:active .btn_right{ background-position:-70px -86px;}
+.btn_search:active .btn_content{ background-position:0px -520px;}
+
+.btn_search.disable,.btn_search_disable{ cursor:default;}
+.btn_search.disable .btn_left,.btn_search_disable .btn_left{ background-position:-86px -86px; height:26px;}
+.btn_search.disable .btn_right,.btn_search_disable .btn_right{ background-position:-99px -86px; height:26px;}
+.btn_search.disable .btn_content,.btn_search_disable .btn_content{ background-position:0 -550px; color:#808080; height:26px; line-height:26px;}
+
+
+

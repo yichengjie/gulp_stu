@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document 桌面应用的css*/
+/*desktop begin*/
+html{height:100%;width:100%; overflow:hidden;}
+.desktop_background{background:url(../images/tui_desktop_bg/bg_a.jpg) center center no-repeat #FFF;background-size:100% 100%; width:100%; height: 100%;overflow:hidden;border:none;}
+#desktop{position:absolute;z-index:1;right:0;top:0;overflow:hidden;width:100%; height: 100%;}
+#switch_container{position:absolute ;z-index:5;right:8px; top:14px; width:100px; height:50px;}
+#switch_container .switch{height:45px;width:45px;cursor:pointer;vertical-align: middle;position:absolute;z-index:10;right:0; top:0;}
+#switch_container .widget_switch{background:url(../images/tui_window.png) 0px -253px  no-repeat;}
+#switch_container .widget_switch:hover{background:url(../images/tui_window.png) -67px -253px  no-repeat;}
+#switch_container .widget_switch:active{background:url(../images/tui_window.png) -125px -253px  no-repeat;}
+#switch_container .widget_switch_active{background:url(../images/tui_window.png) -125px -253px  no-repeat;}
+.tabs_switch{display:none;background:url(../images/tui_window.png) 0px -310px  no-repeat; width:54px; height:54px;vertical-align: middle;position:absolute;z-index:3;right:75px;top:11px;cursor:pointer;}
+.tabs_switch:hover{background:url(../images/tui_window.png) -60px -310px  no-repeat;}
+.tabs_switch:active{background:url(../images/tui_window.png) -116px -310px  no-repeat;}
+.push_notice{position:absolute;z-index:3;right:0;bottom:0;width:auto; height:auto;overflow:hidden;}
+.push_notice .desktop_notice{ cursor:pointer;vertical-align:middle;color:#ff0009;text-align:center;font-size:18px;width:28px;height:26px;background:url(../images/tui_window.png) -341px -342px  no-repeat;display:inline-block;*display:inline; *zoom:1;}
+.push_notice .right_notice{ color:#808080;}
+.rightmenu{position:absolute;z-index:2000;left:0;top:0;overflow:hidden; border:1px solid #333; border-radius:3px; background-color:#fff; width:128px; display:none;}
+.rightmenu ul{list-style:none;padding-left:3px; padding-top:5px;}
+.rightmenu li{padding-left:8px;cursor:pointer;height:28px; line-height:28px; width:110px;}
+.rightmenu li:hover{height:26px; line-height:26px;border:1px solid #e2dab5; border-radius:3px; background-color:#fff3c9;}
+.rightmenu li span{display:inline-block;*display:inline; *zoom:1; vertical-align:middle;}
+.rightmenu li span.icon_widget{background:url(../images/tui_window.png) -335px -440px  no-repeat; width:16px;height:19px;vertical-align:middle;}
+.rightmenu li span.icon_person{background:url(../images/tui_window.png) -369px -439px  no-repeat; width:16px;height:19px;vertical-align:middle;}
+.rightmenu li span.icon_usas{background:url(../images/tui_window.png) -408px -440px  no-repeat; width:16px;height:19px;vertical-align:middle;}
+.rightmenu li span.icon_logout{background:url(../images/tui_window.png) -444px -439px  no-repeat; width:17px;height:19px;vertical-align:middle;}
+.rightmenu li span.desc{color:#333;vertical-align:middle; padding-left:8px;}
+.rightmenu li span.icon_changebg{background:url(../images/tui_window.png) -298px -440px  no-repeat; width:18px;height:19px;vertical-align:middle;}
+/*desktop end*/
+/*所有应用开始*/
+#apps{ display:none;position:absolute;z-index:2;left:0;top:0;overflow:hidden;}
+.apps_background{position:absolute;left:114px;top:0;overflow:hidden;z-index:-5;filter: Alpha(opacity=50)\9;opacity:0.5;background:#333; width:100%; height:100%;}
+.apps_close{position:absolute;right:20px;top:15px;overflow:hidden; width:45px; height:45px;}
+.apps_close .apps_close_btn{background:url(../images/tui_window.png) -195px -313px  no-repeat;width:45px; height:45px;cursor:pointer;}
+.apps_close_btn:hover{background:url(../images/tui_window.png) -241px -313px  no-repeat;}
+.apps_close_btn:active{background:url(../images/tui_window.png) -287px -313px  no-repeat;}
+.apps_group{position:relative;left:50%;top:20px; margin-left:-50px;width:200px; height:50px;line-height:50px;}
+.apps_list{position:relative;left:177px;top:25px;width:100%;height:100%;text-align:left;}
+.apps_header_container{width:100%;height:30px;}
+.apps_category{position: absolute; width:100%;height:30px;line-height:30px; vertical-align:middle;text-align:left; font-size:1px; left:0px; top:0px;z-index:100;}
+.apps_category .apps_category_info{background:url(../images/tui_window.png) -197px -259px  no-repeat;width:79px; height:30px;cursor:pointer;line-height:30px;display:inline-block;*display:inline; *zoom:1; text-align:left; padding-left:12px;vertical-align:middle;color:#fff;font-family:Microsoft YaHei,simsun,sans-serif;text-shadow:1px 1px 1px #000;font-size:14px;}
+.apps_category .apps_category_line{;padding-top:14px;height:16px;vertical-align:middle;display:inline-block;*display:inline;*zoom:1;width:100%;}
+.apps_category_line .line{opacity:0.5;*filter: Alpha(opacity=50);background:#afafaf;width:100%; height:1px; }
+.apps_category_list{overflow:hidden;position:absolute;left:0px;top:40px;width:100%;height:100%;text-align:left;} 
+a.app_icon{cursor:pointer;display:block; padding-top:10px; width:100px;height:110px; text-align:center;position:absolute;z-index:10;vertical-align:middle;}
+a.app_icon:hover{text-decoration:none;background:url(../images/tui_icon/icon_bg.png) -3px 0 no-repeat;}
+/*a.app_icon:active{text-decoration:none;background:url(../images/tui_icon/icon_bg.png) -99px 0 no-repeat;}*/
+a.app_icon_active{display:block; padding-top:10px; width:100px;height:110px; text-align:center;position:absolute;z-index:10;vertical-align:middle;text-decoration:none;background:url(../images/tui_icon/icon_bg.png) -99px 0 no-repeat;}
+a.app_icon img{cursor:pointer;}
+.app_title{margin-top:-5px;color:#fff;font-family:Microsoft YaHei,simsun,sans-serif;text-shadow:3px 3px 3px #000;font-size:14px;}
+.app_info{margin-left:10px;margin-top:2px;color:#4CB3F8;background:url(../images/tui_icon/icon_info.png) 0 0 no-repeat;width:80px; height:20px;line-height:20px; font-size:14px;text-shadow:0px 3px 3px #000;cursor:default;}
+.apps_scroller{position:absolute;right:2px;top:110px;z-index:100;width:10px; height:100%;-moz-user-select:-moz-none;border:0;cursor:default;margin:0;overflow:hidden;}
+/*所有应用结束*/
+/*公共的*/
+	/*滚动条开始*/
+.thumb_white{overflow:hidden;position:absolute;left:0;width:16px;height:32px;cursor:default;}
+.thumb_white .thumb_share{background:url(../images/tui_window.png) no-repeat;left:0;position:absolute;width:16px;height:5px;}
+.thumb_white .thumb-center{background:url(../images/tui_horizontal.png) -33px 0px repeat-y;bottom:5px;top:5px;height:auto;}
+.thumb_white .thumb-top{background-position:0px -372px;top:0;}
+.thumb_white .thumb-bottom{background-position: 0px -386px;bottom:0;}
+.thumb_white:hover  .thumb-center{background:url(../images/tui_horizontal.png) -43px 0px repeat-y;}
+.thumb_white:hover  .thumb-top{background-position:-20px -372px;top:0;}
+.thumb_white:hover  .thumb-bottom{background-position: -20px -386px;bottom:0;}
+.thumb_white_active .thumb-center{background:url(../images/tui_horizontal.png) -53px 0px repeat-y;}
+.thumb_white_active .thumb-top{background-position:-42px -372px;top:0;}
+.thumb_white_active .thumb-bottom{background-position: -42px -386px;bottom:0;}
+	/*滚动条结束*/
+/*dock bar开始*/
+#dock{position:absolute;z-index:5000;left:0;top:0;overflow:hidden;width:200px; height:100%;}
+.mousemove_dock{position:absolute;z-index:5001;left:0;top:0;overflow:hidden;width:5px; height:100%;*height:2100px;*background:#000;*filter: Alpha(opacity=0);}
+.dock_bg{ background-color:#666;filter: Alpha(opacity=90)\9;opacity:0.9; width:113px;
+height:100%; position:absolute; z-index:-100; display:none;}
+.dock_container{height:100%;background:url(../images/tui_horizontal.png) -143px 0px repeat-y;width:118px;}
+.dock_top{height:8px;width:118px;background:url(../images/tui_window.png) -482px -248px no-repeat; display:none;}
+.dock_bottom{height:8px;width:118px;background:url(../images/tui_window.png) -482px -304px no-repeat;display:none;}
+.dock_line{height:1px;width:118px;background:url(../images/tui_window.png) -490px -315px no-repeat;}
+.dock_up_down_btn{height:12px; width:118px; cursor:pointer;overflow:hidden;}
+.dock_up_btn{height:12px;width:22px;background:url(../images/tui_window.png) -288px -226px no-repeat;overflow:hidden;margin:auto;}
+.dock_up_btn:hover{background:url(../images/tui_window.png) -300px -279px no-repeat;}
+.dock_up_btn:active{background:url(../images/tui_window.png) -328px -279px no-repeat;}
+.dock_down_btn{height:12px;width:22px;background:url(../images/tui_window.png) -325px -223px no-repeat;overflow:hidden;cursor:pointer;margin:auto;}
+.dock_down_btn:hover{background:url(../images/tui_window.png) -299px -258px no-repeat;}
+.dock_down_btn:active{background:url(../images/tui_window.png) -328px -258px no-repeat;}
+.dock_apps_container{min-height:300px;height:600px;text-align:center;overflow: hidden;}
+.dock_app{vertical-align:middle; text-align:center; width:90px;height:88px;cursor:pointer;position:absolute;z-index:1;left:12px; padding-top:8px;text-decoration:none;}
+.dock_app:hover{background:url(../images/tui_icon/icon_bg.png) -7px -2px no-repeat;}
+.dock_app_hover{background:url(../images/tui_icon/icon_bg.png) -7px -2px no-repeat;}
+.dock_app:active{background:url(../images/tui_icon/icon_bg.png) -104px -2px no-repeat;}
+.dock_app_active{vertical-align:middle; text-align:center; width:90px;height:88px;cursor:pointer;position:absolute;z-index:1;left:12px; padding-top:8px;text-decoration:none;background:url(../images/tui_icon/icon_bg.png) -104px -2px no-repeat;}
+.app_opacity{filter: Alpha(opacity=60)\9;opacity:0.6;}
+.app_del_icon{background:url(../images/tui_window.png) -385px -341px no-repeat; width:28px; height:28px;position:absolute;z-index:10;left:32px;top:32px;}
+.dock_app_title .title_more{background:-webkit-gradient(linear,40% 0%, 80% 0%, from(#fff), to(transparent), color-stop(1.0,#666666));color:transparent; -webkit-background-clip: text;}
+.dock_app_title .title_more_forIE{ opacity:0.7;filter:Alpha(Opacity="70");}
+.msg_num{width:30px;height:30px;font-size:18px;color:#fff;background-color:#500;position:absolute;right:-10px;top:-5px;color:#FFF;text-align:center; vertical-align:middle;line-height:26px; background:url(../images/tui_window.png) -362px -218px no-repeat;text-shadow:-1px 0px 1px #000;}
+.dock_app .dock_msg_num_position{right:0px;top:6px;}
+.dock_tool_pannel{height:85px;padding:10px 0 0 10px; position:relative;}
+.dock_tool_pannel .dock_tool_item{background:url(../images/tui_window.png) no-repeat;display:inline-block;*display:inline; *zoom:1;width:36px;height:36px;cursor:pointer; margin-right:10px; position:relative;}
+.dock_tool_pannel .dock_icon_apps{background-position:0 -396px;}
+.dock_tool_pannel .dock_icon_user{background-position:-120px -396px;}
+.dock_tool_pannel .dock_icon_office{background-position:-46px -396px;}
+.dock_tool_pannel .dock_icon_notice{background-position:-89px -396px; width:30px; margin-left:8px; margin-right:0;}
+.dock_tool_pannel .dock_icon_apps:hover{ background-position:-177px -396px;}
+.dock_tool_pannel .dock_icon_user:hover{background-position:-297px -396px;}
+.dock_tool_pannel .dock_icon_office:hover{background-position:-223px -396px;}
+.dock_tool_pannel .dock_icon_notice:hover{background-position:-266px -396px; width:30px; margin-left:8px; margin-right:0;}
+.dock_tool_pannel .dock_icon_apps:active{ background-position:-357px -396px;}
+.dock_tool_pannel .dock_icon_user:active{background-position:-477px -396px;}
+.dock_tool_pannel .dock_icon_office:active{background-position:-402px -396px;}
+.dock_tool_pannel .dock_icon_notice:active{background-position:-445px -396px; width:30px; margin-left:8px; margin-right:0;}
+.dock_tool_pannel .dock_icon_apps_active{ background-position:-357px -396px;}
+.dock_tool_pannel .dock_icon_user_active{background-position:-477px -396px;}
+.dock_tool_pannel .dock_icon_office_active{background-position:-402px -396px;}
+.dock_tool_pannel .dock_icon_notice_active{background-position:-445px -396px; width:30px; margin-left:8px; margin-right:0;}
+.dock_tool_pannel .dock_divide{ clear:both;height:5px;}
+.dock_time_pannel .dock_date{height:20px;line-height:20px;color:#fff;font-size:12px;text-align:center;font-weight:bold;font-family:Microsoft YaHei,simsun,sans-serif;filter: Alpha(opacity=60)\9;opacity:0.6;text-shadow:1px 1px 1px #333;}
+.dock_time_pannel .dock_time{height:30px;line-height:30px;color:#fff;font-family:Microsoft YaHei,simsun,sans-serif;text-shadow:1px 1px 1px #333;font-size:26px;text-align:center;font-weight:bold;filter: Alpha(opacity=50)\9;opacity:0.5;}
+.dock_insert_line{height:6px; width:84px; position:absolute;z-index:1;background:url(../images/tui_window.png) -424px -362px no-repeat; display:none;}
+ul.dock_popup_list{list-style:none;padding-left:0px; padding-top:2px;}
+.dock_popup_list li{padding-left:6px;cursor:pointer;height:24px; line-height:24px; width:60px;}
+.dock_popup_list li:hover{height:22px; line-height:22px;border:1px solid #e2dab5; border-radius:3px; background-color:#fff3c9;}
+.dock_popup_list li span{display:inline-block;*display:inline; *zoom:1; vertical-align:middle;}
+.dock_popup_list li.line{height:1px;width:60px; background-color:#999;}
+.dock_popup_list li.line:hover{ border:none;}
+#dock_usas_container{display:none;}
+.dock_btn{ position:absolute;z-index:1100;width:12px; height:63px;background:url(../images/tui_window.png) 0px -467px no-repeat; top:45%;left:0;display:none;}
+.dock_btn:hover{ background:url(../images/tui_window.png) -29px -467px no-repeat;}
+.dock_btn:active{background:url(../images/tui_window.png) -59px -467px no-repeat;}
+.dock_btn_close{background:url(../images/tui_window.png) 0px -535px no-repeat;}
+/*dock结束*/
+/*widget开始*/
+.widget{position:absolute;z-index:2100;display:none;top:0;overflow:hidden;width:147px; height: 100%;background:url(../images/tui_widget/widget_bg.png) repeat-y; min-height:480px;right:-200px;}
+.widget .widget_app{ cursor:pointer;position:absolute;z-index:1; left:24px; top:24px;overflow:hidden; width:106px; height:140px;}
+.widget_app:hover .widget_title{background:url(../images/tui_window.png) -360px -306px no-repeat;}
+.widget_app:hover .widget_icon_border{border:1px solid #30a0ff; border-radius:3px;}
+.widget_app:active{filter: Alpha(opacity=50)\9;opacity:0.5;}
+.widget_title{margin-left:6px;color:#fff;background:url(../images/tui_window.png) -360px -260px no-repeat;width:89px; height:27px;line-height:27px; text-align:center; vertical-align: middle;font-size:14px;margin-top:1px;font-family:Microsoft YaHei,simsun,sans-serif;}
+.widget_title:hover{background:url(../images/tui_window.png) -360px -306px no-repeat;}
+.widget .widget_icon_border{width:91px; height:91px;position:absolute;z-index:1;left:6px; top:4px;}
+.widget_btn_container{ cursor:pointer;width:100%;height:30px;position:absolute;z-index:2; background-color:#1e2c39;}
+.widget_btn_container:hover{background-color:#7c8994;}
+.widget_btn_container:active{background-color:#262f36;}
+.widget_down_container{bottom:0;right:0;}
+.widget_up_container{top:0;left:0;}
+.widget_btn_container .widget_btn{background:url(../images/tui_window.png)  no-repeat; width:26px; height:16px; margin:auto;}
+.widget_btn_container .widget_up_btn{background-position:-66px -372px; margin-top:8px;}
+.widget_btn_container:hover .widget_up_btn{background-position:-136px -372px;}
+.widget_btn_container:active .widget_up_btn{background-position:-216px -372px;}
+.widget_btn_container .widget_down_btn{background-position:-99px -372px; margin-top:10px;}
+.widget_btn_container:hover .widget_down_btn{background-position:-175px -372px;}
+.widget_btn_container:active .widget_down_btn{background-position:-252px -372px;}
+/*马驰修改，不需要设置背景颜色，因为有可能是透明的*/
+.widget_desktop_app{position:absolute;z-index:1;top:70px; right:40px; border:2px solid #a6a6a6;min-width:100px;min-height:100px;box-shadow:0px 2px 2px #333333;border-radius:3px; overflow:hiddern;transition: transform 0.3s ease-in-out;transform:rotateY(0deg);}
+.widget_desktop_app_transform{transform:rotateY(-90deg);}
+.widget_desktop_app_transform_0{transform:rotateY(0deg);}
+.widget_desktop_app .desktop_app_config{position:absolute;z-index:10;top:0px; right:-33px; width:25px; height:73px; display:none;}
+.desktop_app_config  .config_btn{width:24px;height:24px; cursor:pointer;background:url(../images/tui_window.png) no-repeat;}
+.desktop_app_config .close{background-position:-1px -440px;}
+.desktop_app_config .close:hover{background-position:-30px -440px;}
+.desktop_app_config .close:active{background-position:-62px -440px;}
+.desktop_app_config .refresh{background-position:-122px -440px;}
+.desktop_app_config .refresh:hover{background-position:-154px -440px;}
+.desktop_app_config .refresh:active{background-position:-182px -440px;}
+.desktop_app_config .config{background-position:-214px -440px;}
+.desktop_app_config .config:hover{background-position:-244px -440px;}
+.desktop_app_config .config:active{background-position:-272px -440px;}
+.widget_desktop_app .widget_desktop_app_drag{width:100%;height:15px; cursor:move;position:absolute;z-index:10;top:-10px;left:0;}
+.opacity_bg{filter: Alpha(opacity=50)\9;opacity:0.5;background:#333;}
+.opacity_bg_forIE678{*filter: Alpha(opacity=0);*background:#333;}
+/*widget结束*/

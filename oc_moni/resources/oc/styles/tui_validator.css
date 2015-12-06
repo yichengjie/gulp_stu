@@ -1,0 +1,74 @@
+@charset "utf-8"; 
+
+input.tui_input_error {
+	border: 1px solid #ff8f8f !important
+}
+
+li.tui_input_error {
+	border: 1px solid #ff8f8f !important
+}
+
+label.tui_input_error {
+	height: 24px;
+	line-height: 24px;
+	margin: -1px 0 0 5px;
+	padding: 0 8px;
+	border: 1px solid #eaabab;
+	border-radius: 2px;
+	color: #d17a7a;
+	font-size: 12px;
+	background-color: #ffe8e8;
+	vertical-align: middle
+}
+
+label.tui_input_info {
+	height: 24px;
+	line-height: 24px;
+	margin: -1px 0 0 5px;
+	padding: 0 8px;
+	border: 1px solid #b3af8d;
+	border-radius: 2px;
+	color: #4d4d4d;
+	font-size: 12px;
+	background-color: #fffbda
+}
+
+span.tui_input_error {
+	border: 1px solid #ff8f8f;
+	display: inline-block;
+	_display: inline;
+	_zoom: 1;
+	border-radius: 2px
+}
+
+textarea.tui_input_error {
+	border: 1px solid #ff8f8f
+}
+
+.tui_icon_arrowTipUp {
+	background: url(../../images/tui_content.png) no-repeat 0 0;
+	vertical-align: middle;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	cursor: default;
+	position: absolute;
+	height: 8px;
+	width: 9px
+}
+
+.validator_tipArea {
+	position: absolute;
+	text-align: center;
+	display: none;
+	cursor: default;
+	height: 20px;
+	width: 150px;
+	background: none repeat scroll 0 0 #000;
+	border-radius: 2px 2px 2px 2px;
+	opacity: .7;
+	padding: 10px 20px;
+	filter: alpha(opacity = '75');
+	color: #fff;
+	font-size: 14px
+}

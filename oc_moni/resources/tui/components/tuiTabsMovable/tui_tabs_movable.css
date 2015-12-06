@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+.tab_item_group.tui_tab_item_extra{}
+.tui_tabs_movable{ position: relative; overflow:hidden;}
+
+.tui_tabs_movable .tui_move_btn_left{ height:24px; border:1px solid #abafb8; position:absolute; left:0; top:0;z-index:100; width:14px; background:#c5d5ef url(images/left_normal.png) no-repeat center center; border-radius:0 3px 3px 0; cursor:pointer;}
+.tui_tabs_movable .tui_move_btn_left:hover{ background-color:#d8e4f9;}
+.tui_tabs_movable .tui_move_btn_left:active{ background-color:#abc4ec;}
+.tui_tabs_movable .tui_move_btn_right{ height:24px; border:1px solid #abafb8; position:absolute; right:0; top:0;z-index:100;width:14px; background:#c5d5ef url(images/right_normal.png) no-repeat center center;border-radius:3px 0 0 3px; cursor:pointer;}
+.tui_tabs_movable .tui_move_btn_right:hover{background-color:#d8e4f9;}
+.tui_tabs_movable .tui_move_btn_right:active{background-color:#abc4ec;}
+
+.tui_tabs_movable .tui_move_btn_left.disable{background-image:url(images/left_disable.png); background-color:#e0e0e0; cursor:default;}
+.tui_tabs_movable .tui_move_btn_right.disable{background-image:url(images/right_disable.png);background-color:#e0e0e0; cursor:default;}

@@ -1,0 +1,195 @@
+<tr ng-repeat = "l in list"   ng-click = "clickTr(l);" ng-class = "{true:'selectTd',false:''}[l.selected]">
+<%if("tb183.html"==value){%>
+	<td>
+		<input  name="{{'t1831'+$index}}" ng-model = "l.travelAgency" ng-disabled="canNotModifyFlag()"  upper-input
+			maxLength = "1" type="text" tabindex="3" size="4" />
+	</td>
+	<td>
+		<input name="{{'t1832'+$index}}" ng-model = "l.carrierGds" maxLength = "3" ng-disabled="canNotModifyFlag()"  
+			type="text" tabindex="3" size="4" />
+		
+	</td>
+	<td>
+		<input name="{{'t1833'+$index}}"  ng-model = "l.dutyFunctionCode" maxLength = "2" ng-disabled="canNotModifyFlag()"  
+				type="text" tabindex="3" size="4" />
+	</td>
+	<td>
+		<select  ng-model="l.geographicSpecificationType"  ng-disabled="canNotModifyFlag()"  style="width:100px;"
+				ng-options="c.value as c.name for c in geoSpecTypeList" ng-change="selectChange183Tb1(l)">
+		</select>
+	</td>
+	<td>
+		<input name="{{'t1835'+$index}}" ng-model = "l.geographicSpecification" ng-disabled="canNotModifyFlag()"  upper-input=""
+				geo-max-length = "l.geographicSpecificationType"  type="text" tabindex="3"  size="4"
+				ng-class = "{'A':'required areacode','C':'required citycode','N':'required countrycode','P':'required airportcode','S':'required statecode','Z':'required zonecode'}[l.geographicSpecificationType]" />
+	</td>
+	<td>
+		<select ng-model="l.codeType"   style="width:100px;" ng-disabled="canNotModifyFlag()" 
+				ng-options="d.value as d.name for d in codeTypeList" ng-change="selectChange183Tb2(l)">
+		</select>
+	</td>
+	<td>
+		<input name="{{'t1836'+$index}}" ng-model = "l.code" upper-input  ng-disabled="canNotModifyFlag()" type="text" 
+			   tabindex="3" size="5"  ng-class = "{T:'required office',I:'required iatanum'}[l.codeType]"
+			   tui-max-length = "{'T':'6','I':'7','X':'8','V':'8','E':'8','L':'8','A':'8'}[l.codeType]" />
+	</td>
+	<td>
+		<select ng-model="l.viewBookTkt"   style="width:100px;" ng-disabled="canNotModifyFlag()" 
+				ng-options="d.value as d.name for d in viewBookTktList">
+		</select>
+	</td>
+<%}else if("tb171.html"==value){%>
+	<td>
+		<input name="{{'t1711'+$index}}" ng-model = "l.carrier"  ng-disabled="canNotModifyFlag()"  upper-input set-focus 
+			class = "air required" type = "text" tabindex="1" maxlength="3"  size = "16" />
+	</td>
+	<td>
+		<input  ng-model = "l.resFareClassCode"  ng-disabled="canNotModifyFlag()" 
+			type = "text" tabindex="1" maxlength="16"  size = "16" />
+	</td>
+	<td >
+		<input  ng-model = "l.fareTypeCode"  ng-disabled="canNotModifyFlag()" 
+				type = "text" tabindex="1" maxlength="3"  size = "16" />
+	</td>
+<%}else if ("tb172.html"==value){%>
+	<td>
+		<input  ng-model = "l.accountCode"  ng-disabled="canNotModifyFlag()"  type = "text" 
+			tabindex="1" maxlength="20"  size = "16" />
+	</td>
+<%}else if ("tb173Ticket.html"==value){%>
+	<td>
+		<input  ng-model = "l.ticketDesignator"  ng-disabled="canNotModifyFlag()"  type = "text" 
+				tabindex="1" maxlength="10"  size = "16" />
+	</td>
+<%}else if ("tb173Tkt.html"==value){%>
+	<td>
+		<input  ng-model = "l.ticketDesignator"  ng-disabled="canNotModifyFlag()" type = "text" tabindex="1"
+			 maxlength="10"  size = "16" />
+	</td>
+<%}else if ("tb165.html"==value){%>
+	<td>
+		<input name="{{'t1651'+$index}}" ng-model = "l.equipmentCode"  ng-disabled="canNotModifyFlag()"  upper-input="" 
+			class = "lettersOrNumber" maxLength = "3" type = "text" size = "16"  />
+	</td>
+<%}else if("tb186.html"==value){%>
+	<td>
+		<input name="{{'t1861'+$index}}" ng-model = "l.mktCarrier" ng-disabled="canNotModifyFlag()" set-focus  
+			type="text" maxLength = "3" tabindex="3" size="5" class="required" />
+	</td>
+	<td>
+		<input ng-model = "l.optCarrier" maxLength ="3" ng-disabled="canNotModifyFlag()"  
+			type="text" tabindex="3" size="5" />
+	</td>
+	<td>
+		<input name="{{'t1863'+$index}}" ng-model = "l.fltNo1" maxLength = "4" ng-disabled="canNotModifyFlag()"  
+			type="text" tabindex="3" size="5" class="required"  />-
+		<input ng-model = "l.fltNo2" maxLength ="4" ng-disabled="canNotModifyFlag()"  type="text" 
+			tabindex="3" size="5"  />
+</td>
+<%}else if ("tb196.html"==value){%>
+	<td>
+		<input name="{{'t1961'+$index}}" ng-model = "l.count"  ng-disabled="canNotModifyFlag()" 
+			   maxLength = "2"  type="text" tabindex="3" size="15" class="positiveInteger"/>
+	</td>
+	<td>
+		<input name="{{'t1962'+$index}}" ng-model = "l.code"  upper-input set-focus  ng-disabled="canNotModifyFlag()"
+			ng-class="{true:'chargeDO',false:''}[data.noChargeNotAvailable=='D'||data.noChargeNotAvailable=='O']"
+		 	maxLength = "3"  type="text" tabindex="3" size="15"  class="lettersOrNumber" />
+	</td>
+<%}else if ("tb198.html"==value){%>
+	<td>
+		<select ng-model="l.mktOp" ng-disabled="canNotModifyFlag()"  class = "select_width" style="width:100px;"
+			ng-change = "selectChange198Tb(l)" ng-options="b.value as b.name for b in marketingOpreratingList" >
+		</select>  
+	</td>
+	<td>
+		<input name="{{'t1982'+$index}}" ng-model = "l.cxr" upper-input ng-disabled="canNotModifyFlag()"  maxLength = "2"  typ 
+		   ng-class = "{true:'air required',false:''}[l.mktOp.length>0]"  tabindex="3" size="5" class="input_normal"/>
+	</td>
+	<td>
+		<input name="{{'t1983'+$index}}" ng-model = "l.rbd1" upper-input ng-disabled="canNotModifyFlag()"  maxLength = "1" 
+		   type="text" tabindex="3" ng-class = "{true:'seatcode required',false:''}[l.mktOp.length>0]"  size="3" />
+	</td>
+	<td>
+		<input name="{{'t1983'+$index}}" ng-model = "l.rbd2" upper-input ng-disabled="canNotModifyFlag()"  maxLength = "1"  
+			tabindex="3" ng-class = "{true:'seatcode',false:''}[l.mktOp.length>0]" type="text"size="3" />
+	</td>
+	<td>
+		<input name="{{'t1984'+$index}}" ng-model = "l.rbd3"  upper-input ng-disabled="canNotModifyFlag()" maxLength = "1"  
+			tabindex="3" size="3" ng-class = "{true:'seatcode',false:''}[l.mktOp.length>0]" type="text"  />
+	</td>
+	<td>
+		<input name="{{'t1985'+$index}}" ng-model = "l.rbd4"  upper-input ng-disabled="canNotModifyFlag()" 
+			maxLength = "1"  tabindex="3" size="3" ng-class = "{true:'seatcode',false:''}[l.mktOp.length>0]" type="text"  />
+	</td>
+	<td>
+		<input name="{{'t1986'+$index}}" ng-model = "l.rbd5" upper-input  ng-disabled="canNotModifyFlag()" maxLength = "1"  
+			tabindex="3" size="3" ng-class = "{true:'seatcode',false:''}[l.mktOp.length>0]" type="text"  />
+	</td>
+<%}else if("tb198UpGrade.html"==value){%>
+	<td ng-if = "data.sel1.value=='UP'||data.sel1.value=='BDUP'">
+		<input name ="{{'t198ug1'+$index}}" ng-model = "l.cxr" upper-input ng-disabled="canNotModifyFlag()" 
+			   class="air" maxLength="2"  type="text" tabindex="3" size="5" />
+	</td>
+	<td>
+		<input name ="{{'t198ug2'+$index}}" ng-model = "l.rbd1" upper-input set-focus ng-disabled="canNotModifyFlag()" 
+			class="required seatcode" maxLength="1"  type="text" tabindex="3" size="7"  />
+	</td>
+	<td>
+		<input name ="{{'t198ug3'+$index}}" ng-model = "l.rbd2" upper-input ng-disabled="canNotModifyFlag()"  
+			class="seatcode" maxLength="1" type="text" tabindex="3" size="7" />
+	</td>
+	<td>
+		<input name ="{{'t198ug4'+$index}}" ng-model = "l.rbd3" upper-input  ng-disabled="canNotModifyFlag()"  
+			class="seatcode" maxLength="1" type="text" tabindex="3" size="7" />
+	</td>
+	<td>
+		<input name ="{{'t198ug5'+$index}}" ng-model = "l.rbd4" upper-input ng-disabled="canNotModifyFlag()"  
+			class="seatcode" maxLength="1" type="text" tabindex="3" size="7" />
+	</td>
+	<td>
+		<input name ="{{'t198ug6'+$index}}" ng-model = "l.rbd5" upper-input ng-disabled="canNotModifyFlag()"  
+			class="seatcode" maxLength="1" type="text" tabindex="3" size="7"  />
+	</td>
+<%}else if ("tb170.html"==value){%>
+	<td>
+		<select ng-model="l.saleGeographicPointType"  ng-disabled="canNotModifyFlag()" 
+				ng-options="o.value as o.name for o in geoSpecTypeList" ng-change="selectChange170Tb(l)">
+		</select>
+	</td>
+	<td>
+		<input name = "{{'t1701'+$index}}"  ng-model = "l.saleGeographicPoint" ng-disabled="canNotModifyFlag()" 
+			   upper-input geo-max-length = "l.saleGeographicPointType" 
+			   ng-class = "{'A':'required areacode','C':'required citycode','N':'required countrycode','P':'required airportcode','S':'required statecode','Z':'required zonecode'}[l.saleGeographicPointType]"
+			   type = "text" size = "16"  />
+	</td>
+	<td >
+		<input  name="{{'t1702'+$index}}" ng-model = "l.specFeeAmount" class = "required positiveInteger"  set-focus="" type = "text" 
+			ng-disabled="canNotModifyFlag()" tabindex="1" maxlength="7"  size = "16" />
+	</td>
+	<td>
+		<input name = "{{'t1703'+$index}}" ng-model = "l.specFeeCurrency" upper-input  type = "text" 
+			size = "16" maxlength="3"  ng-disabled="canNotModifyFlag()" class = "letter" 
+			ng-class = "{true:'required',false:''}[l.saleGeographicPointType.length>0]" />
+	</td>
+<%}else if("tb178.html"==value){%>
+	<td>
+		<select ng-model="l.geoLocType" ng-disabled="canNotModifyFlag()"  class = "select_width" style="width:100px;"
+			ng-options="b.value as b.name for b in geoSpecTypeList" ng-change="selectChange178Tb(l)" >
+		</select>  
+	</td>
+	<td>
+		<input name="{{'t1782'+$index}}" ng-model = "l.geoLocSpec" geo-max-length = "l.geoLocType" upper-input  
+			ng-disabled="canNotModifyFlag()" type="text" tabindex="3" size="5" class="input_normal"
+			ng-class = "{'A':'required areacode','C':'required citycode','N':'required countrycode','P':'required airportcode','S':'required statecode','Z':'required zonecode'}[l.geoLocType]" />
+	</td>
+	<td>
+		   <input ng-model = "l.appl" ng-disabled="canNotModifyFlag()"  type="radio" tabindex="3" size="5" value="" />适用
+		   <input ng-model = "l.appl" ng-disabled="canNotModifyFlag()"  type="radio" tabindex="3" size="5" value="N" />不适用
+	</td>
+<%}else{%>
+	<td colspan="{{column}}">
+		<h3>你传入的html模板不存在，请检查</h3>
+	</td>
+<%}%>
+</tr>

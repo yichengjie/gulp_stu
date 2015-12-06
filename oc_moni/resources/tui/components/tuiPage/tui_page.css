@@ -1,0 +1,28 @@
+/***********鍒嗛〉鏍峰紡寮�*******************/
+.pagination { clear:both;font-size:13px; height:30px; line-height:30px;}
+.pagination .total{color:#666666;display:inline-block;}
+.pagination .number {margin-left:3px;color:#666666;vertical-align:baseline;}
+.pagination .number a {padding: 0 5px;text-decoration:underline; }
+.pagination a.page_go_to{display:inline-block;*display:inline;*zoom:1;height:16px;line-height:16px; background:url(images/page_btn_bg.png) repeat-x 0 0; border:1px solid #c3c3c3;vertical-align:baseline;padding:0 6px;color:#666;}
+.pagination a.page_go_to:hover{background-position:0 -15px; border:1px solid #8a9db3;text-decoration:none;color:#678bb4;}
+.pagination .number a.page_btn{display:inline-block;*display:inline;*zoom:1; width:17px; height:17px; padding:0; margin:0 3px;vertical-align:text-bottom;}
+.pagination .number a.page_btn.firstpage{background-image:url(images/firstpage.gif);}
+.pagination .number a.page_btn.prevpage{background-image:url(images/prevpage.gif);}
+.pagination .number a.page_btn.firstpage_dis{background-image:url(images/firstpage_dis.gif);}
+.pagination .number a.page_btn.prevpage_dis{background-image:url(images/prevpage_dis.gif);}
+.pagination .number a.page_btn.nextpage{background-image:url(images/nextpage.gif);}
+.pagination .number a.page_btn.lastpage{background-image:url(images/lastpage.gif);}
+.pagination .number a.page_btn.nextpage_dis{background-image:url(images/nextpage_dis.gif);}
+.pagination .number a.page_btn.lastpage_dis{background-image:url(images/lastpage_dis.gif);}
+
+.pagination .number a.page_btn.firstpage:hover{background-image:url(images/firstpage_hover.gif);}
+.pagination .number a.page_btn.prevpage:hover{background-image:url(images/prevpage_hover.gif);}
+.pagination .number a.page_btn.nextpage:hover{background-image:url(images/nextpage_hover.gif);}
+.pagination .number a.page_btn.lastpage:hover{background-image:url(images/lastpage_hover.gif);}
+
+.pagination .number a:hover {color:#333333; text-decoration:underline;}
+.pagination .number .current a { color:#6A9DD5; text-decoration:underline;}
+.pagination .total input{ vertical-align:baseline;width:30px; height:16px; line-height:16px; font-size:12px; border:1px solid #bfbfbf; color:#333;}
+
+
+/***********鍒嗛〉鏍峰紡缁撴潫*******************/

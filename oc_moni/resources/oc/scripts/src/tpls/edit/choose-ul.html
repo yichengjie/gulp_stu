@@ -1,0 +1,29 @@
+<ul>
+<%if("choose1.html"==value){%>
+	<li bindonce ng-repeat="l in serviceGroupList | serviceGroupFilter:chooseInputData.choose1"
+	 	ng-click="subGroupQuery(l.serviceGroupDescription,l.serviceGroup)" bo-bind="l.serviceGroupDescription">
+	</li>
+<%}else if("choose2.html"==value){%>
+	<li bindonce ng-repeat="l in subGroupList | subGroupFilter : chooseInputData.choose2"
+	 	ng-click="s5Query(l.subGroupDescription,l.subGroup)"  bo-bind="l.subGroupDescription">
+	</li>
+<%}else if("choose3.html"==value){%>
+	<li bindonce ng-repeat="l in lastGroupList  | lastGroupFilter : chooseInputData.choose3"
+	    ng-click="lastChooseClick(l)" class="choose4li">
+		<div class="service_name">
+			<p class="helper_float_left" bo-bind="'['+l.serviceSubCode+']'+l.commercialName"></p>
+			<span class="helper_float_left serviceTypeSpan" bo-bind = "l.serviceType"></span>
+			<div class="clearfix"></div>
+		</div>
+	</li>
+<%}else if("choose4.html"==value){%>
+	<li bindonce ng-repeat="l in lastGroupList2" class="choose4li">
+		<div class="service_name">
+			<p class="helper_float_left" bo-bind="'['+l.subCode+']'+l.commercialName"></p>
+			<span class = "helper_float_left serviceTypeSpan" ng-bind = "l.serviceType"></span>
+			<span bo-bind="'x'+l.subCodeOccurence"></span>
+			<div class="clearfix"></div>
+		</div>
+	</li>
+<%}%>
+</ul>
