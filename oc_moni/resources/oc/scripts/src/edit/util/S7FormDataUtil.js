@@ -16,7 +16,6 @@ define(function(require, exports, module) {
 		formData.sel1.value = s7.basicInfoVo.serviceGroup ;
 		formData.sel2.value = s7.basicInfoVo.subGroup ;
 		formData.sel3.value = s7.basicInfoVo.subCode ;
-		
 	}
 	
 	//提交表单时将formData转换为s7
@@ -77,14 +76,6 @@ define(function(require, exports, module) {
 		util.delInValidList(formData) ;
 		util.dealOtherData(formData) ;
 		//2.一般字段校验
-		
-		/*var groupType = orgFormData.sel1.value ;
-		if(groupType=='UP'||groupType=='BDUP'){
-			if(formData.upgradeToCabin.length==0){
-				$.showTuiErrorDialog('选择升舱时，升舱到的服务等级必填!');
-				return false;
-			}
-		}*/
 
 		//如果为 【和】那么金额必填
 		if(formData['specSevFeeAndOrIndicator']=='A'||(formData['noChargeNotAvailable']==''&&formData['specifiedServiceFeeMileage']=='')){

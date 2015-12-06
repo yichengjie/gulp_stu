@@ -27,9 +27,9 @@ seajs.config({
 //console.info('------------------------------------------') ;
 // For development
 if (location.href.indexOf('?dev') > 0) {
-	 seajs.use('/oc/scripts/src/edit/main',function(app){
-	 	app.init() ;
-	 });
+	seajs.use('/oc/scripts/src/edit/main',function(app){
+	   app.init() ;
+	});
 }else {
 	seajs.use('fare/oc/1.0.0/edit/main',function(app){
 		app.init() ; 
