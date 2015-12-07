@@ -259,7 +259,7 @@ define(function(require, exports, module){
 		    }
 		};
 
-		var getFlagByServcieTypeAndServiceGroup = function (typeList, groupList,serviceType,serviceGroup) {
+		var getFlagByServiceTypeAndServiceGroup = function (typeList, groupList,serviceType,serviceGroup) {
 		    var flag = _.contains(typeList,serviceType) ;
 		    if(flag&&groupList&&groupList.length>0){
 		    	flag = _.contains(groupList, serviceGroup) ;
@@ -296,7 +296,7 @@ define(function(require, exports, module){
 						var serviceType = FormData.serviceType;
 						var serviceGroup = FormData.sel1.value ;
 						var oldFlag = FormStatusService[fname]['showFlag'] ;
-						var flag = getFlagByServcieTypeAndServiceGroup(typeList, groupList,serviceType,serviceGroup) ;
+						var flag = getFlagByServiceTypeAndServiceGroup(typeList, groupList,serviceType,serviceGroup) ;
 						//console.info(fname + ' -- ' + flag + '   , serviceType : ['+serviceType+'] , typeList ['+typeList+'] , groupList :['+groupList+']  , servcieGroup : ['+serviceGroup+'] ') ;
 						if(oldFlag==!flag){//如果不同
 							var nameList = FormStatusService[fname]['nameList'] ;

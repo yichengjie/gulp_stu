@@ -1,15 +1,16 @@
 define(function (require, exports, module) {
 
 	module.exports = {
-		getNoChargeNotAvailableList:function(servcieType){
-			var tmp = servcieType || '' ;
-			var retArr = [] ;
+		getNoChargeNotAvailableList:function(serviceType){
+			var tmp = serviceType || '' ;
+			var retArr = [] ;//{"name":"免费，行李规则遵循市场方航空公司规则","value":"D"},{"name":"免费，行李规则遵循承运方航空公司规则","value":"O"}
 			var defaultArr = [{"name":"收费","value":""},{"name":"不适用","value":"X"},
 		        {"name":"免费，不出EMD单","value":"F"},{"name":"免费，出EMD单","value":"E"},
+		        {"name":"免费，不出EMD单，不要求预定","value":"G"},{"name":"免费，出EMD单，不要求预定","value":"H"}] ;
+			if(tmp=='A'){
+				retArr = [{"name":"不适用","value":"X"},{"name":"免费，不出EMD单","value":"F"},{"name":"免费，出EMD单","value":"E"},
 		        {"name":"免费，不出EMD单，不要求预定","value":"G"},{"name":"免费，出EMD单，不要求预定","value":"H"},
 		        {"name":"免费，行李规则遵循市场方航空公司规则","value":"D"},{"name":"免费，行李规则遵循承运方航空公司规则","value":"O"}] ;
-			if(tmp=='A'){
-				retArr = [{"name":"免费，不出EMD单","value":"F"},{"name":"免费，行李规则遵循市场方航空公司规则","value":"D"}] ;
 			} else if (tmp=='B'){
 				retArr = [{"name":"免费，不出EMD单","value":"F"}] ;
 			}else if (tmp=='E'){

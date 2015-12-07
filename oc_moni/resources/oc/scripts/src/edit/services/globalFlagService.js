@@ -34,7 +34,7 @@ define(function(require, exports, module){
 	        	"showFlag":false,
 	        },
 	        "tb170":{
-	        	"showFlag":false,
+	        	"showFlag":true,
 	        },
 	        "tb178geo1":{
 	        	"showFlag":false,
@@ -130,7 +130,7 @@ define(function(require, exports, module){
 	}) ;
 
 
-	//整个页面的组件在servcieType为xxx时应该显示到页面上
+	//整个页面的组件在serviceType为xxx时应该显示到页面上
 	services.factory('FormStatusService', function(){
 	    return {
 	        "firstMaintenanceDate":{
@@ -211,7 +211,7 @@ define(function(require, exports, module){
 				"editFlag":true
 			},
 			"list170VOAndlist201VO":{
-				"typeList":['F','M','R','T','B','C','E','P'],
+				"typeList":['F','M','R','T','C','P'],
 				"groupList":[],
 				"nameList":['list170VO','list201VO'],
 				"showFlag":true,

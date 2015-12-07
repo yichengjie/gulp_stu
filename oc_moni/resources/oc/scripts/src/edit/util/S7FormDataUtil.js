@@ -16,6 +16,7 @@ define(function(require, exports, module) {
 		formData.sel1.value = s7.basicInfoVo.serviceGroup ;
 		formData.sel2.value = s7.basicInfoVo.subGroup ;
 		formData.sel3.value = s7.basicInfoVo.subCode ;
+		
 	}
 	
 	//提交表单时将formData转换为s7
@@ -64,22 +65,18 @@ define(function(require, exports, module) {
 	
 	//校验交单数据是否可以提交
 	util.validFormData = function(formData ,orgFormData,NEW_ADD_STR){
-		var action = formData.action ;
 		var serviceType = formData['serviceType'] ;
-		if(orgFormData.action == NEW_ADD_STR && orgFormData.sel3.showStr==''){//如果第三个选择框没有选择
-			$.showTuiErrorDialog('必须选择到最后一级！');
-			return false;
-		}
 		//第一个校验
 		//其他校验
 		//1.表格数据校验[删除表格中的非法数据:eg:第一个字段为空的假数据]
 		util.delInValidList(formData) ;
 		util.dealOtherData(formData) ;
-		//2.一般字段校验
-
-		//如果为 【和】那么金额必填
-		if(formData['specSevFeeAndOrIndicator']=='A'||(formData['noChargeNotAvailable']==''&&formData['specifiedServiceFeeMileage']=='')){
+		//如果适用于为h，c，p
+		var hcpFlag = _.contains(['H','C','P'], formData['specSevFeeAndOrIndicator']) ;
+		/**1.当收费为收费时，金额字段必填。2.当收费类型为‘和’,如果适用于不为H,C,P时，金额字段必填*/
+		if((formData['noChargeNotAvailable']==''||formData['specSevFeeAndOrIndicator']=='A')&&!hcpFlag){
 			if(formData['list201VO'].length==0&&formData['list170VO'].length==0){
+				$.showTuiErrorDialog('当收费或则收费类型为和并且适用于不为【H,C,P】时金额必填') ;
 				return false;
 			}
 		}
@@ -95,8 +92,6 @@ define(function(require, exports, module) {
 				return false;
 			}
 		}
-		
-		
 		if(formData['geoSpecFromToWithin']!=''){//如果不为不限区域则区域必填
 			if(formData['geoSpecLoc1']==''&&formData['list178Loc1'].length==0){
 				$.showTuiErrorDialog('当区域限制不为不限区域时，区域1的代码必须有值。');

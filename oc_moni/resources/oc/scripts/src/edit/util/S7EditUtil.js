@@ -1,4 +1,5 @@
 define(function (require, exports, module) {
+	var validateHelper = require('./S7ValidateHelper') ;
 	/**
 	 * 处理表单特殊数据
 	 * @param {Object} formData
@@ -69,11 +70,27 @@ define(function (require, exports, module) {
 		
 	};
 
+
+	var init4Validate = function(editScope,data,globalEditStatus){/**这里需要重置数据的原因是因为有些value会影响到别的控件的显示*/
+		var statusDes = data.statusDes ;
+		//当状态为3的时候，页面不可编辑
+		if(statusDes=='3'){
+			for(var cname in globalEditStatus){
+				globalEditStatus[cname] = false;
+			}
+		}
+		validateHelper.changeServiceType(editScope,data,globalEditStatus) ;
+		validateHelper.changeNoChargeNotAvailable(editScope,data,globalEditStatus) ;
+		validateHelper.changeSpecifiedServiceFeeApp(editScope,data) ;
+	};
+
+
 	//这边是要返回的方法的集合处
 	var EditUtil = {
 		initData:{/*初始化*/		
 			initOtherData:initOtherData,
-			initListData:initListData
+			initListData:initListData,
+			init4Validate:init4Validate
 		}
 
 	} ;	

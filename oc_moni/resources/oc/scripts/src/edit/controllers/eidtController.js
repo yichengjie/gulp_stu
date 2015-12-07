@@ -30,10 +30,6 @@ define(function (require, exports, module) {
 		var promise = null;
 		if(FormData.action==NEW_ADD_STR){//1.新增
 			url = $scope.contextPath+'/initPage4Add';
-
-			console.info('-----------------------------')  ;
-			console.info("url : " + url) ;
-			console.info('-----------------------------')  ;
 			promise = S7EditService.getDataByUrl(url) ;
 			dealResultData4Add(promise) ;
 		}else if (FormData.action==UPDATE_STR){
@@ -77,28 +73,7 @@ define(function (require, exports, module) {
 		//所有的表格定义信息都在这里
 		$scope.tableData = jsonDate.tableData ;
 		//-------------区域对应的表格显示隐藏开始--------//
-
-
-		var dealShowHide4Upate = function(servcieType,editStatus){
-			//对是否检查库存的处理
-			if(_.contains(['A','B','E'], servcieType)){
-				editStatus['availability'] = false ;
-			}else{
-				editStatus['availability'] = true ;
-			}
-			//对是否收费的处理
-			if(_.contains(['C','P'], servcieType)){
-				editStatus['noChargeNotAvailable'] = false ;
-			}else{
-				editStatus['noChargeNotAvailable'] = true ;
-			}
-			//免费/收费
-			$scope.noChargeNotAvailableList.list= jsonDataHelper.getNoChargeNotAvailableList(servcieType) ;
-			//适用于
-			$scope.specifiedServiceFeeAppList.list = jsonDataHelper.getSpecifiedServiceFeeAppList(servcieType) ;
-
-		}
-
+	
 		
 		//工具方法
 		//(1):初始化新增页面数据
@@ -130,22 +105,15 @@ define(function (require, exports, module) {
 				EditUtil.initData.initOtherData($scope.data) ;
 				//list163
 				$scope.data.sel4 = data.list163 ;
-				//发送广播通知页面显示隐藏
-				$scope.$broadcast('serviceTypeChangeNotice','false') ;//发送service
-				//当状态为3的时候，页面不可编辑
-				if($scope.data.statusDes=='3'){
-					for(var cname in $scope.editStatus){
-						$scope.editStatus[cname] = false;
-					}
-				}
-				dealShowHide4Upate($scope.data.serviceType,$scope.editStatus) ;
+				var editScope = $scope ;
+				var globalEditStatus = FormEditStatusServcie ;
+				//初始化校验页面数据
+				EditUtil.initData.init4Validate(editScope,$scope.data,globalEditStatus) ;
 		    }, function(data) {  // 处理错误 .reject  
 		        console.error('初始化页面数据出错!') ;
 		    }); 
 		}
 
-
-		
 
 		//保存表格数据到后台
 		/**
@@ -158,6 +126,8 @@ define(function (require, exports, module) {
 			var flag = false ;
 			var s7 = util.convertFormDataToS7($scope.data) ;
 			flag = util.validFormData(s7,$scope.data,NEW_ADD_STR) ;
+			console.info('手动js校验结果为 : ' + flag) ;
+
 			//console.info(s7) ;
 			if(flag){//如果校验通过的话则提交表单数据到后台
 				$.showTuiConfirmDialog('保存?', function() {

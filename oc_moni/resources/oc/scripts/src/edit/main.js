@@ -24,32 +24,45 @@ define(function(require, exports, module) {
 		$("#s7_save").bind("click",function (e) {
 		   //直接用来校验表单 同 下面的  validator.form()函数
 		   //var flag = $("#signupForm").valid() ;
-		   var flag = validator.form() ;
-		   console.info('手动校验表单flag : ' + flag) ;
-		   if(flag){
-		   		//获取指定id元素上的controller
-				var element  = angular.element($("#EditControllerDiv"));
-				var scope = element.scope();
-				scope.saveFormData('save') ;
+		   var element  = angular.element($("#EditControllerDiv"));
+		   var scope = element.scope();
+		   var action = scope.data.action ;
+		   var sel3ShowStr = scope.data.sel3.showStr ;
+		   if(action=='add'&&sel3ShowStr==''){
+		   		$.showTuiErrorDialog('必须选择到最后一级！');
+		   }else{
+		   	   var flag = validator.form() ;
+			   console.info('jquery validate form return flag : ' + flag) ;
+			   if(flag){
+			   		//获取指定id元素上的controller
+					scope.saveFormData('save') ;
+			   }
 		   }
 		  // console.info("校验是否通过flag : " + flag) ;
 		}) ;
-		var element  = angular.element($("#EditControllerDiv"));
-		var scope = element.scope();
+		
 		//点击保存并发布按钮
 		$("#s7_saveAndPublish").bind("click",function (e) {
-		   //直接用来校验表单 同 下面的  validator.form()函数
-		   var flag = validator.form() ;
-		    console.info('手动校验表单 flag : ' + flag) ;
-		   if(flag){
-				//获取指定id元素上的controller
-				scope.saveFormData('saveAndPublish') ;
+		   var element  = angular.element($("#EditControllerDiv"));
+		   var scope = element.scope();
+		   var action = scope.data.action ;
+		   var sel3ShowStr = scope.data.sel3.showStr ;
+		   if(action=='add'&&sel3ShowStr==''){
+		   	   $.showTuiErrorDialog('必须选择到最后一级！');
+		   }else{
+		   		//直接用来校验表单 同 下面的  validator.form()函数
+			   var flag = validator.form() ;
+			    console.info('jquery validate form return  flag : ' + flag) ;
+			   if(flag){
+					//获取指定id元素上的controller
+					scope.saveFormData('saveAndPublish') ;
+			   }
 		   }
 		}) ;
-		//当整个页面加载完毕后发送一次serviceTypeChange的通知，因为有时候servcieType会有默认值
-		setTimeout(function(){
+		//当整个页面加载完毕后发送一次serviceTypeChange的通知，因为有时候serviceType会有默认值
+		/*setTimeout(function(){
 			scope.$broadcast('serviceTypeChangeNotice','true') ;
-		},1000) ;
+		},1000) ;*/
 	}
 
 });
