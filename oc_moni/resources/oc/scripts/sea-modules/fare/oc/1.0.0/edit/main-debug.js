@@ -1,4 +1,4 @@
-define("fare/oc/1.0.0/edit/main-debug", [ "tuiDialog-debug", "datepicker-debug", "./router-debug", "./services/index-debug", "./services/s7DataService-debug", "./services/services-debug", "./services/s7EditService-debug", "./services/globalFlagService-debug", "./directives/index-debug", "./directives/commonDirective-debug", "./directives/directives-debug", "underscore-debug", "./directives/basicInfoDirective-debug", "../tpls/edit/header-debug.html", "../tpls/edit/choose_div-debug.html", "../tpls/edit/choose-ul-debug.html", "./directives/ruleDetailDirective-debug", "../tpls/edit/geoSpecLoc-debug.html", "./directives/tableDirective-debug", "../tpls/edit/table-debug.html", "../tpls/edit/tr-debug.html", "../tpls/edit/thead-debug.html", "./controllers/index-debug", "jqueryuitimepickeraddon-debug", "./controllers/eidtController-debug", "./controllers/controllers-debug", "./util/S7FormDataUtil-debug", "./data/editJsonData-debug", "./util/S7EditUtil-debug", "./data/jsonDataHelper-debug", "./util/commonUtil-debug", "./controllers/headController-debug", "./controllers/basicInfoController-debug", "./controllers/chargeConfirmController-debug", "./controllers/ruleDetailController-debug", "./filters/filters-debug" ], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/main-debug", [ "tuiDialog-debug", "datepicker-debug", "./router-debug", "./services/index-debug", "./services/s7DataService-debug", "./services/services-debug", "./services/s7EditService-debug", "./services/globalFlagService-debug", "./directives/index-debug", "./directives/commonDirective-debug", "./directives/directives-debug", "underscore-debug", "./directives/basicInfoDirective-debug", "../tpls/edit/header-debug.html", "../tpls/edit/choose_div-debug.html", "../tpls/edit/choose-ul-debug.html", "./directives/ruleDetailDirective-debug", "../tpls/edit/geoSpecLoc-debug.html", "./directives/tableDirective-debug", "../tpls/edit/table-debug.html", "../tpls/edit/tr-debug.html", "../tpls/edit/thead-debug.html", "./controllers/index-debug", "jqueryuitimepickeraddon-debug", "./controllers/eidtController-debug", "./controllers/controllers-debug", "./util/S7FormDataUtil-debug", "./data/editJsonData-debug", "./util/S7EditUtil-debug", "./util/S7ValidateHelper-debug", "./util/commonUtil-debug", "./data/jsonDataHelper-debug", "./controllers/headController-debug", "./controllers/basicInfoController-debug", "./controllers/chargeConfirmController-debug", "./controllers/ruleDetailController-debug", "./filters/filters-debug" ], function(require, exports, module) {
     //var pathStr = require.resolve('src/main') ;
     //console.info("path : " + pathStr) ;
     //require('tuiValidator');
@@ -25,35 +25,43 @@ define("fare/oc/1.0.0/edit/main-debug", [ "tuiDialog-debug", "datepicker-debug",
         $("#s7_save").bind("click", function(e) {
             //直接用来校验表单 同 下面的  validator.form()函数
             //var flag = $("#signupForm").valid() ;
-            var flag = validator.form();
-            console.info("手动校验表单flag : " + flag);
-            if (flag) {
-                //获取指定id元素上的controller
-                var element = angular.element($("#EditControllerDiv"));
-                var scope = element.scope();
-                scope.saveFormData("save");
+            var element = angular.element($("#EditControllerDiv"));
+            var scope = element.scope();
+            var action = scope.data.action;
+            var sel3ShowStr = scope.data.sel3.showStr;
+            if (action == "add" && sel3ShowStr == "") {
+                $.showTuiErrorDialog("必须选择到最后一级！");
+            } else {
+                var flag = validator.form();
+                console.info("jquery validate form return flag : " + flag);
+                if (flag) {
+                    //获取指定id元素上的controller
+                    scope.saveFormData("save");
+                }
             }
         });
-        var element = angular.element($("#EditControllerDiv"));
-        var scope = element.scope();
         //点击保存并发布按钮
         $("#s7_saveAndPublish").bind("click", function(e) {
-            //直接用来校验表单 同 下面的  validator.form()函数
-            var flag = validator.form();
-            console.info("手动校验表单 flag : " + flag);
-            if (flag) {
-                //获取指定id元素上的controller
-                scope.saveFormData("saveAndPublish");
+            var element = angular.element($("#EditControllerDiv"));
+            var scope = element.scope();
+            var action = scope.data.action;
+            var sel3ShowStr = scope.data.sel3.showStr;
+            if (action == "add" && sel3ShowStr == "") {
+                $.showTuiErrorDialog("必须选择到最后一级！");
+            } else {
+                //直接用来校验表单 同 下面的  validator.form()函数
+                var flag = validator.form();
+                console.info("jquery validate form return  flag : " + flag);
+                if (flag) {
+                    //获取指定id元素上的controller
+                    scope.saveFormData("saveAndPublish");
+                }
             }
         });
-        //当整个页面加载完毕后发送一次serviceTypeChange的通知，因为有时候servcieType会有默认值
-        setTimeout(function() {
-            scope.$broadcast("serviceTypeChangeNotice", "true");
-        }, 1e3);
     }
 });
 
-define("fare/oc/1.0.0/edit/router-debug", [ "fare/oc/1.0.0/edit/services/index-debug", "fare/oc/1.0.0/edit/services/s7DataService-debug", "fare/oc/1.0.0/edit/services/services-debug", "fare/oc/1.0.0/edit/services/s7EditService-debug", "fare/oc/1.0.0/edit/services/globalFlagService-debug", "fare/oc/1.0.0/edit/directives/index-debug", "fare/oc/1.0.0/edit/directives/commonDirective-debug", "fare/oc/1.0.0/edit/directives/directives-debug", "underscore-debug", "fare/oc/1.0.0/edit/directives/basicInfoDirective-debug", "fare/oc/1.0.0/edit/directives/ruleDetailDirective-debug", "fare/oc/1.0.0/edit/directives/tableDirective-debug", "fare/oc/1.0.0/edit/controllers/index-debug", "jqueryuitimepickeraddon-debug", "fare/oc/1.0.0/edit/controllers/eidtController-debug", "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/S7EditUtil-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "fare/oc/1.0.0/edit/controllers/headController-debug", "fare/oc/1.0.0/edit/controllers/basicInfoController-debug", "fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", "fare/oc/1.0.0/edit/controllers/ruleDetailController-debug", "fare/oc/1.0.0/edit/filters/filters-debug" ], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/router-debug", [ "fare/oc/1.0.0/edit/services/index-debug", "fare/oc/1.0.0/edit/services/s7DataService-debug", "fare/oc/1.0.0/edit/services/services-debug", "fare/oc/1.0.0/edit/services/s7EditService-debug", "fare/oc/1.0.0/edit/services/globalFlagService-debug", "fare/oc/1.0.0/edit/directives/index-debug", "fare/oc/1.0.0/edit/directives/commonDirective-debug", "fare/oc/1.0.0/edit/directives/directives-debug", "underscore-debug", "fare/oc/1.0.0/edit/directives/basicInfoDirective-debug", "fare/oc/1.0.0/edit/directives/ruleDetailDirective-debug", "fare/oc/1.0.0/edit/directives/tableDirective-debug", "fare/oc/1.0.0/edit/controllers/index-debug", "jqueryuitimepickeraddon-debug", "fare/oc/1.0.0/edit/controllers/eidtController-debug", "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/S7EditUtil-debug", "fare/oc/1.0.0/edit/util/S7ValidateHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/controllers/headController-debug", "fare/oc/1.0.0/edit/controllers/basicInfoController-debug", "fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", "fare/oc/1.0.0/edit/controllers/ruleDetailController-debug", "fare/oc/1.0.0/edit/filters/filters-debug" ], function(require, exports, module) {
     //require("ui-router") ;
     require("fare/oc/1.0.0/edit/services/index-debug");
     require("fare/oc/1.0.0/edit/directives/index-debug");
@@ -385,7 +393,7 @@ define("fare/oc/1.0.0/edit/services/globalFlagService-debug", [ "fare/oc/1.0.0/e
                 showFlag: false
             },
             tb170: {
-                showFlag: false
+                showFlag: true
             },
             tb178geo1: {
                 showFlag: false
@@ -477,7 +485,7 @@ define("fare/oc/1.0.0/edit/services/globalFlagService-debug", [ "fare/oc/1.0.0/e
             indicatorInterline: true
         };
     });
-    //整个页面的组件在servcieType为xxx时应该显示到页面上
+    //整个页面的组件在serviceType为xxx时应该显示到页面上
     services.factory("FormStatusService", function() {
         return {
             firstMaintenanceDate: {
@@ -558,7 +566,7 @@ define("fare/oc/1.0.0/edit/services/globalFlagService-debug", [ "fare/oc/1.0.0/e
                 editFlag: true
             },
             list170VOAndlist201VO: {
-                typeList: [ "F", "M", "R", "T", "B", "C", "E", "P" ],
+                typeList: [ "F", "M", "R", "T", "C", "P" ],
                 groupList: [],
                 nameList: [ "list170VO", "list201VO" ],
                 showFlag: true,
@@ -1196,76 +1204,59 @@ define("fare/oc/1.0.0/edit/directives/commonDirective-debug", [ "fare/oc/1.0.0/e
             }
         }
     };
-    var getFlagByServcieTypeAndServiceGroup = function(typeList, groupList, serviceType, serviceGroup) {
+    var getFlagByServiceTypeAndServiceGroup = function(typeList, groupList, serviceType, serviceGroup) {
         var flag = _.contains(typeList, serviceType);
         if (flag && groupList && groupList.length > 0) {
             flag = _.contains(groupList, serviceGroup);
         }
         return flag;
     };
-    //增强指令
     directives.directive("force", [ "FormStatusService", "FormData", function(FormStatusService, FormData) {
         return {
-            restrict: "E",
-            //restrict
+            restrict: "A",
             scope: {
                 orgData: "="
             },
-            replace: true,
-            template: function(elem, attrs) {
-                var fname = attrs["fname"];
-                var tmpStr = "showStatus." + fname + ".showFlag";
-                var html = '<div class="row row_from" ng-show= "' + tmpStr + '" ng-transclude=""></div>';
-                return html;
-            },
-            transclude: true,
-            controller: [ "$scope", "$element", "$attrs", function($scope, $element, $attrs) {
-                $scope.showStatus = FormStatusService;
-            } ],
             link: function(scope, elem, attrs) {
                 //
-                /*@param : event 事件本身
-		        	 *@param ：needDigest ： 是否需要手动进行脏数据检查
-		        	 */
+                //@param : event 事件本身
+                //@param ：needDigest ： 是否需要手动进行脏数据检查
                 scope.$on("serviceTypeChangeNotice", function(event, needDigest) {
-                    var fname = attrs["fname"];
-                    var typeList = FormStatusService[fname]["typeList"];
-                    var groupList = FormStatusService[fname]["groupList"];
-                    var serviceType = FormData.serviceType;
-                    var serviceGroup = FormData.sel1.value;
-                    var oldFlag = FormStatusService[fname]["showFlag"];
-                    var flag = getFlagByServcieTypeAndServiceGroup(typeList, groupList, serviceType, serviceGroup);
-                    //console.info(fname + ' -- ' + flag + '   , serviceType : ['+serviceType+'] , typeList ['+typeList+'] , groupList :['+groupList+']  , servcieGroup : ['+serviceGroup+'] ') ;
-                    if (oldFlag == !flag) {
-                        //如果不同
-                        var nameList = FormStatusService[fname]["nameList"];
-                        resetDataByFlag(nameList, flag, FormData, scope.orgData);
-                        FormStatusService[fname]["showFlag"] = flag;
-                        if (needDigest && needDigest == "true") {
-                            scope.$digest();
-                        }
-                    }
-                });
-                /*
-					  @param :event :自带的事件本身
-					 * @param :in_fname : 传入的forceName  
-					 * @param :in_flag :传入的隐藏显示的falg----第一要传递字符串
-					 * @param :needDigest ：是否需要手动脏数据检查  第一要传递字符串
-					*/
-                scope.$on("singleChangeByFlagNotice", function(event, in_fname, in_flag, needDigest) {
-                    var fname = attrs["fname"];
-                    var tmpFlag = in_flag == "true" ? true : false;
-                    if (fname == in_fname) {
-                        //判断接受者是否为自己，如果为自己则需要相应的处理
+                    for (var fname in FormStatusService) {
+                        var typeList = FormStatusService[fname]["typeList"];
+                        var groupList = FormStatusService[fname]["groupList"];
+                        var serviceType = FormData.serviceType;
+                        var serviceGroup = FormData.sel1.value;
                         var oldFlag = FormStatusService[fname]["showFlag"];
-                        //console.info("fname : ["+fname+"] , tmpFlag : ["+tmpFlag+"] , oldFlag : ["+oldFlag+"] ") ;
-                        if (tmpFlag == !oldFlag) {
+                        var flag = getFlagByServiceTypeAndServiceGroup(typeList, groupList, serviceType, serviceGroup);
+                        //console.info(fname + ' -- ' + flag + '   , serviceType : ['+serviceType+'] , typeList ['+typeList+'] , groupList :['+groupList+']  , servcieGroup : ['+serviceGroup+'] ') ;
+                        if (oldFlag == !flag) {
+                            //如果不同
                             var nameList = FormStatusService[fname]["nameList"];
-                            resetDataByFlag(nameList, tmpFlag, FormData, scope.orgData);
-                            FormStatusService[fname]["showFlag"] = tmpFlag;
+                            resetDataByFlag(nameList, flag, FormData, scope.orgData);
+                            FormStatusService[fname]["showFlag"] = flag;
                             if (needDigest && needDigest == "true") {
                                 scope.$digest();
                             }
+                        }
+                    }
+                });
+                // @param :event :自带的事件本身
+                // @param :in_fname : 传入的forceName
+                // @param :in_flag :传入的隐藏显示的falg----第一要传递字符串
+                // @param :needDigest ：是否需要手动脏数据检查  第一要传递字符串
+                scope.$on("singleChangeByFlagNotice", function(event, in_fname, in_flag, needDigest) {
+                    var fname = in_fname;
+                    var newFlag = in_flag == "true" ? true : false;
+                    var oldFlag = FormStatusService[fname]["showFlag"];
+                    console.info("fname : [" + fname + "] , newFlag : [" + newFlag + "] , oldFlag : [" + oldFlag + "] ");
+                    if (newFlag == !oldFlag) {
+                        //当前显隐与将要的显隐相反时
+                        var nameList = FormStatusService[fname]["nameList"];
+                        resetDataByFlag(nameList, newFlag, FormData, scope.orgData);
+                        FormStatusService[fname]["showFlag"] = newFlag;
+                        if (needDigest && needDigest == "true") {
+                            scope.$digest();
                         }
                     }
                 });
@@ -1288,7 +1279,7 @@ define("fare/oc/1.0.0/edit/directives/basicInfoDirective-debug", [ "underscore-d
     directives.directive("headerDrct", function() {
         return {
             restrict: "AE",
-            replace: "true",
+            replace: true,
             scope: true,
             template: headerHtml,
             link: function(scope, elem, attrs) {}
@@ -1297,7 +1288,7 @@ define("fare/oc/1.0.0/edit/directives/basicInfoDirective-debug", [ "underscore-d
     directives.directive("chooseDiv", function() {
         return {
             restrict: "AE",
-            replace: "true",
+            replace: true,
             scope: true,
             transclude: true,
             template: chooseDivHtml,
@@ -1551,7 +1542,7 @@ define("fare/oc/1.0.0/tpls/edit/thead-debug.html", [], '<tr>\n<%if("tb183.html"=
 
 //主要用来加载各个控制器（所有的控制器都将在这个文件中被加载）,除此之外再不用做其他，
 //因为我们可以有很多个控制器文件，按照具体需要进行添加。
-define("fare/oc/1.0.0/edit/controllers/index-debug", [ "jqueryuitimepickeraddon-debug", "fare/oc/1.0.0/edit/controllers/eidtController-debug", "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/S7EditUtil-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/controllers/headController-debug", "fare/oc/1.0.0/edit/controllers/basicInfoController-debug", "fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", "fare/oc/1.0.0/edit/controllers/ruleDetailController-debug" ], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/controllers/index-debug", [ "jqueryuitimepickeraddon-debug", "fare/oc/1.0.0/edit/controllers/eidtController-debug", "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/S7EditUtil-debug", "fare/oc/1.0.0/edit/util/S7ValidateHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/controllers/headController-debug", "fare/oc/1.0.0/edit/controllers/basicInfoController-debug", "fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", "fare/oc/1.0.0/edit/controllers/ruleDetailController-debug" ], function(require, exports, module) {
     //需要的插件
     require("jqueryuitimepickeraddon-debug");
     require("fare/oc/1.0.0/edit/controllers/eidtController-debug");
@@ -1565,7 +1556,7 @@ define("fare/oc/1.0.0/edit/controllers/index-debug", [ "jqueryuitimepickeraddon-
     require("fare/oc/1.0.0/edit/controllers/ruleDetailController-debug");
 });
 
-define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/S7EditUtil-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug" ], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/S7EditUtil-debug", "fare/oc/1.0.0/edit/util/S7ValidateHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug" ], function(require, exports, module) {
     var controllers = require("fare/oc/1.0.0/edit/controllers/controllers-debug");
     var util = require("fare/oc/1.0.0/edit/util/S7FormDataUtil-debug");
     var jsonDate = require("fare/oc/1.0.0/edit/data/editJsonData-debug");
@@ -1573,7 +1564,7 @@ define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/e
     var jsonDataHelper = require("fare/oc/1.0.0/edit/data/jsonDataHelper-debug");
     var commonUtil = require("fare/oc/1.0.0/edit/util/commonUtil-debug");
     //最外层controller
-    controllers.controller("EditController", [ "$scope", "FormData", "NEW_ADD_STR", "UPDATE_STR", "$http", "S7EditService", "TableStatusServcie", "FormEditStatusServcie", function($scope, FormData, NEW_ADD_STR, UPDATE_STR, $http, S7EditService, TableStatusServcie, FormEditStatusServcie) {
+    controllers.controller("EditController", [ "$scope", "FormData", "NEW_ADD_STR", "UPDATE_STR", "$http", "S7EditService", "TableStatusServcie", "FormEditStatusServcie", "FormStatusService", function($scope, FormData, NEW_ADD_STR, UPDATE_STR, $http, S7EditService, TableStatusServcie, FormEditStatusServcie, FormStatusService) {
         $scope.NEW_ADD_STR = NEW_ADD_STR;
         //新增action字符串标记
         $scope.UPDATE_STR = UPDATE_STR;
@@ -1587,6 +1578,7 @@ define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/e
         $scope.tableStatus = TableStatusServcie;
         //页面上所有控件的状态数据
         $scope.editStatus = FormEditStatusServcie;
+        $scope.showStatus = FormStatusService;
         var s7Id = $("#s7Id").val();
         $scope.data.id = s7Id;
         //第一次进入页面时需要加载的数据
@@ -1637,24 +1629,6 @@ define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/e
         //所有的表格定义信息都在这里
         $scope.tableData = jsonDate.tableData;
         //-------------区域对应的表格显示隐藏开始--------//
-        var dealShowHide4Upate = function(servcieType, editStatus) {
-            //对是否检查库存的处理
-            if (_.contains([ "A", "B", "E" ], servcieType)) {
-                editStatus["availability"] = false;
-            } else {
-                editStatus["availability"] = true;
-            }
-            //对是否收费的处理
-            if (_.contains([ "C", "P" ], servcieType)) {
-                editStatus["noChargeNotAvailable"] = false;
-            } else {
-                editStatus["noChargeNotAvailable"] = true;
-            }
-            //免费/收费
-            $scope.noChargeNotAvailableList.list = jsonDataHelper.getNoChargeNotAvailableList(servcieType);
-            //适用于
-            $scope.specifiedServiceFeeAppList.list = jsonDataHelper.getSpecifiedServiceFeeAppList(servcieType);
-        };
         //工具方法
         //(1):初始化新增页面数据
         function dealResultData4Add(promise) {
@@ -1689,16 +1663,10 @@ define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/e
                 EditUtil.initData.initOtherData($scope.data);
                 //list163
                 $scope.data.sel4 = data.list163;
-                //发送广播通知页面显示隐藏
-                $scope.$broadcast("serviceTypeChangeNotice", "false");
-                //发送service
-                //当状态为3的时候，页面不可编辑
-                if ($scope.data.statusDes == "3") {
-                    for (var cname in $scope.editStatus) {
-                        $scope.editStatus[cname] = false;
-                    }
-                }
-                dealShowHide4Upate($scope.data.serviceType, $scope.editStatus);
+                var editScope = $scope;
+                var globalEditStatus = FormEditStatusServcie;
+                //初始化校验页面数据
+                EditUtil.initData.init4Validate(editScope, $scope.data, globalEditStatus);
             }, function(data) {
                 // 处理错误 .reject  
                 console.error("初始化页面数据出错!");
@@ -1715,6 +1683,7 @@ define("fare/oc/1.0.0/edit/controllers/eidtController-debug", [ "fare/oc/1.0.0/e
             var flag = false;
             var s7 = util.convertFormDataToS7($scope.data);
             flag = util.validFormData(s7, $scope.data, NEW_ADD_STR);
+            console.info("手动js校验结果为 : " + flag);
             //console.info(s7) ;
             if (flag) {
                 //如果校验通过的话则提交表单数据到后台
@@ -1819,29 +1788,18 @@ define("fare/oc/1.0.0/edit/util/S7FormDataUtil-debug", [], function(require, exp
     };
     //校验交单数据是否可以提交
     util.validFormData = function(formData, orgFormData, NEW_ADD_STR) {
-        var action = formData.action;
         var serviceType = formData["serviceType"];
-        if (orgFormData.action == NEW_ADD_STR && orgFormData.sel3.showStr == "") {
-            //如果第三个选择框没有选择
-            $.showTuiErrorDialog("必须选择到最后一级！");
-            return false;
-        }
         //第一个校验
         //其他校验
         //1.表格数据校验[删除表格中的非法数据:eg:第一个字段为空的假数据]
         util.delInValidList(formData);
         util.dealOtherData(formData);
-        //2.一般字段校验
-        /*var groupType = orgFormData.sel1.value ;
-		if(groupType=='UP'||groupType=='BDUP'){
-			if(formData.upgradeToCabin.length==0){
-				$.showTuiErrorDialog('选择升舱时，升舱到的服务等级必填!');
-				return false;
-			}
-		}*/
-        //如果为 【和】那么金额必填
-        if (formData["specSevFeeAndOrIndicator"] == "A" || formData["noChargeNotAvailable"] == "" && formData["specifiedServiceFeeMileage"] == "") {
+        //如果适用于为h，c，p
+        var hcpFlag = _.contains([ "H", "C", "P" ], formData["specSevFeeAndOrIndicator"]);
+        /**1.当收费为收费时，金额字段必填。2.当收费类型为‘和’,如果适用于不为H,C,P时，金额字段必填*/
+        if ((formData["noChargeNotAvailable"] == "" || formData["specSevFeeAndOrIndicator"] == "A") && !hcpFlag) {
             if (formData["list201VO"].length == 0 && formData["list170VO"].length == 0) {
+                $.showTuiErrorDialog("当收费或则收费类型为和并且适用于不为【H,C,P】时金额必填");
                 return false;
             }
         }
@@ -2537,7 +2495,8 @@ define("fare/oc/1.0.0/edit/data/editJsonData-debug", [], function(require, expor
     return jsonDate;
 });
 
-define("fare/oc/1.0.0/edit/util/S7EditUtil-debug", [], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/util/S7EditUtil-debug", [ "fare/oc/1.0.0/edit/util/S7ValidateHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug" ], function(require, exports, module) {
+    var validateHelper = require("fare/oc/1.0.0/edit/util/S7ValidateHelper-debug");
     /**
 	 * 处理表单特殊数据
 	 * @param {Object} formData
@@ -2613,22 +2572,174 @@ define("fare/oc/1.0.0/edit/util/S7EditUtil-debug", [], function(require, exports
         //------4
         initTbData(s7VO.list173TktVO, flagData.tb173Tkt);
     };
+    var init4Validate = function(editScope, data, globalEditStatus) {
+        /**这里需要重置数据的原因是因为有些value会影响到别的控件的显示*/
+        var statusDes = data.statusDes;
+        //当状态为3的时候，页面不可编辑
+        if (statusDes == "3") {
+            for (var cname in globalEditStatus) {
+                globalEditStatus[cname] = false;
+            }
+        }
+        validateHelper.changeServiceType(editScope, data, globalEditStatus);
+        validateHelper.changeNoChargeNotAvailable(editScope, data, globalEditStatus);
+        validateHelper.changeSpecifiedServiceFeeApp(editScope, data);
+    };
     //这边是要返回的方法的集合处
     var EditUtil = {
         initData: {
             /*初始化*/
             initOtherData: initOtherData,
-            initListData: initListData
+            initListData: initListData,
+            init4Validate: init4Validate
         }
     };
     return EditUtil;
 });
 
+define("fare/oc/1.0.0/edit/util/S7ValidateHelper-debug", [ "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug" ], function(require, exports, module) {
+    var commonUtil = require("fare/oc/1.0.0/edit/util/commonUtil-debug");
+    var _ = require("underscore-debug");
+    var jsonDataHelper = require("fare/oc/1.0.0/edit/data/jsonDataHelper-debug");
+    module.exports = {
+        changeServiceType: function(editScope, data, globalEditStatus) {
+            var serviceType = data.serviceType;
+            //serviceType
+            //如果是免费则将下面的费用变为不可选择
+            if (serviceType == "A") {
+                data.noChargeNotAvailable = "F";
+            } else if (serviceType == "B") {
+                data.noChargeNotAvailable = "F";
+            } else if (serviceType == "C" || serviceType == "P") {
+                data.noChargeNotAvailable = "";
+            } else if (serviceType == "E") {
+                data.noChargeNotAvailable = "X";
+            }
+            if (serviceType == "C" || serviceType == "P") {
+                //收费一定为收费且不可编辑
+                globalEditStatus.noChargeNotAvailable = false;
+            } else {
+                //可编辑
+                globalEditStatus.noChargeNotAvailable = true;
+            }
+            //将是否检查库存设置为 ‘否’
+            if (serviceType == "A" || serviceType == "B" || serviceType == "E") {
+                data.availability = "N";
+                globalEditStatus.availability = false;
+            } else {
+                globalEditStatus.availability = true;
+            }
+            //免费/收费
+            editScope.noChargeNotAvailableList.list = jsonDataHelper.getNoChargeNotAvailableList(serviceType);
+            //适用于
+            editScope.specifiedServiceFeeAppList.list = jsonDataHelper.getSpecifiedServiceFeeAppList(serviceType);
+            //发送广播隐藏或显示组件
+            editScope.$broadcast("serviceTypeChangeNotice", "false");
+        },
+        changeNoChargeNotAvailable: function(editScope, data, globalEditStatus) {
+            /**当改变是否收费的时候*/
+            var serviceType = data.serviceType;
+            var noChargeNotAvailable = data.noChargeNotAvailable;
+            //console.info('serviceType : ' + serviceType) ;
+            //服务类型是不是行李附加服务
+            var isBaggageFlag = commonUtil.checkBaggageServcie(serviceType);
+            var in_flag = true;
+            if (isBaggageFlag) {
+                //如果为空表收费
+                if (noChargeNotAvailable == "") {
+                    //如果不为收费这下面的置空
+                    in_flag = true;
+                } else {
+                    //免费的时候需要清空填写的信息
+                    in_flag = false;
+                }
+            } else {
+                //一般附加服务
+                var arr = [ "X", "E", "F", "G", "H" ];
+                //dxef
+                var flag2 = _.contains(arr, noChargeNotAvailable);
+                if (flag2) {
+                    in_flag = false;
+                } else {
+                    //如果为空表收费
+                    in_flag = true;
+                }
+            }
+            //var specifiedServiceFeeApp_specialFlag = true;
+            //当收费类型为D/X/F/E时暂时不做区分是否为行李或则一般附加服务，这里全部都将适用于置为空
+            //这个地方可能还存在一店暂时先把为d时适用于全部置空
+            //specifiedServiceFeeApp_specialFlag = false ;//如果不为d，则进入其他的校验，按照其他的进行
+            //当是否收费为D时  --行李适用范围必须为空
+            if (noChargeNotAvailable == "D") {
+                data.baggageTravelApplication = "";
+                globalEditStatus.baggageTravelApplication = false;
+            } else {
+                globalEditStatus.baggageTravelApplication = true;
+            }
+            var freeBaggageAllowancePiecesFlag = true;
+            //当是否收费为D/O时行李件数必修为空,行李类型必须为A,行李子代码必须为0DF
+            if (serviceType == "A") {
+                if (noChargeNotAvailable == "D" || noChargeNotAvailable == "O") {
+                    freeBaggageAllowancePiecesFlag = false;
+                }
+            }
+            editScope.$broadcast("singleChangeByFlagNotice", "freeBaggageAllowancePieces", freeBaggageAllowancePiecesFlag + "", "false");
+            //行李件数置为空
+            editScope.$broadcast("singleChangeByFlagNotice", "list170VOAndlist201VO", in_flag + "", "false");
+            //费用//in_fname,in_flag,needDigest
+            editScope.$broadcast("singleChangeByFlagNotice", "specifiedServiceFeeMileage", in_flag + "", "false");
+            //里程
+            editScope.$broadcast("singleChangeByFlagNotice", "specifiedServiceFeeApp", in_flag + "", "false");
+        },
+        changeSpecifiedServiceFeeApp: function(editScope, data) {
+            /**当改变适用于的时候*/
+            var ssfa = data.specifiedServiceFeeApp;
+            var in_flag = true;
+            //因为只有行李服务适用于才会有[H,C,P]，所以这里不需要判断serviceType是否为C，P
+            if (ssfa == "H" || ssfa == "C" || ssfa == "P") {
+                //收费字段必须为空，并且170或201必须为空
+                //$scope.data.noChargeNotAvailable = '' ;//因为 当serviceType为cp是收费字段一定为空
+                in_flag = false;
+            }
+            //console.info('serviceType : ['+serviceType+'] , ssfa : ['+ssfa+']  , in_flag : ['+in_flag+']' ) ;
+            //$scope.FormEditStatusServcie.noChargeNotAvailable =in_flag;
+            //170，201显示或隐藏
+            editScope.$broadcast("singleChangeByFlagNotice", "list170VOAndlist201VO", in_flag + "", "false");
+        }
+    };
+});
+
+define("fare/oc/1.0.0/edit/util/commonUtil-debug", [ "underscore-debug" ], function(require, exports, module) {
+    var _ = require("underscore-debug");
+    module.exports = {
+        checkCommonServcie: function(serviceType) {
+            //判断服务类型是不是一般附加服务
+            var arr = [ "F", "M", "R", "T" ];
+            var flag = _.contains(arr, serviceType);
+            return flag;
+        },
+        checkBaggageServcie: function(serviceType) {
+            //判断服务类型是不是行李附加服务
+            var arr = [ "A", "B", "C", "E", "P" ];
+            var flag = _.contains(arr, serviceType);
+            return flag;
+        },
+        getFullDayOrMonthStr: function(dateOrMonthNum) {
+            //获得日或月的字符串
+            if (dateOrMonthNum < 10) {
+                return "0" + dateOrMonthNum;
+            }
+            return dateOrMonthNum + "";
+        }
+    };
+});
+
 define("fare/oc/1.0.0/edit/data/jsonDataHelper-debug", [], function(require, exports, module) {
     module.exports = {
-        getNoChargeNotAvailableList: function(servcieType) {
-            var tmp = servcieType || "";
+        getNoChargeNotAvailableList: function(serviceType) {
+            var tmp = serviceType || "";
             var retArr = [];
+            //{"name":"免费，行李规则遵循市场方航空公司规则","value":"D"},{"name":"免费，行李规则遵循承运方航空公司规则","value":"O"}
             var defaultArr = [ {
                 name: "收费",
                 value: ""
@@ -2647,20 +2758,29 @@ define("fare/oc/1.0.0/edit/data/jsonDataHelper-debug", [], function(require, exp
             }, {
                 name: "免费，出EMD单，不要求预定",
                 value: "H"
-            }, {
-                name: "免费，行李规则遵循市场方航空公司规则",
-                value: "D"
-            }, {
-                name: "免费，行李规则遵循承运方航空公司规则",
-                value: "O"
             } ];
             if (tmp == "A") {
                 retArr = [ {
+                    name: "不适用",
+                    value: "X"
+                }, {
                     name: "免费，不出EMD单",
                     value: "F"
                 }, {
+                    name: "免费，出EMD单",
+                    value: "E"
+                }, {
+                    name: "免费，不出EMD单，不要求预定",
+                    value: "G"
+                }, {
+                    name: "免费，出EMD单，不要求预定",
+                    value: "H"
+                }, {
                     name: "免费，行李规则遵循市场方航空公司规则",
                     value: "D"
+                }, {
+                    name: "免费，行李规则遵循承运方航空公司规则",
+                    value: "O"
                 } ];
             } else if (tmp == "B") {
                 retArr = [ {
@@ -2810,31 +2930,6 @@ define("fare/oc/1.0.0/edit/data/jsonDataHelper-debug", [], function(require, exp
     };
 });
 
-define("fare/oc/1.0.0/edit/util/commonUtil-debug", [ "underscore-debug" ], function(require, exports, module) {
-    var _ = require("underscore-debug");
-    module.exports = {
-        checkCommonServcie: function(serviceType) {
-            //判断服务类型是不是一般附加服务
-            var arr = [ "F", "M", "R", "T" ];
-            var flag = _.contains(arr, serviceType);
-            return flag;
-        },
-        checkBaggageServcie: function(serviceType) {
-            //判断服务类型是不是行李附加服务
-            var arr = [ "A", "B", "C", "E", "P" ];
-            var flag = _.contains(arr, serviceType);
-            return flag;
-        },
-        getFullDayOrMonthStr: function(dateOrMonthNum) {
-            //获得日或月的字符串
-            if (dateOrMonthNum < 10) {
-                return "0" + dateOrMonthNum;
-            }
-            return dateOrMonthNum + "";
-        }
-    };
-});
-
 define("fare/oc/1.0.0/edit/controllers/headController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug" ], function(require, exports, module) {
     var controllers = require("fare/oc/1.0.0/edit/controllers/controllers-debug");
     //headerController
@@ -2854,11 +2949,12 @@ define("fare/oc/1.0.0/edit/controllers/headController-debug", [ "fare/oc/1.0.0/e
     } ]);
 });
 
-define("fare/oc/1.0.0/edit/controllers/basicInfoController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug" ], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/controllers/basicInfoController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/util/S7ValidateHelper-debug" ], function(require, exports, module) {
     var controllers = require("fare/oc/1.0.0/edit/controllers/controllers-debug");
     var jsonDataHelper = require("fare/oc/1.0.0/edit/data/jsonDataHelper-debug");
     var commonUtil = require("fare/oc/1.0.0/edit/util/commonUtil-debug");
     var _ = require("underscore-debug");
+    var validateHelper = require("fare/oc/1.0.0/edit/util/S7ValidateHelper-debug");
     //页面第一个部分/////////选择附加服务部分/////////////////////////////////////////
     //select级联controller
     controllers.controller("BasicInfoCtrl", [ "$scope", "$http", "FormData", "DEFAULT_SERVICETYPE", "FormEditStatusServcie", function($scope, $http, FormData, DEFAULT_SERVICETYPE, FormEditStatusServcie) {
@@ -2967,6 +3063,7 @@ define("fare/oc/1.0.0/edit/controllers/basicInfoController-debug", [ "fare/oc/1.
         };
         //第三个li点击事件
         $scope.lastChooseClick = function(l) {
+            //第一步:重置表单数据
             //当点击的饿时候把整个表单重置//除了serviceType外的其他字段
             for (var pname in $scope.data) {
                 if (!_.contains([ "sel1", "sel2", "sel3", "sel4" ], pname)) {
@@ -2974,44 +3071,14 @@ define("fare/oc/1.0.0/edit/controllers/basicInfoController-debug", [ "fare/oc/1.
                 }
             }
             validator.resetForm();
-            //$scope.data.discountOrNot = '1' ;
-            //$scope.data.list201VO = [] ;//数据初始化
+            //第二步：填充当前选中的数据
             var carrCode = l.carrCode;
             var serviceSubCode = l.serviceSubCode;
             var commercialName = l.commercialName;
             var serviceType = l.serviceType;
-            //发送通知
             FormData.carrCode = carrCode;
             FormData.serviceAndSubCode = serviceSubCode;
             FormData.serviceType = serviceType;
-            //如果是免费则将下面的费用变为不可选择
-            if (serviceType == "A") {
-                FormData.noChargeNotAvailable = "F";
-            } else if (serviceType == "B") {
-                FormData.noChargeNotAvailable = "F";
-            } else if (serviceType == "C" || serviceType == "P") {
-                FormData.noChargeNotAvailable = "";
-            } else if (serviceType == "E") {
-                FormData.noChargeNotAvailable = "X";
-            }
-            if (serviceType == "C" || serviceType == "P") {
-                //收费一定为收费且不可编辑
-                FormEditStatusServcie.noChargeNotAvailable = false;
-            } else {
-                //可编辑
-                FormEditStatusServcie.noChargeNotAvailable = true;
-            }
-            //将是否检查库存设置为 ‘否’
-            if (serviceType == "A" || serviceType == "B" || serviceType == "E") {
-                FormData.availability = "N";
-                FormEditStatusServcie.availability = false;
-            } else {
-                FormEditStatusServcie.availability = true;
-            }
-            //免费/收费
-            $scope.noChargeNotAvailableList.list = jsonDataHelper.getNoChargeNotAvailableList(serviceType);
-            //适用于
-            $scope.specifiedServiceFeeAppList.list = jsonDataHelper.getSpecifiedServiceFeeAppList(serviceType);
             //填充basicInfo信息start
             $scope.data.basicInfoVo.serviceGroup = l.attributesGroup;
             $scope.data.basicInfoVo.subGroup = l.attributesSubgroup;
@@ -3019,9 +3086,9 @@ define("fare/oc/1.0.0/edit/controllers/basicInfoController-debug", [ "fare/oc/1.
             //填充basicInfo信息end
             FormData.sel3.showStr = "[" + serviceSubCode + "]" + commercialName;
             FormData.sel3.value = serviceSubCode;
-            //这个一定要放在比较靠下的地方，以等待servcieType等书库已经填充到FormData中
-            $scope.$parent.$broadcast("serviceTypeChangeNotice");
-            //scope.$broadcast('serviceTypeChangeNotice') ;	
+            //第三步:校验相关的操作
+            validateHelper.changeServiceType($scope.$parent, FormData, FormEditStatusServcie);
+            //第四步:查询数据为后面显示准备
             var textTableNo163 = l.subCodeTableNo163 || "";
             textTableNo163 = textTableNo163 * 1;
             var url = FormData.contextPath + "/s7/query4ClickService";
@@ -3046,12 +3113,13 @@ define("fare/oc/1.0.0/edit/controllers/basicInfoController-debug", [ "fare/oc/1.
     } ]);
 });
 
-define("fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug" ], function(require, exports, module) {
+define("fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", [ "fare/oc/1.0.0/edit/controllers/controllers-debug", "fare/oc/1.0.0/edit/data/editJsonData-debug", "fare/oc/1.0.0/edit/util/commonUtil-debug", "underscore-debug", "fare/oc/1.0.0/edit/data/jsonDataHelper-debug", "fare/oc/1.0.0/edit/util/S7ValidateHelper-debug" ], function(require, exports, module) {
     var controllers = require("fare/oc/1.0.0/edit/controllers/controllers-debug");
     var jsonDate = require("fare/oc/1.0.0/edit/data/editJsonData-debug");
     var commonUtil = require("fare/oc/1.0.0/edit/util/commonUtil-debug");
     var jsonDataHelper = require("fare/oc/1.0.0/edit/data/jsonDataHelper-debug");
     var _ = require("underscore-debug");
+    var validHelper = require("fare/oc/1.0.0/edit/util/S7ValidateHelper-debug");
     //页面第二个部分///////费用确定部分////////////////////////////////////////////////////////
     controllers.controller("ChargeConfirmCtrl", [ "$scope", "FormData", "FormEditStatusServcie", function($scope, FormData, FormEditStatusServcie) {
         $scope.data = FormData;
@@ -3063,113 +3131,18 @@ define("fare/oc/1.0.0/edit/controllers/chargeConfirmController-debug", [ "fare/o
         //净价/销售价
         $scope.specServiceFeeNetSellList = jsonDate.specServiceFeeNetSellList;
         $scope.baggageTravelApplicationList = jsonDate.baggageTravelApplicationList;
-        $scope.chargeCanClickFlag = function() {
-            var flag = true;
-            if ($scope.data.serviceType == "A" || $scope.data.serviceType == "C" || $scope.data.serviceType == "P" || $scope.data.statusDes == "3") {
-                flag = false;
-            }
-            return flag;
-        };
-        //当点击后//这个flag管理页面上的金额、适用于、里程 这个三个字段(这三个字段显示隐藏一直)
-        $scope.noChargeNotAvailableFlag = true;
-        //这个flag管理页面上的行李适用范围
-        $scope.noChargeNotAvailableFlag2 = true;
         //当是否收费改变时触发的函数
         $scope.changeNoChargeNotAvailable = function() {
-            var servcieType = $scope.data.serviceType;
-            var noChargeNotAvailable = $scope.data.noChargeNotAvailable;
-            //console.info('servcieType : ' + servcieType) ;
-            //服务类型是不是行李附加服务
-            var isBaggageFlag = commonUtil.checkBaggageServcie(servcieType);
-            var in_flag = true;
-            if (isBaggageFlag) {
-                //如果为空表收费
-                if (noChargeNotAvailable == "") {
-                    //如果不为收费这下面的置空
-                    in_flag = true;
-                } else {
-                    //免费的时候需要清空填写的信息
-                    in_flag = false;
-                }
-            } else {
-                //一般附加服务
-                var arr = [ "X", "E", "F", "G", "H" ];
-                //dxef
-                var flag2 = _.contains(arr, noChargeNotAvailable);
-                if (flag2) {
-                    in_flag = false;
-                } else {
-                    //如果为空表收费
-                    in_flag = true;
-                }
-            }
-            //一般服务时//当收费字段为D/X/F/E时适用于才可能存在空
-            /*var dxefFlag = false ;
-				if(!isBaggageFlag){//,'X','E','F'因为这些时使用于已经是空了
-					if(_.contains(['D'], noChargeNotAvailable)){
-						dxefFlag = true ;
-					}
-				}
-				if(dxefFlag){
-
-				}else{
-
-				}*/
-            $scope.$parent.$broadcast("singleChangeByFlagNotice", "list170VOAndlist201VO", in_flag + "", "false");
-            //费用//in_fname,in_flag,needDigest
-            $scope.$parent.$broadcast("singleChangeByFlagNotice", "specifiedServiceFeeMileage", in_flag + "", "false");
-            //里程
-            $scope.$parent.$broadcast("singleChangeByFlagNotice", "specifiedServiceFeeApp", in_flag + "", "false");
-            //适用于
-            //当是否收费为D时  --行李适用范围必须为空
-            if (noChargeNotAvailable == "D") {
-                $scope.data.baggageTravelApplication = "";
-                FormEditStatusServcie.baggageTravelApplication = false;
-            } else {
-                FormEditStatusServcie.baggageTravelApplication = true;
-            }
+            var editScope = $scope.$parent;
+            var data = $scope.data;
+            var globalEditStatus = FormEditStatusServcie;
+            validHelper.changeNoChargeNotAvailable(editScope, data, globalEditStatus);
         };
         //适用于改变时
         $scope.changeSpecifiedServiceFeeApp = function() {
-            var serviceType = $scope.data.serviceType;
-            var ssfa = $scope.data.specifiedServiceFeeApp;
-            var in_flag = true;
-            if (serviceType == "C" || serviceType == "P") {
-                if (ssfa == "H" || ssfa == "C" || ssfa == "P") {
-                    //收费字段必须为空，并且170或201必须为空
-                    //$scope.data.noChargeNotAvailable = '' ;//因为 当servcieType为cp是收费字段一定为空
-                    in_flag = false;
-                }
-            }
-            //console.info('serviceType : ['+serviceType+'] , ssfa : ['+ssfa+']  , in_flag : ['+in_flag+']' ) ;
-            //$scope.FormEditStatusServcie.noChargeNotAvailable =in_flag;
-            //170，201显示或隐藏
-            $scope.$parent.$broadcast("singleChangeByFlagNotice", "list170VOAndlist201VO", in_flag + "", "false");
-        };
-        //170表的显示隐藏函数
-        $scope.t170FlagFunc = function(type) {
-            var flag = false;
-            var ssfa = $scope.data.specifiedServiceFeeApp;
-            if ($scope.flagData.t170.flag) {
-                //如果应该显示
-                if (type == "t170") {
-                    if ($scope.data.discountOrNot == "1") {
-                        flag = true;
-                    }
-                } else if (type == "t201") {
-                    if ($scope.data.discountOrNot == "0") {
-                        flag = true;
-                    }
-                }
-            }
-            if (flag) {
-                if ($scope.data.serviceType == "C" || $scope.data.serviceType == "P") {
-                    if (ssfa == "H" || ssfa == "C" || ssfa == "P") {
-                        flag = false;
-                    }
-                }
-            }
-            return flag;
+            var editScope = $scope.$parent;
+            var data = $scope.data;
+            validHelper.changeSpecifiedServiceFeeApp(editScope, data);
         };
         $scope.clickDiscount2 = function(l) {
             var type = l.discountType;

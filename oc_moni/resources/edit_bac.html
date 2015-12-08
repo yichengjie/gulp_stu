@@ -24,8 +24,7 @@
     <!-- 头部导航栏 -->
     <header-drct></header-drct>
     <div id="EditControllerDiv" ng-controller="EditController" class="main_box edit_main_box">
-
-        <form id="s7_form" org-data="orgData" force="">
+        <form id="s7_form">
             <!-----------------------------------------页面第一部分--------------------------- -->
             <!-- 附加服务 start  (chooseShowFlag)-->
             <div class="data_section markDiv" ng-controller="BasicInfoCtrl">
@@ -76,40 +75,39 @@
                 <div class="row">
                     <div class="col-sm-1"><h4>描述</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.firstMaintenanceDate.showFlag" >
-                            <label class="col-sm-1_5 input_title"><span class="necessary"></span><span>生效日期</span></label>
+                        <force fname="firstMaintenanceDate" org-data="orgData">
+                            <label class="col-sm-1_5 input_title"><span class="necessary"></span><span>生效日期<span></label>
                             <div class="col-sm-9">
                                 <input ng-model="data.firstMaintenanceDate" name="firstMaintenanceDate" ng-disabled="!editStatus.firstMaintenanceDate"
                                        datepicker="{{currentDateStr}}" type="text" id ="firstMaintenanceDate" class="required date"
                                        ng-class="{true:'biggerThanCurrent',false:''}[data.statusDes!='3']"/>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.lastMaintenanceDate.showFlag" >
+                        </force>
+                        <force fname="lastMaintenanceDate" org-data="orgData">
                             <label class="col-sm-1_5 input_title">截止日期</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.lastMaintenanceDate" name ="lastMaintenanceDate" datepicker="{{currentDateStr}}"
                                        type="text"  class="{date:true,biggerThanCurrent:true,biggerDate:'#firstMaintenanceDate'}" />
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.description.showFlag" >
+                        <force fname="description" org-data="orgData">
                             <label class="col-sm-1_5 input_title">描述</label>
                             <div class="col-sm-9">
 					    	<textarea  ng-model="data.description" rows="4" ng-disabled="!editStatus.description"
                                        cols="110"  placeholder="描述信息"></textarea>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.fareBasis.showFlag" >
+                        <force fname="fareBasis" org-data="orgData">
                             <label class="col-sm-1_5 input_title">运价基础</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.fareBasis" name ="fareBasis" upper-input="" ng-disabled="!editStatus.fareBasis"
                                        class="lettersOrNumber" maxlength="20" type="text" />
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.availability.showFlag" >
+                        <force fname="availability" org-data="orgData">
                             <label class="col-sm-1_5 input_title">是否检查库存</label>
                             <div class="col-sm-9">
                                 <input  type="radio" ng-model="data.availability" value="N" name="availabilityXXX"
@@ -119,7 +117,7 @@
                                         ng-disabled="!editStatus.availability"/>
                                 <label>是</label>
                             </div>
-                        </div>
+                        </force>
                     </div><!--描述block end-->
                 </div><!--描述end-->
 
@@ -127,16 +125,16 @@
                 <div class="row block_box" ng-if="data.servcieType=='A'||data.servcieType=='C'||data.serviceType=='P'" ><!--行李start-->
                     <div class="col-sm-1"><h4>行李</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.freeBaggageAllowancePieces.showFlag" >
+                        <force fname="freeBaggageAllowancePieces" org-data="orgData">
                             <label class="col-sm-1_5 input_title">行李件数</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.freeBaggageAllowancePieces" ng-disabled="!editStatus.freeBaggageAllowancePieces"
                                        size = "5" class="positiveInteger" maxlength="2" type="text" />
                                 <span>&nbsp;件</span>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.firstAndLastExcessOccurrence.showFlag" >
+                        <force fname="firstAndLastExcessOccurrence" org-data="orgData">
                             <label class="col-sm-1_5 input_title">行李件数</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.firstExcessOccurrence" ng-disabled="!editStatus.firstExcessOccurrence"
@@ -147,9 +145,9 @@
                                         name ="lastExcessOccurrence" id="lastExcessOccurrence" type="text" />
                                 <span>&nbsp;件</span>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.freeBaggageAllowanceWeight.showFlag" >
+                        <force fname="freeBaggageAllowanceWeight" org-data="orgData">
                             <label class="col-sm-1_5 input_title">行李重量</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.freeBaggageAllowanceWeight" ng-disabled="!editStatus.freeBaggageAllowanceWeight" size = "5"
@@ -158,9 +156,9 @@
                                         ng-options="o.value as o.name for o in weightUnitList" >
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.baggageTravelApplication.showFlag" >
+                        <force fname="baggageTravelApplication" org-data="orgData">
                             <label class="col-sm-1_5 input_title">行李适用范围</label>
                             <div class="col-sm-9">
                                 <select ng-model = "data.baggageTravelApplication" class="select_width"
@@ -168,9 +166,9 @@
                                         ng-options="o.value as o.name for o in baggageTravelApplicationList" >
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.list196VO.showFlag" >
+                        <force fname="list196VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">备注例外行李</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb196"></show-hide-table>
@@ -179,7 +177,7 @@
                                             status="data.statusDes" html-url="tb196.html" data="data" >
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
 
                     </div><!--行李bolck end-->
                 </div><!--行李end-->
@@ -188,7 +186,7 @@
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>费用</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.noChargeNotAvailable.showFlag" >
+                        <force fname="noChargeNotAvailable" org-data="orgData">
                             <label class="col-sm-1_5 input_title">是否收费</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.noChargeNotAvailable" class="select_width"
@@ -196,9 +194,9 @@
                                         ng-change="changeNoChargeNotAvailable()" ng-disabled="!editStatus.noChargeNotAvailable">
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.list170VOAndlist201VO.showFlag" >
+                        <force fname="list170VOAndlist201VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">
 							<span class="necessary"
                                   ng-show="data.specSevFeeAndOrIndicator=='A'||(data.noChargeNotAvailable==''&&data.specifiedServiceFeeMileage=='')">
@@ -222,6 +220,7 @@
                                             table-data = "tableData.t170"   data ="data" ng-show="tableStatus.tb170.showFlag"
                                             list = "data.list170VO" html-url = "tb170.html">
                                 </table-info>
+
                                 <div class = "table_layout" style="width: 600px;"  ng-if="tableStatus.tb170.showFlag&&data.discountOrNot=='0'"
                                      ng-hide ="data.serviceType=='A'||data.serviceType=='C'||data.serviceType=='P'">
                                     <table>
@@ -248,10 +247,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="row row_from" ng-show= "showStatus.specSevFeeAndOrIndicator.showFlag" >
+                            </div>
+                        </force>
+                        <force fname="specSevFeeAndOrIndicator" org-data="orgData">
                             <label class="col-sm-1_5 input_title">或/和</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.specSevFeeAndOrIndicator" name ="specSevFeeAndOrIndicatorXXX" type="radio"
@@ -260,21 +259,21 @@
                                 <input ng-model="data.specSevFeeAndOrIndicator" name ="specSevFeeAndOrIndicatorXXX" type="radio"
                                        value="A" ng-disabled="!editStatus.specSevFeeAndOrIndicator" />和
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.specifiedServiceFeeMileage.showFlag" >
+                        </force>
+                        <force fname="specifiedServiceFeeMileage" org-data="orgData">
                             <label class="col-sm-1_5 input_title" >
-                                <span class="necessary" ng-show="(data.noChargeNotAvailable==''&&data.list170VO.length==0&&data.list201VO.length==0)||data.specSevFeeAndOrIndicator=='A'"></span>
-                                <span>里程费</span>
+					    	<span class="necessary"
+                                  ng-show="(data.noChargeNotAvailable==''&&data.list170VO.length==0&&data.list201VO.length==0)||data.specSevFeeAndOrIndicator=='A'">
+					    	</span> <span>里程费<span>
                             </label>
                             <div class="col-sm-9">
                                 <input ng-model="data.specifiedServiceFeeMileage" ng-disabled="!editStatus.specifiedServiceFeeMileage"
                                        maxLength = "8" type="text"  class="digits" name="specifiedServiceFeeMileage"
                                        ng-class="{true:'required',false:''}[(data.noChargeNotAvailable==''&&data.list170VO.length==0&&data.list201VO.length==0)||data.specSevFeeAndOrIndicator=='A']" />
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.specifiedServiceFeeApp.showFlag" >
+                        <force fname="specifiedServiceFeeApp" org-data="orgData">
                             <label class="col-sm-1_5 input_title"><span>适用于</span></label>
                             <div class="col-sm-9">
                                 <select ng-model="data.specifiedServiceFeeApp" ng-disabled="!editStatus.specifiedServiceFeeApp"
@@ -284,27 +283,26 @@
                                     <option value="">选择</option>
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.specServiceFeeColSub.showFlag" >
+                        </force>
+                        <force fname="specServiceFeeColSub" org-data="orgData">
                             <label class="col-sm-1_5 input_title">包含/扣除</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.specServiceFeeColSub" ng-disabled="!editStatus.specServiceFeeColSub"
                                         class="select_width" ng-options="a.value as a.name for a in specServiceFeeColSubList">
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.specServiceFeeNetSell.showFlag" >
+                        <force fname="specServiceFeeNetSell" org-data="orgData">
                             <label class="col-sm-1_5 input_title">净价/销售价</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.specServiceFeeNetSell"  ng-disabled="!editStatus.specServiceFeeNetSell"
                                         class="select_width" ng-options="a.value as a.name for a in specServiceFeeNetSellList">
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.indicatorComission.showFlag" >
+                        <force fname="indicatorComission" org-data="orgData">
                             <label class="col-sm-1_5 input_title">有无代理费</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.indicatorComission"  name ="indicatorComissionXXX"
@@ -313,9 +311,8 @@
                                 <input ng-model="data.indicatorComission" name ="indicatorComissionXXX"
                                        ng-disabled="!editStatus.indicatorComission" type="radio" value="N" />无
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.taxApplication.showFlag" >
+                        </force>
+                        <force fname="taxApplication" org-data="orgData">
                             <label class="col-sm-1_5 input_title">有无税费</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.taxApplication" name ="taxApplicationXXX"
@@ -325,7 +322,7 @@
                                        ng-disabled="!editStatus.taxApplication" type="radio"  value="" />
                                 <label>无</label>
                             </div>
-                        </div>
+                        </force>
                     </div>
                 </div><!--费用 end-->
             </div><!-- 页面第二部分:确定费用费用 end -->
@@ -350,21 +347,21 @@
                 <div class="row">
                     <div class="col-sm-1"><h4>序号</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.sequenceNumber.showFlag" >
+                        <force fname="sequenceNumber" org-data="orgData">
                             <label class="col-sm-1_5 input_title">优先级序号</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.sequenceNumber" ng-disabled="!editStatus.sequenceNumber" type="text"
                                        class="digits" placeholder="序号越小，优先级越高"
                                        ng-class = "{true:'required',false:''}[data.action==UPDATE_STR]"  />
                             </div>
-                        </div>
+                        </force>
                     </div>
                 </div><!--序号end -->
                 <!--旅客start -->
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>旅客</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.passengerTypeCode.showFlag" >
+                        <force fname="passengerTypeCode" org-data="orgData">
                             <label class="col-sm-1_5 input_title">旅客类型</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.passengerTypeCode"  ng-disabled="!editStatus.passengerTypeCode" class="select_width"
@@ -372,9 +369,9 @@
                                     <option value="">请选择</option>
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.minAndMaxPassengerAge.showFlag" >
+                        <force fname="minAndMaxPassengerAge" org-data="orgData">
                             <label class="col-sm-1_5 input_title">年龄范围</label>
                             <div class="col-sm-9">
                                 <input type = "text" ng-model = "data.minPassengerAge"  maxLength = "2"  ng-disabled="!editStatus.minPassengerAge"
@@ -382,9 +379,9 @@
                                 <input type = "text" ng-model = "data.maxPassengerAge" maxLength = "2"   ng-disabled="!editStatus.maxPassengerAge"
                                        class = "{positiveInteger:true,bigger:'#minPassengerAge'}" name="maxPassengerAge" placeholder="" size = "6"/>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.firstAndLastPassengerOccurrence.showFlag" >
+                        <force fname="firstAndLastPassengerOccurrence" org-data="orgData">
                             <label class="col-sm-1_5 input_title">旅客序号范围</label>
                             <div class="col-sm-9">
                                 <input type = "text" ng-model = "data.firstPassengerOccurrence" maxLength = "3"  size = "6"
@@ -394,18 +391,18 @@
                                        ng-disabled="!editStatus.lastPassengerOccurrence" placeholder="" size = "6"
                                        class = "{positiveInteger:true,bigger:'#firstPassengerOccurrence'}" />
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.frequentFlyerStatus.showFlag" >
+                        <force fname="frequentFlyerStatus" org-data="orgData">
                             <label class="col-sm-1_5 input_title">常旅客状态</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.frequentFlyerStatus" ng-disabled="!editStatus.frequentFlyerStatus"
                                         class="select_width" ng-options="b.ffpStatus as b.description for b in frequentFlyerStatusList">
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.mileageMinAndMaximum.showFlag" >
+                        <force fname="mileageMinAndMaximum" org-data="orgData">
                             <label class="col-sm-1_5 input_title">里程范围</label>
                             <div class="col-sm-9">
                                 <input type = "text" ng-model = "data.mileageMinimum" maxLength = "6" ng-disabled="!editStatus.mileageMinimum"
@@ -413,9 +410,8 @@
                                 <input type = "text" ng-model = "data.mileageMaximum" maxLength = "6" ng-disabled="!editStatus.mileageMaximum"
                                        class ="{positiveInteger:true,bigger:'#mileageMinimum'}" name="mileageMaximum" placeholder="" size = "6"/>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.customerIndexScoreMinAndMaximum.showFlag" >
+                        </force>
+                        <force fname="customerIndexScoreMinAndMaximum" org-data="orgData">
                             <label class="col-sm-1_5 input_title">客户积分范围</label>
                             <div class="col-sm-9">
                                 <input type="text" ng-model="data.customerIndexScoreMinimum" maxLength="6"
@@ -425,9 +421,8 @@
                                        ng-disabled="!editStatus.customerIndexScoreMaxmum" size = "6" id="customerIndexScoreMaxmum"
                                        class = "{positiveInteger:true,bigger:'#customerIndexScoreMinimum'}" name="customerIndexScoreMaxmum"  />
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list172VO.showFlag" >
+                        </force>
+                        <force fname="list172VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">大客户/特殊客户表</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb172"></show-hide-table>
@@ -435,7 +430,8 @@
                                             list = "data.list172VO" html-url = "tb172.html" ng-show="tableStatus.tb172.showFlag">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
+
                     </div>
                 </div><!--旅客end -->
 
@@ -443,7 +439,8 @@
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>发布</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.list183VO.showFlag" >
+
+                        <force fname="list183VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">发布对象</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb183"></show-hide-table>
@@ -452,9 +449,9 @@
                                             hidden-input-id = "tb183HiddenInputId" html-url = "tb183.html">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.publicPrivateIndicator.showFlag" >
+                        <force fname="publicPrivateIndicator" org-data="orgData">
                             <label class="col-sm-1_5 input_title">公布/私有</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.publicPrivateIndicator" name = "publicPrivateIndicatorXXX"
@@ -464,14 +461,14 @@
                                        ng-disabled="!editStatus.publicPrivateIndicator" type="radio" value="P" />
                                 <span>私有</span>
                             </div>
-                        </div>
+                        </force>
                     </div>
                 </div><!--发布end-->
                 <!--航程start-->
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>航程</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.geoSpecFromToWithin.showFlag" >
+                        <force fname="geoSpecFromToWithin" org-data="orgData">
                             <label class="col-sm-1_5 input_title">区域限制</label>
                             <div class="col-sm-9">
                                 <input ng-model = "data.geoSpecFromToWithin" ng-disabled="!editStatus.geoSpecFromToWithin"
@@ -483,26 +480,26 @@
                                 <input  ng-model = "data.geoSpecFromToWithin" ng-disabled="!editStatus.geoSpecFromToWithin"
                                         value="W" name="geoSpecFromToWithinXXX" type="radio"  /><span  class="paddingLR5">区域1内部</span>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecSectPortJourney.showFlag" >
+                        <force fname="geoSpecSectPortJourney" org-data="orgData">
                             <label class="col-sm-1_5 input_title">区域/部分/全程</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.geoSpecSectPortJourney"  ng-disabled="!editStatus.geoSpecSectPortJourney"
                                         class = "select_width" ng-options="d.value as d.name for d in geoSpecSectPortJourneyList" >
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecTravelIndicator.showFlag" >
+                        <force fname="geoSpecTravelIndicator" org-data="orgData">
                             <label class="col-sm-1_5 input_title">指定区域</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.geoSpecTravelIndicator"  ng-disabled="!editStatus.geoSpecTravelIndicator"
                                        maxLength = "2" type="text" placeholder="" />
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecExceptionStopTimeAndUnit.showFlag" >
+                        <force fname="geoSpecExceptionStopTimeAndUnit" org-data="orgData">
                             <label class="col-sm-1_5 input_title">经停时间</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.geoSpecExceptionStopTime" ng-disabled="!editStatus.geoSpecExceptionStopTime"
@@ -511,17 +508,17 @@
                                         style = "width: 70px;" ng-options="d.value as d.name for d in geoSpecExceptionStopUnitList" >
                                 </select>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecStopConnDes.showFlag" >
+                        <force fname="geoSpecStopConnDes" org-data="orgData">
                             <label class="col-sm-1_5 input_title">经停类型</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.geoSpecStopConnDes" ng-disabled="!editStatus.geoSpecStopConnDes"
                                        maxLength = "1" type="text" class="letter" placeholder="" />
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecLoc1AndType.showFlag" >
+                        <force fname="geoSpecLoc1AndType" org-data="orgData">
                             <label class="col-sm-1_5 input_title">区域1</label>
                             <div class="col-sm-9">
                                 <select  ng-model="data.geoSpecLoc1Type" ng-options="b.value as b.name for b in geoLocTypeList"
@@ -537,9 +534,9 @@
                                             list = "data.list178Loc1" status = "data.statusDes" >
                                 </link-table>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.list178Loc1.showFlag" >
+                        <force fname="list178Loc1" org-data="orgData">
                             <label class="col-sm-1_5 input_title"></label>
                             <div class="col-sm-9">
                                 <table-info table-width = "460"  html-url = "tb178.html"
@@ -547,9 +544,9 @@
                                             table-data="tableData.t178Loc1" status="data.statusDes" list="data.list178Loc1">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecLoc2AndType.showFlag" >
+                        <force fname="geoSpecLoc2AndType" org-data="orgData">
                             <label class="col-sm-1_5 input_title">区域2</label>
                             <div class="col-sm-9">
                                 <select  ng-model="data.geoSpecLoc2Type"
@@ -566,18 +563,18 @@
                                             geo = "tableStatus.tb178geo2" list = "data.list178Loc2">
                                 </link-table>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.list178Loc2.showFlag" >
+                        <force fname="list178Loc2" org-data="orgData">
                             <label class="col-sm-1_5 input_title"></label>
                             <div class="col-sm-9">
                                 <table-info table-width = "460" ng-show="tableStatus.tb178geo2.showFlag" html-url = "tb178.html" data="data"
                                             table-data = "tableData.t178Loc2" status="data.statusDes" list="data.list178Loc2">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.geoSpecLoc3AndType.showFlag" >
+                        <force fname="geoSpecLoc3AndType" org-data="orgData">
                             <label class="col-sm-1_5 input_title">经过区域</label>
                             <div class="col-sm-9">
                                 <select  ng-model="data.geoSpecLoc3Type"
@@ -595,9 +592,9 @@
                                             geo = "tableStatus.tb178geo3" list = "data.list178Loc3" >
                                 </link-table>
                             </div>
-                        </div>
+                        </force>
 
-                        <div class="row row_from" ng-show= "showStatus.list178Loc3.showFlag" >
+                        <force fname="list178Loc3" org-data="orgData">
                             <label class="col-sm-1_5 input_title"></label>
                             <div class="col-sm-9">
                                 <table-info table-width = "460" ng-show = "tableStatus.tb178geo3.showFlag" data ="data"
@@ -605,57 +602,54 @@
                                             list = "data.list178Loc3" html-url = "tb178.html">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
+
                     </div><!--航程 block end-->
                 </div><!--航程 end -->
                 <!--航班 start-->
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>航班</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.travelStartDate.showFlag" >
+
+                        <force fname="travelStartDate" org-data="orgData">
                             <label class="col-sm-1_5 input_title">旅行开始日期</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.travelStartDate" ng-disabled="!editStatus.travelStartDate"
                                        datepicker="{{nextDateStr}}"  type="text" class="date" />
                                 <div class="input_date_btn"></div>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.travelEndDate.showFlag" >
+                        </force>
+                        <force fname="travelEndDate" org-data="orgData">
                             <label class="col-sm-1_5 input_title">旅行结束日期</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.travelEndDate" ng-disabled="!editStatus.travelEndDate"
                                        datepicker="{{nextDateStr}}" type="text" class="date" />
                                 <div class="input_date_btn"></div>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.startTime.showFlag" >
+                        </force>
+                        <force fname="startTime" org-data="orgData">
                             <label class="col-sm-1_5 input_title">开始时刻</label>
                             <div class="col-sm-9">
                                 <input timepicker =""  ng-disabled="!editStatus.startTime"  ng-model = "data.startTime"
                                        type="text" />
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.stopTime.showFlag" >
+                        </force>
+                        <force fname="stopTime" org-data="orgData">
                             <label class="col-sm-1_5 input_title">结束时刻</label>
                             <div class="col-sm-9">
                                 <input timepicker =""  ng-model = "data.stopTime" ng-disabled="!editStatus.stopTime"
                                        type="text" />
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.timeApplication.showFlag" >
+                        </force>
+                        <force fname="timeApplication" org-data="orgData">
                             <label class="col-sm-1_5 input_title">应用范围</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.timeApplication"  ng-disabled="!editStatus.timeApplication"
                                         ng-options="d.value as d.name for d in timeApplicationList" class = "select_width" >
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.dayOfWeek.showFlag" >
+                        </force>
+                        <force fname="dayOfWeek" org-data="orgData">
                             <label class="col-sm-1_5 input_title">星期</label>
                             <div class="col-sm-9">
                                 <input name = "dayOfWeek" ng-model = "data.dayOfWeekShow.w1"  ng-disabled="!editStatus.dayOfWeek" type="checkbox" />
@@ -673,9 +667,8 @@
                                 <input name = "dayOfWeek"  ng-model = "data.dayOfWeekShow.w7" ng-disabled="!editStatus.dayOfWeek" type="checkbox"/>
                                 <span class="paddingLR5">星期日</span>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.equipmentAndlist165.showFlag" >
+                        </force>
+                        <force fname="equipmentAndlist165" org-data="orgData">
                             <label class="col-sm-1_5 input_title">机型</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.equipment"  class = "select_width"
@@ -693,9 +686,8 @@
                                             list = "data.list165VO" table-data = "tableData.t165" html-url = "tb165.html">
                                 </table-info>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list186VO.showFlag" >
+                        </force>
+                        <force fname="list186VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">航班号</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb186"></show-hide-table>
@@ -703,18 +695,16 @@
                                             list = "data.list186VO" html-url = "tb186.html" data="data">
                                 </table-info>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.cabin.showFlag" >
+                        </force>
+                        <force fname="cabin" org-data="orgData">
                             <label class="col-sm-1_5 input_title">舱位等级</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.cabin" class="select_width" ng-disabled="!editStatus.cabin"
                                         ng-options="o.value as o.name for o in cabinList">
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list198VO.showFlag" >
+                        </force>
+                        <force fname="list198VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">订座属性表</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb198"></show-hide-table>
@@ -722,9 +712,8 @@
                                             list = "data.list198VO" html-url = "tb198.html" data="data">
                                 </table-info>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.upgradeToCabin.showFlag" >
+                        </force>
+                        <force fname="upgradeToCabin" org-data="orgData">
                             <label class="col-sm-1_5 input_title">升舱到的服务等级</label>
                             <div class="col-sm-9">
                                 <select name ="upgradeToCabin" ng-model="data.upgradeToCabin"
@@ -737,9 +726,8 @@
                                     </option>
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list198UpgradeVO.showFlag" >
+                        </force>
+                        <force fname="list198UpgradeVO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">
                                 <span ng-show="data.sel1.value=='SA'||data.sel1.value=='BDSA'">座位属性表</span>
                                 <span ng-show="data.sel1.value=='UP'||data.sel1.value=='BDUP'">升舱属性表</span></label>
@@ -750,14 +738,14 @@
                                             list = "data.list198UpgradeVO" html-url="tb198UpGrade.html">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
                     </div><!--航班block end-->
                 </div><!--航班 end-->
                 <!--购买 start -->
                 <div class="row block_box" ng-show="data.serviceType!='A'&&data.serviceType!='B'&&data.serviceType!='E'">
                     <div class="col-sm-1"><h4>购买</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.advancedPurchasePeriodAndUnit.showFlag" >
+                        <force fname="advancedPurchasePeriodAndUnit" org-data="orgData">
                             <label class="col-sm-1_5 input_title">提前购票时间</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.advancedPurchasePeriod" ng-disabled="!editStatus.advancedPurchasePeriod"
@@ -766,7 +754,7 @@
                                         ng-options="d.value as d.name for d in advancedPurchasePeriodList" style = "width: 70px;" >
                                 </select>
                             </div>
-                        </div>
+                        </force>
                     </div>
                 </div><!--购买 end -->
 
@@ -774,15 +762,14 @@
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>票价</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.tourCode.showFlag" >
+                        <force fname="tourCode" org-data="orgData">
                             <label class="col-sm-1_5 input_title">旅行编码</label>
                             <div class="col-sm-9">
                                 <input type = "text" ng-model = "data.tourCode"   ng-disabled="!editStatus.tourCode"
                                        class = "lettersOrNumber" placeholder="" maxLength = "15" />
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list173TicketVO.showFlag" >
+                        </force>
+                        <force fname="list173TicketVO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">TICKET DESIGNATOR</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb173Ticket"></show-hide-table>
@@ -790,25 +777,22 @@
                                             list = "data.list173TicketVO" html-url = "tb173Ticket.html" ng-show="tableStatus.tb173Ticket.showFlag">
                                 </table-info>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.tariff.showFlag" >
+                        </force>
+                        <force fname="tariff" org-data="orgData">
                             <label class="col-sm-1_5 input_title">TARIFF NO.</label>
                             <div class="col-sm-9">
                                 <input type = "text" ng-model = "data.tariff" maxLength = "3"
                                        ng-disabled="!editStatus.tariff" class = "lettersOrNumber" />
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.rule.showFlag" >
+                        </force>
+                        <force fname="rule" org-data="orgData">
                             <label class="col-sm-1_5 input_title">RULE NO.</label>
                             <div class="col-sm-9">
                                 <input type = "text" ng-model = "data.rule" maxLength = "4"
                                        ng-disabled="!editStatus.rule" class = "lettersOrNumber" />
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list173TktVO.showFlag" >
+                        </force>
+                        <force fname="list173TktVO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">RESULTING TICKET DESIGNATOR</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb173Tkt"></show-hide-table>
@@ -816,9 +800,8 @@
                                             list = "data.list173TktVO" html-url = "tb173Tkt.html" ng-show="tableStatus.tb173Tkt.showFlag">
                                 </table-info>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.list171VO.showFlag" >
+                        </force>
+                        <force fname="list171VO" org-data="orgData">
                             <label class="col-sm-1_5 input_title">客票舱位等级表</label>
                             <div class="col-sm-9">
                                 <show-hide-table tname="tb171"></show-hide-table>
@@ -827,14 +810,15 @@
                                             list = "data.list171VO" html-url = "tb171.html">
                                 </table-info>
                             </div>
-                        </div>
+                        </force>
+
                     </div><!--票价block end-->
                 </div><!--票价 end-->
                 <!-- 票证start -->
                 <div class="row block_box" ng-show = "data.serviceType=='F'||data.serviceType=='R'||data.serviceType=='T'||data.serviceType=='P'">
                     <div class="col-sm-1"><h4>票证</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.advancedPurchaseTktIssue.showFlag" >
+                        <force fname="advancedPurchaseTktIssue" org-data="orgData">
                             <label class="col-sm-1_5 input_title">与机票同时出票</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.advancedPurchaseTktIssue" name ="advancedPurchaseTktIssueXXX"
@@ -843,14 +827,14 @@
                                 <input ng-model="data.advancedPurchaseTktIssue" name ="advancedPurchaseTktIssueXXX"
                                        ng-disabled="!editStatus.advancedPurchaseTktIssue"  type="radio" value="X" />否
                             </div>
-                        </div>
+                        </force>
                     </div><!-- 票证 block end -->
                 </div><!-- 票证 end -->
                 <!-- 退款start -->
                 <div class="row block_box">
                     <div class="col-sm-1"><h4>退款</h4></div>
                     <div class="col-sm-10 block_edit2">
-                        <div class="row row_from" ng-show= "showStatus.indicatorReissueRefund.showFlag" >
+                        <force fname="indicatorReissueRefund" org-data="orgData">
                             <label class="col-sm-1_5 input_title">是否可退</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.indicatorReissueRefund"  class = "select_width"
@@ -858,9 +842,8 @@
                                         ng-options="d.value as d.name for d in indicatorReissueRefundList" >
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.formOfRefund.showFlag" >
+                        </force>
+                        <force fname="formOfRefund" org-data="orgData">
                             <label class="col-sm-1_5 input_title">退款形式</label>
                             <div class="col-sm-9">
                                 <select ng-model="data.formOfRefund"  class = "select_width"
@@ -868,9 +851,8 @@
                                         ng-options="d.value as d.name for d in formOfRefundList" >
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="row row_from" ng-show= "showStatus.indicatorInterline.showFlag" >
+                        </force>
+                        <force fname="indicatorInterline" org-data="orgData">
                             <label class="col-sm-1_5 input_title">是否联程</label>
                             <div class="col-sm-9">
                                 <input ng-model="data.indicatorInterline" name ="indicatorInterlineXXX"
@@ -880,7 +862,7 @@
                                        ng-disabled="!editStatus.indicatorInterline" type="radio" value="N" />
                                 <span>否</span>
                             </div>
-                        </div>
+                        </force>
                         <!--
                         <force fname="lastMaintenanceDate" org-data="orgData">
                             <label class="col-sm-1_5 input_title">行李重量</label>

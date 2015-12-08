@@ -267,8 +267,57 @@ define(function(require, exports, module){
 		    return flag ;
 		};
 
-		//增强指令
 		directives.directive('force',['FormStatusService','FormData',function(FormStatusService,FormData){
+			return  {
+				restrict:'A',
+				scope:{orgData:'='},
+				link: function (scope,elem,attrs) {//
+					//@param : event 事件本身
+					//@param ：needDigest ： 是否需要手动进行脏数据检查
+					scope.$on('serviceTypeChangeNotice',function(event,needDigest){
+						for(var fname in FormStatusService){
+							var typeList = FormStatusService[fname]['typeList'] ;
+							var groupList = FormStatusService[fname]['groupList'] ;
+							var serviceType = FormData.serviceType;
+							var serviceGroup = FormData.sel1.value ;
+							var oldFlag = FormStatusService[fname]['showFlag'] ;
+							var flag = getFlagByServiceTypeAndServiceGroup(typeList, groupList,serviceType,serviceGroup) ;
+							//console.info(fname + ' -- ' + flag + '   , serviceType : ['+serviceType+'] , typeList ['+typeList+'] , groupList :['+groupList+']  , servcieGroup : ['+serviceGroup+'] ') ;
+							if(oldFlag==!flag){//如果不同
+								var nameList = FormStatusService[fname]['nameList'] ;
+								resetDataByFlag(nameList,flag,FormData,scope.orgData) ;
+								FormStatusService[fname]['showFlag']= flag;
+								if(needDigest&&needDigest=='true'){
+									scope.$digest() ;
+								}
+							}
+						}
+					}) ;
+					// @param :event :自带的事件本身
+					// @param :in_fname : 传入的forceName
+					// @param :in_flag :传入的隐藏显示的falg----第一要传递字符串
+					// @param :needDigest ：是否需要手动脏数据检查  第一要传递字符串
+					scope.$on('singleChangeByFlagNotice', function (event,in_fname,in_flag,needDigest) {
+						var fname = in_fname ;
+						var newFlag = in_flag=='true'?true:false;
+						var oldFlag = FormStatusService[fname]['showFlag'] ;
+						console.info("fname : ["+fname+"] , newFlag : ["+newFlag+"] , oldFlag : ["+oldFlag+"] ") ;
+						if(newFlag==!oldFlag){//当前显隐与将要的显隐相反时
+							var nameList = FormStatusService[fname]['nameList'] ;
+							resetDataByFlag(nameList,newFlag,FormData,scope.orgData) ;
+							FormStatusService[fname]['showFlag']= newFlag;
+							if(needDigest&&needDigest=='true'){
+								scope.$digest() ;
+							}
+						}
+					}) ;
+				}
+			} ;
+		}]) ;
+
+
+		//增强指令
+		/*directives.directive('force',['FormStatusService','FormData',function(FormStatusService,FormData){
 		    return  {
 		        restrict:'E',//restrict
 		        scope:{
@@ -286,9 +335,8 @@ define(function(require, exports, module){
 		        	$scope.showStatus = FormStatusService ;
 		        }] ,
 		        link: function (scope,elem,attrs) {//
-		        	/*@param : event 事件本身
-		        	 *@param ：needDigest ： 是否需要手动进行脏数据检查
-		        	 */
+		        	//@param : event 事件本身
+		        	//@param ：needDigest ： 是否需要手动进行脏数据检查
 					scope.$on('serviceTypeChangeNotice',function(event,needDigest){
 						var fname = attrs['fname'] ;
 						var typeList = FormStatusService[fname]['typeList'] ;
@@ -308,12 +356,10 @@ define(function(require, exports, module){
 						}
 						
 					}) ;
-					/*
-					  @param :event :自带的事件本身
-					 * @param :in_fname : 传入的forceName  
-					 * @param :in_flag :传入的隐藏显示的falg----第一要传递字符串
-					 * @param :needDigest ：是否需要手动脏数据检查  第一要传递字符串
-					*/
+					 // @param :event :自带的事件本身
+					 // @param :in_fname : 传入的forceName  
+					 //@param :in_flag :传入的隐藏显示的falg----第一要传递字符串
+					 // @param :needDigest ：是否需要手动脏数据检查  第一要传递字符串
 					scope.$on('singleChangeByFlagNotice', function (event,in_fname,in_flag,needDigest) {
 		                var fname = attrs['fname'] ;
 		                var tmpFlag = in_flag=='true'?true:false;
@@ -333,7 +379,7 @@ define(function(require, exports, module){
 
 		        }
 		    } ;
-		}]) ;
+		}]) ;*/
 		
 
  }) ;

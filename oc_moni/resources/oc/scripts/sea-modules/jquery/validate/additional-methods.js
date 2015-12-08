@@ -207,6 +207,21 @@
 
 
 
+	$.validator.addMethod("biggerTime", function(value, element) {
+		var target = $(param);
+		var startStr = target.val() ;
+		var endStr = value ;
+		var flag = true ;
+		if(!isNaN(startStr)&&!isNaN(endStr)){
+			var n1 = parseInt(startStr) ;
+			var n2 = parseInt(endStr) ;
+			if(n1>n2){
+				flag = false;
+			}
+		}
+		return this.optional(element) || flag;
+	}, "结束时刻大于开始时刻");
+
 
 
 

@@ -9,7 +9,7 @@ define(function (require, exports, module) {
 
 
 	//最外层controller
-	controllers.controller('EditController',['$scope','FormData','NEW_ADD_STR','UPDATE_STR','$http','S7EditService','TableStatusServcie','FormEditStatusServcie',function($scope,FormData,NEW_ADD_STR,UPDATE_STR,$http,S7EditService,TableStatusServcie,FormEditStatusServcie){
+	controllers.controller('EditController',['$scope','FormData','NEW_ADD_STR','UPDATE_STR','$http','S7EditService','TableStatusServcie','FormEditStatusServcie','FormStatusService',function($scope,FormData,NEW_ADD_STR,UPDATE_STR,$http,S7EditService,TableStatusServcie,FormEditStatusServcie,FormStatusService){
 	    $scope.NEW_ADD_STR = NEW_ADD_STR ;//新增action字符串标记
 		$scope.UPDATE_STR = UPDATE_STR ;//更新action字符串标记
 		$scope.contextPath = FormData.contextPath ;
@@ -21,6 +21,7 @@ define(function (require, exports, module) {
 		$scope.tableStatus = TableStatusServcie ;
 		//页面上所有控件的状态数据
 		$scope.editStatus = FormEditStatusServcie ;
+		$scope.showStatus = FormStatusService ;
 		
 		var s7Id = $("#s7Id").val() ;
 		$scope.data.id = s7Id ;

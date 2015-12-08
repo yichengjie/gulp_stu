@@ -8,10 +8,10 @@ define(function(require, exports, module){
 	 directives.directive('headerDrct', function() {
 	    return {
 	        restrict: 'AE',
-	        replace: 'true',
-					scope:true,
+	        replace: true,
+			scope:true,
 	        template: headerHtml,
-					link: function(scope, elem, attrs) {
+			link: function(scope, elem, attrs) {
 				
         	}
 	    };
@@ -20,7 +20,7 @@ define(function(require, exports, module){
 	 directives.directive('chooseDiv', function() {
 	    return {
 	        restrict: 'AE',
-	        replace: 'true',
+	        replace: true,
 			scope:true,
 			transclude:true,
 	        template: chooseDivHtml,

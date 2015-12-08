@@ -173,3 +173,6 @@ select.select_width{ width:143px;}
 .discountCheck{ background-color: #F20;}
 .discountUncheck{ background-color: #AAA; color:#EEE;}
 .inputDisabled{cursor: not-allowed;background-color: #999999;opacity: 0.3;}
+.chooseInputWidth{
+	width:163px;
+}
