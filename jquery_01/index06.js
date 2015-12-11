@@ -166,8 +166,8 @@ app.directive('force',['FormShowFlagService','InputServiceTypeService', function
             data:'=',
             orgData:'='
         },
-        template: function($scope,$element){
-            var fname = $element['fname'] ;
+        template: function(elem,attrs){
+            var fname = attrs['fname'] ;
             var tmpStr = "showData."+fname ;
             var htmlStr =   '<div class="row myinputrow" ng-show="'+tmpStr+'">' +
                 '<label bindonce class="col-sm-2 control-label" bo-bind="title"></label>' +
