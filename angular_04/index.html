@@ -15,15 +15,29 @@
     <script type="text/javascript" src="../lib/datepicker/jquery-ui.js"></script>
     <script type="text/javascript" src="../lib/datepicker/dateinput-ch-ZN.js"></script>
     <script type="text/javascript" src="index.js"></script>
+    <style type="text/css">
+        .tbinput{
+            display: inline-block;
+            width: 100px;
+            height: 23px;
+            background-color: #fff;
+            border: 1px solid #cccccc;
+            padding-left: 2px;
+        }
+    </style>
 </head>
 <body ng-app="app">
 
 <div ng-controller="IndexController">
-    <input type="text" datepicker ng-model="data.startDate">
 
+    <!--
+    <input type="text" datepicker ng-model="data.startDate">
     <div>
         <h1>{{data.startDate}}</h1>
-    </div>
+    </div>-->
+    name:<div class="tbinput" contentEditable ="true"></div>
+
+    <table>
 </div>
 
 
