@@ -1,6 +1,6 @@
 // Set configuration
 seajs.config({
-	base : './resources/oc/scripts/sea-modules',
+	base : '/oc/scripts/sea-modules',
 	alias : {
 		'jquery' : 'jquery/jquery/1.10.1/jquery-1.8.2.js',
 		'tuiValidator' : 'tui/tuiValidate/tui_validator.js',
@@ -26,13 +26,15 @@ seajs.config({
 //seajs.use('sea-modules/fare/oc/1.0.0/main');
 // For development
 if (location.href.indexOf('?dev') > 0) {
-	seajs.use('./oc/resources/oc/scripts/src/edit/main',function(app){
+	seajs.use('/oc/scripts/src/edit/main',function(app){
+		console.info('开发模式') ;
 		app.init() ;
 	});
 }
 // For production
 else {
 	seajs.use('fare/oc/1.0.0/edit/main',function(app){
+		console.info('上线模式') ;
 		app.init() ; 
 	});
 }
