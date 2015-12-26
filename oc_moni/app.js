@@ -4,7 +4,7 @@ var path = require('path') ;
 var compression = require('compression')
 var port = process.env.PORT || 3000 ;
 app.use(compression());
-app.use(express.static(path.join(__dirname,'/resources'))) ;
+app.use(express.static(path.join(__dirname,'./resources'))) ;
 
 //导入路由
 require('./router')(app) ;

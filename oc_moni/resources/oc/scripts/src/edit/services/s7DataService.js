@@ -4,7 +4,7 @@ define(function(require, exports, module){
 		var contextPath = $.trim($("#contextPath").val()) ;
 		var carrCode = $.trim($("#carrCode").val()) ;
 		var action = $.trim($("#action").val()) ;
-		console.log("[contextPath : "+contextPath+"],[carrCode : "+carrCode+"],[action:"+action+"]") ;
+		//console.log("[contextPath : "+contextPath+"],[carrCode : "+carrCode+"],[action:"+action+"]") ;
 		return {
 		   id:'',
 		   status:'',
