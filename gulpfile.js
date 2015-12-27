@@ -20,6 +20,7 @@ var paths = {src:{js:"./oc_temp/js/",css:"./oc_temp/css/"},dist:"./dist/oc_temp/
     del(['minified/css', 'minified/js'], cb)
 });*/
 
+
 gulp.task('minify-css', function() {
   return gulp.src(paths.src.css+'*.css')
     .pipe(concat('app.min.css'))
