@@ -10,6 +10,8 @@ gulp.task('tpl2js', function() {
 });
 
 
+
+
 gulp.task('default',['tpl2js'], function() {
   console.info('hello world') ;
 });
