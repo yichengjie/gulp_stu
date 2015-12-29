@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<link rel="stylesheet" type="text/css" href="../bower_components/select2/select2.css">
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="../bower_components/select2/select2.js"></script>
+	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="../bower_components/angular-ui-select2/src/select2.js"></script>
+
+</head>
+<body ng-app="MyApp">
+
+	<div ng-controller="MyController">
+		<select ui-select2="select2Options" ng-model="data.select2">
+		    <option value="one">First</option>
+		    <option value="two">Second</option>
+		    <option value="three">Third</option>
+		</select>
+
+
+		<input
+		    type="hidden"
+		    ui-select2="select2Options"
+		    ng-model="list_of_string"
+		    >
+
+		<button ng-click="test()">测试</button>
+
+	</div>
+</body>
+<script type="text/javascript" src="index.js"></script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <!--
+	<link rel="stylesheet" href="../lib/select_nice/css/nice-select.css">-->
+  <link rel="stylesheet" type="text/css" href="nice-select.css">
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../lib/select_nice/js/jquery.nice-select.js"></script> 
+	<script type="text/javascript" src="../lib/angular/angular.js"></script>
+</head>
+<body ng-app="app">
+
+<div class="container" ng-controller="IndexController">
+  
+    <!--
+	  <div class="box">
+      <select>
+        <option value="1">Some option</option>
+        <option value="2">Another option</option>
+        <option value="3">Potato</option>
+      </select>
+    </div>
+  -->
+
+     <div class="box" style="width:160px">
+      <label>Wide</label>
+      <!--
+      <select class="wide" ng-model="data.descr">
+        <option value="">Nothing</option>
+        <option value="1">Some option</option>
+        <option value="2">Another option</option>
+        <option value="3">Potato</option>
+      </select>-->
+      <!-- <select class="wide" ng-model="data.descr"   ng-class="{true:'disabled',false:''}[status=='3']" ng-options="o.value as o.name for o in list1" >
+      </select> -->
+      <select class="wide" ng-model="data.descr"   ng-class="{true:'disabled',false:''}[status=='3']" >
+        <option  ng-repeat="l in list1" value="{{l.value}}">{{l.name}}</option>
+      </select>
+      <button ng-click="test()">test</button>{{list1}}
+    </div>
+	
+   
+</div>	
+</body>
+  <script type="text/javascript" src="index.js"></script>
+</html>
