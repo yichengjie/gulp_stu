@@ -27,6 +27,13 @@ var getSelectListNameByValue = function  (list,value) {
 } ;
 
 
+var getNameByNgModel = function  (ngModelStr) {
+    // body...
+    var index = ngModelStr.indexOf('.') ;
+    var name = ngModelStr.substr (index+1) ;
+    return name ;
+};
+
 
 var app = angular.module('app',[]) ;
 app.controller('IndexController', function ($scope,SelectTitleServcie) {
@@ -36,15 +43,17 @@ app.controller('IndexController', function ($scope,SelectTitleServcie) {
         language:'css'
     } ;
     $scope.languageList = [] ;
-   setTimeout(function  () {
+   
+   setTimeout(function  () {//模拟从后台取数据，延迟一段时间
+        $scope.$apply(function  () {
        $scope.languageList = [
-        {"name":"所有选项","value":""},{"name":"课程html","value":"html"},
-        {"name":"课程css","value":"css"},{"name":"课程javascript","value":"javascript"},
-        {"name":"课程jquery","value":"jquery"}
-
-       // SelectTitleServcie
-    ] ;
-    },3000);
+            {"name":"所有选项","value":""},{"name":"课程html","value":"html"},
+            {"name":"课程css","value":"css"},{"name":"课程javascript","value":"javascript"},
+            {"name":"课程jquery","value":"jquery"} ];
+            var obj = getSelectListNameByValue($scope.languageList,$scope.data.language) ;
+            SelectTitleServcie.language = obj.name ;
+        }) ;
+    },1000);
 }) ;
 
 app.factory('SelectTitleServcie', function(){
@@ -60,10 +69,11 @@ app.directive('ocselect', ['SelectTitleServcie',function (SelectTitleServcie) {
         scope:{
             name:'@',
             list:'=',
-            data:'='
         },
+        require:'?ngModel',
         template:function(elem,attrs){
-            var name = attrs['name'] ;
+            var ngModelStr = attrs['ngModel'] ;
+            var name = getNameByNgModel(ngModelStr) ;
             var str = '<div class="select">'+
                 '<p>{{titleObj.'+name+'}}</p>'+
                 '<ul>'+
@@ -73,20 +83,18 @@ app.directive('ocselect', ['SelectTitleServcie',function (SelectTitleServcie) {
             return str ;
         },
         link: function (scope, iElement, iAttrs,ctrl) {
-            var name = iAttrs['name'] ;
+            var ngModelStr = iAttrs['ngModel'] ;
+            var name = getNameByNgModel(ngModelStr) ;
             scope.titleObj = SelectTitleServcie ;
-            var value = scope.data[name] ;
-            console.info('value : ' + value) ;
-            //scope.title = title ;
+            var value = ctrl.$viewValue ;
             var obj =getSelectListNameByValue(scope.list,value) ; 
             if(obj){
                 scope.titleObj[name] = obj['name'] ;
             }
-            
             iElement.bind('click',function  (event) {
                 event.stopPropagation();
                 //var name = iAttrs['name'] ;
-                var vv = scope.data[name] ;
+                var vv = ctrl.$viewValue;
                 //当前应该被选中的li
                 var curLi = iElement.find("li[data-value="+vv+"]") ;
                 if(!curLi.hasClass('selected')){
@@ -107,13 +115,11 @@ app.directive('ocselect', ['SelectTitleServcie',function (SelectTitleServcie) {
                 _this.addClass('selected').siblings().removeClass('selected');
                 iElement.removeClass('open') ;
                 var curValue = _this.attr('data-value') ;
-                //ctrl.$setViewValue(curValue) ;
-                scope.data[name] = curValue ;
+                ctrl.$setViewValue(curValue) ;
             };
-
         }
     };
-}])
+}]) ;
 
 
 app.directive('tbinput', [function () {
@@ -126,7 +132,7 @@ app.directive('tbinput', [function () {
             console.info(ctrl.$viewValue) ;
         }
     };
-}])
+}]) ;
 
 app.directive('datepicker', function () {
     return {
