@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style type="text/css">
+		.container{
+			width: 800px;
+			height: 100%;
+			margin: 50px auto 0;
+			border:1em solid;
+		}
+		#div1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			transform:rotate(30deg);
+		}
+		#div2{
+			width: 150px;
+			height: 150px;
+			background-color: #ccc;
+			overflow: hidden;
+		}
+		#div3{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			transform: translate(50px,100px);
+		}
+		#div4{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			transform: scale(1.2);
+		}
+
+		#div5{
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+			transform: skew(60deg,0deg);
+		}
+
+
+		#div6{
+			transition: width 2s, height 2s ,transform 2s;
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+		}
+
+		#div6:hover{
+			width:300px;
+			height: 300px;
+			transform:skew(30deg,30deg);
+		}
+
+		h1{
+		text-shadow: 5px 5px 5px #FF0000;
+		}
+		p {word-wrap:break-word;}
+
+
+		@keyframes myfirst{
+			0%   {background: red; left:0px; top:0px;}
+			25%  {background: yellow; left:200px; top:0px;}
+			50%  {background: blue; left:200px; top:200px;}
+			75%  {background: green; left:0px; top:200px;}
+			100% {background: red; left:0px; top:0px;}
+		}
+		#div7{
+			background: #ccc;
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			animation: myfirst 5s;
+		}
+
+		.content-box{
+	        box-sizing:content-box;
+	        -moz-box-sizing:content-box;
+	        width: 100px;
+	        height: 100px;
+	        padding: 20px;
+	        border: 5px solid #E6A43F;
+	        background: blue;
+	    }
+	    .padding-box{
+	        box-sizing:padding-box;
+	        -moz-box-sizing:padding-box;
+	        width: 100px;
+	        height: 100px;
+	        padding: 20px;
+	        border: 5px solid #186645;
+	        background: red;                
+	    }
+	    .border-box{
+	        box-sizing:border-box;
+	        -moz-box-sizing:border-box;
+	        width: 100px;
+	        height: 100px;
+	        padding: 20px;
+	        border: 5px solid #3DA3EF;
+	        background: yellow;
+	    }
+	</style>
+
+</head>
+<body>
+	
+	<div class="container">
+		<div id ="div1">
+			
+		</div>
+		<div id ="div2">
+			<p>This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will break and wrap to the next line.</p>
+		</div>
+
+		
+
+		<div id ="div3">
+			
+		</div>
+
+
+		<div id="div4">
+			
+		</div>
+
+
+		<div id="div5"></div>
+
+		<div id="div6"></div>
+
+		<div id="div7"></div>
+
+		<div class="content-box"></div>
+		<div class="padding-box"></div>
+		<div class="border-box"></div>
+
+		<h1>hello world</h1>
+	</div>
+
+	
+	
+</body>
+</html>
