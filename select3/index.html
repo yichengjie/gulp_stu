@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../bower_components/oi.select/dist/select.css" >
+    <!--
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/github.min.css" />
+    -->
+    <!--
+     <link type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    -->
+    <style>
+        .btn-xs, .btn-group-xs>.btn {
+            padding: 1px 5px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+        oi-select .select-search-list{
+            list-style: none;
+        }
+        :before, :after{
+            webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+    </style>
+</head>
+<body ng-app="app">
+<div ng-controller="IndexController" class="container">
+    <oi-select
+        oi-options="o.value as o.name for o in shopArr"
+        ng-model="bundle"
+        autofocus
+        tabindex="1">
+        <option value="000">选择</option>
+    </oi-select>
+    <br>
+    <br>
+    <div class="alert alert-success" role="alert">{{bundle}}</div>
+</div>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<!--
+<script type="text/javascript" src="../bower_components/oi.select/dist/select.js"></script>
+<script type="text/javascript" src="../bower_components/oi.select/dist/select-tpls.js"></script>
+-->
+<script type="text/javascript" src="../bower_components/oi.select/dist/select.min.js"></script>
+<script type="text/javascript" src="../bower_components/oi.select/dist/select-tpls.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>

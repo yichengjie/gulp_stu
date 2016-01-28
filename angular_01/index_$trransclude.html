@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试angular transclude服务</title>
+    <link  type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body ng-controller="IndexController" style="padding-top: 50px;">
+<div class="container">
+
+    <button-bar>
+        <button class="primary" ng-click="onPrimary1Click()">{{primary1Label}}</button>
+        <button class="primary">Primary2</button>
+        <button class="secondary">Secondary1</button>
+    </button-bar>
+
+
+    <tag></tag>
+
+</div>
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+<script  type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="index_$transclude.js"></script>
+</body>
+</html>

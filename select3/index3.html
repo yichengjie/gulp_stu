@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+
+    <div class="container">
+        <button id="test" class="btn btn-danger" >test</button>
+    </div>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript">
+        //jQuery(element).on('click', _.before(5, addContactToList));
+        function render (){
+            console.info('hello world') ;
+        }
+        $(function () {
+            $("#test").bind('click', _.after(5,render)) ;
+            //var renderNotes = _.after(notes.length, render);
+        })
+    </script>
+</body>
+</html>

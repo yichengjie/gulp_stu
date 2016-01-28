@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--
+    <link type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    -->
+    <link type="text/css" rel="stylesheet"  href="index2.css" ></link>
+</head>
+<body ng-app="app">
+<div  class="container" ng-controller="IndexController">
+    <div class="content">
+        <!-- -->
+        <hello ng-model="data.user" list ="list"></hello>
+        <input type="text" ng-model="data.user" />
+        <br/>
+        <br/>
+        <br/>
+        <oc-select ng-model="data.user" list ="list"></oc-select>
+    </div>
+</div>
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="../bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="index2.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click', function(){
+            $('.select').removeClass('open');
+        });
+    });
+</script>
+</body>
+</html>
