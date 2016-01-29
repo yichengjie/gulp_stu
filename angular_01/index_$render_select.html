@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link type="text/css"  rel="stylesheet" href="index_$render.css" />
+    <style>
+        .cinput{
+            width: 200px;
+            height: 25px;
+            overflow: hidden;
+            background-color: #cccc77;
+        }
+    </style>
+</head>
+<body style="margin-top: 100px;" ng-app="app">
+<div class="container" ng-controller="IndexController">
+    <custome-edit-div ng-model="data.name"></custome-edit-div>
+    <p><h2>name : {{data.name}}</h2></p>
+    <p>选择的value : {{data.myclass}}</p>
+    <p>下面是自定义的select控件</p>
+    <button class="btn" ng-click="test()">test</button>
+    <oc-select ng-model="data.myclass" list="list" mychange="mychange('select1',data.myclass)"></oc-select>
+    <br/>
+</div>
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="../bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="../lib/bindonce/bindonce.js"></script>
+<script type="text/javascript" src="index_$render.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(document).on('click', function(){
+            $('.select').removeClass('open');
+        });
+    });
+</script>
+</body>
+</html>
