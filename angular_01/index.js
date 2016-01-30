@@ -12,7 +12,17 @@ app.controller('IndexController',function ($scope) {
         {name:"服务类型P",value:"P"}
     ]
 
+
+
+
+
 }) ;
+
+/*// create an injector
+var $injector = angular.injector(['app']
+console.info($injector) ;*/
+
+
 app.directive('myLink', function () {
      return {
          restrict: 'EA',
