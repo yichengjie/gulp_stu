@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body ng-app="app" style="padding-top: 50px;">
+    <div ng-controller="IndexController" class="container">
+        <h1>hello world</h1>
+        <script type="text/ng-template" id="alert.html">
+            <div class="alert" style="background-color:#fa39c3;color:white" role="alert">
+                <div ng-transclude></div>
+            </div>
+        </script>
+
+        <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+
+        <!---->
+        <uib-alert template-url="alert.html">A happy alert!</uib-alert>
+
+        <button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>
+    </div>
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="alert.js"></script>
+</body>
+</html>

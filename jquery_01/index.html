@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
     <meta charset="utf-8">
     <title>jquery validate测试</title>
@@ -9,11 +9,14 @@
     <script type="text/javascript" src="../lib/jquery/jquery.metadata.js"></script>
     <script type="text/javascript" src="../lib/jquery/jquery.validate.js"></script>
     <script type="text/javascript" src="../lib/jquery/additional-methods.js"></script>
-
     <script type="text/javascript" src="../lib/jquery/messages_zh.js"></script>
+    <script type="application/javascript" src="../lib/angular/angular.js"></script>
+    <script type="text/javascript" src="../lib/bindonce/bindonce.js"></script>
     <script type="text/javascript" src="./index.js"></script>
+
+
   </head>
-  <body>
+  <body ng-controller="IndexController">
     <form id="signupForm">
         <p>
             <label for="firstname">Firstname</label>
@@ -47,13 +50,22 @@
 
      <p>
         <label for="serviceType">服务类型</label>
-         <select name="serviceType" id="serviceType" class="required">
+         <select  name="serviceType" id="serviceType" class="required">
              <option value=""></option>
              <option value="1">1-----</option>
              <option value="2">2-----</option>
              <option value="3">3-----</option>
          </select>
      </p>
+
+
+    <p>
+        <label for="serviceType2">服务类型2</label>
+        <select ng-model="data.serviceType2" name="serviceType2"  id ="serviceType2" class="required">
+            <option bindonce ng-repeat="l in serviceType2List" bo-value="l.value">{{l.name}}</option>
+        </select>
+    </p>
+
      <p>
          <label for="gender_male">性别</label>
          <input  type="radio" id="gender_male" value="m" name="gender" class="{validate:{required:true}}" />

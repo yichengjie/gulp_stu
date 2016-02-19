@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body ng-app="app">
+<div class="controller" ng-controller="IndexController">
+    <form>
+        <select ng-model="data.dept">
+            <option value="">选择</option>
+            <option value="1">html</option>
+            <option value="2">css</option>
+            <option value="3">javascript</option>
+        </select>
+        <h2>{{data.dept}}</h2>
+    </form>
+</div>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="form.js"></script>
+</body>
+</html>
