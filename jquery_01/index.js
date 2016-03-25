@@ -1,4 +1,20 @@
-$().ready(function() {//start ready
+var app = angular.module('app',[]) ;
+
+
+app.controller('IndexController', function ($scope) {
+
+    $scope.data = {
+        serviceType2:''
+    }  ;
+
+    $scope.serviceType2List = [
+        {name:"选择",value:''},{name:"html",value:'1'},
+        {name:"css",value:'2'},{name:"javascript",value:'3'}
+    ] ;
+
+}) ;
+
+$(document).ready(function() {//start ready
 
  var validator = $("#signupForm").validate({
     meta : "validate",
@@ -45,3 +61,5 @@ $().ready(function() {//start ready
  })  ;
 
 });//end ready
+
+
