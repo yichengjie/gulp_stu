@@ -1,12 +1,25 @@
-'use strict'
-var unicorons = '<3 cake';
 
-function hello(){
-  console.info('hello world') ;
-  console.info('第一个gulp自动化项目搭建') ;
-  console.info('hello world') ;
-  var d = new Date() ;
-  d.getDate() ;
-  console.info('git  ssh 测试') ;
+function Foo (name){
+  this.name = name ;
+
+  this.say=function(){
+     console.info('name : ' + this.name) ;
+  }
+
 }
 
+
+function Foo2(){
+
+  this.t = function(fn){
+     fn.say() ;
+  }
+}
+
+
+(function Client(){
+  this.name = "cccc" ;
+  var foo = new Foo(this.name) ;
+  var foo2 = new Foo2() ;
+  foo2.t(foo) ;
+})();

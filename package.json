@@ -52,6 +52,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "angular-ui-router": "^0.2.18",
     "gulp-seajs": "^0.4.2"
   }
 }

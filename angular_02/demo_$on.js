@@ -43,9 +43,7 @@ app.directive('hello', function () {
 app.directive('hello2', function () {
     return {
         restrict:'E',
-        scope:{
-
-        },
+        scope:{},
         replace:true,
         template:'<div>hello world</div>',
         link:function(scope,elem,attrs){
