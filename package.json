@@ -19,7 +19,6 @@
     "compression": "^1.6.0",
     "express": "^4.13.3",
     "fullpage.js": "^2.7.6",
-    "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
@@ -53,6 +52,10 @@
   },
   "dependencies": {
     "angular-ui-router": "^0.2.18",
-    "gulp-seajs": "^0.4.2"
+    "gulp": "^3.9.1",
+    "gulp-handlebars": "^4.0.0",
+    "gulp-seajs": "^0.4.2",
+    "gulp-seajs-combo": "^1.2.3",
+    "gulp-wrap": "^0.12.0"
   }
 }
