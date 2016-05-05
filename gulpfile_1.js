@@ -9,10 +9,6 @@ gulp.task('tpl2js', function() {
     .pipe(gulp.dest('./output/tpl'))
 });
 
-
-
-
-
 gulp.task('default',['tpl2js'], function() {
   console.info('hello world') ;
 });
