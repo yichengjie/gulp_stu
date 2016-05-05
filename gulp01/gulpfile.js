@@ -6,6 +6,22 @@ var uglify = require('gulp-uglify') ;
 var rename = require('gulp-rename') ;
 var del = require('del');
 var buffer = require('gulp-buffer') ;
+var jshint = require('gulp-jshint');
+
+var html2js = require('gulp-html2js');
+
+
+gulp.task('html2js', function() {
+    return gulp.src('src/js/tpl/*.html')
+        .pipe(html2js('js-demo.js', {
+            adapter: 'javascript',
+            base: 'templates',
+            name: 'js-demo'
+        }))
+        .pipe(gulp.dest('dist/'));
+});
+
+
 
 //压缩css
 gulp.task('minifycss', function() {
@@ -33,6 +49,7 @@ gulp.task('bundle', function() {
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())
+        /*.pipe(jshint())*/
         .pipe(gulp.dest('./build/js'))//输出bundle.js
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
