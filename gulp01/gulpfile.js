@@ -51,9 +51,9 @@ gulp.task('bundle', function() {
         .pipe(buffer())
         /*.pipe(jshint())*/
         .pipe(gulp.dest('./build/js'))//输出bundle.js
-        .pipe(rename({suffix: '.min'}))
+       /* .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest('build/js'));*/
 });
 
 gulp.task('default',['clean','bundle']) ;
