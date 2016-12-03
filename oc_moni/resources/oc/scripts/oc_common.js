@@ -1,13 +1,3 @@
-/** 
- * 附加服务基础前端特效自定义JS
- * Copyright: Travelsky (c) 2014
- * Company: 中国民航信息网络股份有限公司
- * @author 黎美艳
- * @version 0.1.1
- * history:
- * 2014-01-15 创建文件
- **/
-
 //显隐
 function hideDiv(divID){
 	$('#' + divID).hide();
